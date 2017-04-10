@@ -1,10 +1,4 @@
-formulaire inscription pop-in dans le menu
-pseudo/mdp/nom/prenom/email/sexe
-- changer les nom des champs
 <?php
-ob_start();
-session_start();
-
 $msg="";
 $pseudo = (isset($_POST['pseudo'])) ? $_POST['pseudo'] : '';
 $email = (isset($_POST['email'])) ? $_POST['email'] : '';
@@ -69,43 +63,46 @@ if($_POST){
     }
 }
 ?>
-
-<div class="container">
-    <!-- Marketing Icons Section -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                Formulaire d'inscription
-            </h1>
-            <h2>
-                <?php echo $msg; ?>
-            </h2>
-        </div>
-        <!-- Formulaire de recherche -->
-        <div class="col-md-3 col-md-offset-4 col-centered">
-            <form action="" method="post" data-toggle="validator">
-                <div class="form-group">
-                    <label>Nom d'utilisateur</label>
-                    <input type="text" class="form-control" name="pseudo" placeholder="Nom d'utilisateur" id="pseudo" value="<?= $pseudo; ?>" required data-error="Vous devez choisir un pseudo">
-                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    <div class="help-block with-errors"></div>
-                </div>
-                <div class="form-group">
-                    <label>Mot de passe <span class="small">(6 caract&egrave;res min.)</span></label>
-                    <input type="password" class="form-control" value="" placeholder="Mot de passe" name="password" required data-error="Vous devez écrire un mot de passe">
-                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    <div class="help-block with-errors"></div>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" class="form-control" value="<?= $email; ?>"" placeholder="Email" name="email"  required data-error="Vous avez oublié d'indiquer votre mail">
-                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    <div class="help-block with-errors"></div>
-                </div>
-                <input type="hidden" name="robot" value="">
-                <button type="submit" value="Envoyer" class="btn btn-default">Je m'inscris</button>
-            </form>
-        </div>
+<form action="" method="post" id="inscription" data-toggle="validator">
+    <div class="form-group">
+        pseudo/mdp/nom/prenom/email/sexe
+        - changer les nom des champs
+        <label>Nom d'utilisateur</label>
+        <input type="text" class="form-control" name="pseudo" placeholder="Nom d'utilisateur" id="pseudo" value="<?= $pseudo; ?>" required data-error="Vous devez choisir un pseudo">
+        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        <div class="help-block with-errors"></div>
     </div>
-    <hr>
-</div>
+    <div class="form-group">
+        <label>Prénom</label>
+        <input type="text" class="form-control" value="" placeholder="Prénom" name="prenom" required data-error="Vous devez écrire un Prénom">
+        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        <div class="help-block with-errors"></div>
+    </div>
+    <div class="form-group">
+        <label>Nom</label>
+        <input type="text" class="form-control" value="" placeholder="Nom" name="nom" required data-error="Vous devez écrire un Nom">
+        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        <div class="help-block with-errors"></div>
+    </div>
+    <div class="form-group">
+        <label>Sexe</label>
+            <select name="sexe" class="form-control">
+                <option value="f">Femme</option>
+                <option value="h">Homme</option>
+            </select>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" value="<?= $email; ?>"" placeholder="Email" name="email"  required data-error="Vous avez oublié d'indiquer votre mail">
+        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        <div class="help-block with-errors"></div>
+    </div>
+    <div class="form-group">
+        <label>Mot de passe <span class="small">(6 caract&egrave;res min.)</span></label>
+        <input type="password" class="form-control" value="" placeholder="Mot de passe" name="password" required data-error="Vous devez écrire un mot de passe">
+        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        <div class="help-block with-errors"></div>
+    </div>
+    <input type="hidden" name="robot" value="">
+    <button type="submit" value="Envoyer" class="btn btn-default">Je m'inscris</button>
+</form>
