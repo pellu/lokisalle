@@ -21,33 +21,91 @@
                     </div>
 
                 </div>
-                <div class="modal-body">
 
-                        <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="connexion"><p><?php include('connexion.php'); ?></p></div>
-                            <div role="tabpanel" class="tab-pane" id="inscription"><p><?php include('inscription.php'); ?></p></div>
-                        </div>
-                </div>
+
+
+                <div class="modal-body">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="connexion"><p>
+
+                          <form>
+                            <p>
+                              Nom d'utilisateur : <input type="text" id="username" />
+                              Mot de passe : <input type="password" id="password" />
+                              <input type="submit" id="submit" value="Se connecter !" />
+                          </p>
+                      </form>
+<div id="resultat">
+</div>
+
+                      <form data-toggle="validator">
+                        <div class="form-group has-feedback">
+                         Modif requete php<br>
+                         <div id="resultat"></div>
+                         <label>Nom d'utilisateur</label>
+                         <input type="text" class="form-control" name="pseudo" placeholder="Pseudo" id="pseudo" value="<?php $pseudo; ?>" required data-error="Vous devez écrire votre pseudo">
+                         <span class="glyphicon form-control-feedback" aria-hidden="true" style="top: 45px;"></span>
+                         <div class="help-block with-errors"></div>
+                     </div>
+                     <div class="form-group has-feedback">
+                        <label>Mot de passe</label>
+                        <input type="password" class="form-control" value="" placeholder="Mot de passe" name="password" required data-error="Vous avez oublié votre mot de passe">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <input type="hidden" name="robot" value="">
+                    <input type="submit" id="submit" value="Connexion" class="btn btn-default">
+                </form>
+                                      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+                <script>
+                    $(document).ready(function(){
+                      $("#submit").click(function(e){
+                          e.preventDefault();
+                          $.post(
+                              'http://localhost/lokisalle/connexion.php',
+                              {
+                                username: $("#username").val(),
+                                password : $("#password").val()
+                            },
+                            function(data){
+                              if(data == 'Success'){
+                                $("#resultat").html("<p>Vous avez été connecté avec succès !</p>");
+                            }
+                            else{
+                                $("#resultat").html("<p>Erreur lors de la connexion...</p>");
+                            }
+                        },
+                        'text'
+                        );
+                      });
+                  });
+              </script>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="inscription"><p><?php include('inscription.php'); ?></p></div>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+<!--Modal d'inscription-->
+<div class="modal fade" id="inScription" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Inscription</h4>
+            </div>
+            <div class="modal-body">
+
             </div>
         </div>
     </div>
-    <!--Modal d'inscription-->
-    <div class="modal fade" id="inScription" role="dialog">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Inscription</h4>
-                </div>
-                <div class="modal-body">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 
-    <script src="<?= $racines; ?>js/jquery.js"></script>
-    <script src="<?= $racines; ?>js/bootstrap.min.js"></script>
-    <script src="<?= $racines; ?>js/validator.js"></script>
+
+<script src="<?= $racines; ?>js/jquery.js"></script>
+<script src="<?= $racines; ?>js/bootstrap.min.js"></script>
+<script src="<?= $racines; ?>js/validator.js"></script>
 </body>
 </html>

@@ -1,5 +1,27 @@
 <?php
 
+    /**
+     * Nous créons deux variables : $username et $password qui valent respectivement "Sdz" et "salut"
+     */
+
+    $username = "Sdz";
+    $password = "salut";
+
+    if( isset($_POST['username']) && isset($_POST['password']) ){
+
+        if($_POST['username'] == $username && $_POST['password'] == $password){ // Si les infos correspondent...
+            session_start();
+            $_SESSION['user'] = $username;
+            echo "Success";        
+        }
+        else{ // Sinon
+            echo "Failed";
+        }
+
+    }
+
+/*
+
 $msg='';
 $pseudo='';
 if($_POST){
@@ -19,22 +41,5 @@ if($_POST){
     }else{
         $msg .= '<div class="erreur">Erreur de pseudo !</div>';
     }
-}
+}*/
 ?>
-<form action="" method="get" data-toggle="validator">
-    <div class="form-group has-feedback">
-         Modif requete php<br>
-        <label>Nom d'utilisateur</label>
-        <input type="text" class="form-control" name="pseudo" placeholder="Pseudo" id="pseudo" value="<?php $pseudo; ?>" required data-error="Vous devez écrire votre pseudo">
-        <span class="glyphicon form-control-feedback" aria-hidden="true" style="top: 45px;"></span>
-        <div class="help-block with-errors"></div>
-    </div>
-    <div class="form-group has-feedback">
-        <label>Mot de passe</label>
-        <input type="password" class="form-control" value="" placeholder="Mot de passe" name="password" required data-error="Vous avez oublié votre mot de passe">
-        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-        <div class="help-block with-errors"></div>
-    </div>
-    <input type="hidden" name="robot" value="">
-    <button type="submit" value="Connexion" class="btn btn-default">Connexion</button>
-</form>
