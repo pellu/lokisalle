@@ -23,7 +23,7 @@ if($_POST){
 ?>
 <form action="" method="get" data-toggle="validator">
     <div class="form-group has-feedback">
-        changer les nom des champs<br>
+         Modif requete php<br>
         <label>Nom d'utilisateur</label>
         <input type="text" class="form-control" name="pseudo" placeholder="Pseudo" id="pseudo" value="<?php $pseudo; ?>" required data-error="Vous devez écrire votre pseudo">
         <span class="glyphicon form-control-feedback" aria-hidden="true" style="top: 45px;"></span>

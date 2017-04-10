@@ -1,28 +1,26 @@
 <?php
 session_start();
-$pagename="Qui sommes-nous ?";
-include('menu.php'); ?>
+$pagename="profil";
+include('../menu.php'); ?>
 
 <div class="container">
 	<div class="row">
-		Contenu non indiqué
-
-- Photo d'équipes
-- Description entreprise
-- Liste des différents lieux...
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Qui sommes-nous ?
+						Mon profil
 					</h1>
 				</div>
 				<div class="col-md-6 col-md-offset-3 col-centered">
+					Informations du profil / Bouton pour les modifier/supprimer son compte
+					Derniers achats / Bouton pour tout voir
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+</div>
 <?php
-include('footer.php');
+include('../footer.php');
 ?>

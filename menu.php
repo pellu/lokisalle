@@ -13,22 +13,22 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.html">Lokisalle</a>
+			<a class="navbar-brand" href="<?= $racines; ?>">Lokisalle</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li <?php if($pagename=='Lokisalle'){echo 'class="active"';}else{} ?>><a href="index.php">Home</a></li>
+				<li <?php if($pagename=='Lokisalle'){echo 'class="active"';}else{} ?>><a href="<?= $racines; ?>">Home</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catégories <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Réunion</a></li>
-						<li><a href="#">Bureau</a></li>
-						<li><a href="#">Formation</a></li>
+						<li><a href="<?= $racines; ?>categorie/reunion/">Réunion</a></li>
+						<li><a href="<?= $racines; ?>categorie/bureau/">Bureau</a></li>
+						<li><a href="<?= $racines; ?>categorie/formation/">Formation</a></li>
 					</ul>
 				</li>
-				<li <?php if($pagename=='Qui sommes-nous ?'){echo 'class="active"';}else{} ?>><a href="quisommesnous.php">Qui sommes nous ?</a></li>
-				<li><a href="contact.php">Contact</a></li>
+				<li <?php if($pagename=='Qui sommes-nous ?'){echo 'class="active"';}else{} ?>><a href="<?= $racines; ?>quisommesnous/">Qui sommes nous ?</a></li>
+				<li><a href="<?= $racines; ?>contact/">Contact</a></li>
 				<?php
 				if(isset($_SESSION['membre'])){
 					?>
@@ -54,10 +54,7 @@
 				}else{
 					?>
 					<li>
-						<a type="button" href="" data-toggle="modal" data-target="#inScription">Inscription</a>
-					</li>
-					<li>
-						<a type="button" href="" data-toggle="modal" data-target="#coNnexion">Connexion</a>
+						<a type="button" href="" data-toggle="modal" data-target="#insciptionConnexion">Inscription - Connexion</a>
 					</li>
 					<?php
 				}

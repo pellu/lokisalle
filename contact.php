@@ -1,24 +1,16 @@
 <?php
 session_start();
-$pagename="Contact";
+$pagename="contact";
 include('menu.php'); ?>
 
-<!-- Page Content -->
 <div class="container">
-
 	<div class="row">
-
-
-
 		Page avec formulaire de contact, envoi email à l'admin / s'il y a le temps ajout dans le back office de l'historique des mails et réponse dans l'admin
 
 		Raison sociale : LOKISALLE
 		Adresse : 300 Boulevard de Vaugirard, 75015 Paris, France
 
 		<?php
-
-
-// On commence par récupérer les champs
 		if(isset($_SESSION['profile'])){
 			include('idprofil.php');
 			if(isset($_POST['infos'])) $infos=htmlspecialchars(addslashes($_POST['infos'])); else $infos=$resultsql['pseudo'];
@@ -30,16 +22,13 @@ include('menu.php'); ?>
 		if(isset($_POST['objet'])) $objet=htmlspecialchars(addslashes($_POST['objet'])); else $objet="";
 		if(isset($_POST['contenu'])) $contenu=htmlspecialchars(addslashes($_POST['contenu'])); else $contenu="";
 		?>
-
 		<div class="container">
-			<!-- Marketing Icons Section -->
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
 						Contactez-nous
 					</h1>
 				</div>
-				<!-- Formulaire de recherche -->
 				<div class="col-md-6 col-md-offset-3 col-centered">
 					<form role="form" action="" name="contact" method="post" data-toggle="validator">
 						<div class="form-group has-feedback" <?php if(isset($_SESSION['profile'])){echo'style="display:none;visibility:hidden;"';}else{} ?>>
@@ -49,7 +38,7 @@ include('menu.php'); ?>
 							<div class="help-block with-errors"></div>
 						</div>
 						<div class="form-group has-feedback" <?php if(isset($_SESSION['profile'])){echo'style="display:none;visibility:hidden;"';}else{} ?>>
-							<label for="inputEmail" class="control-label">Email</label>
+							<label for="inputEmail">Email</label>
 							<input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" value="<?php echo $email; ?>" maxlength="200" required data-error="Vous devez écrire un email valide">
 							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 							<div class="help-block with-errors"></div>
@@ -70,10 +59,7 @@ include('menu.php'); ?>
 					</form>
 				</div>
 			</div>
-			<hr>
 		</div>
-
-
 	</div>
 </div>
 <?php
