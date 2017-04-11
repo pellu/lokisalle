@@ -5,7 +5,7 @@ $racine='/lokisalle/'; //Dev /lokisalle/ - Prod /
 $racines='http://'.$_SERVER["HTTP_HOST"].$racine.'';
 $racinea='http://'.$_SERVER["HTTP_HOST"].$racine.'admin/';
 
-//Verif user exist
+//Verif user existe
 if(isset($_SESSION['membre'])){
 	$pseudo=$_SESSION['membre'];
 	$req = $pdo->query('SELECT * FROM users WHERE pseudo="'.$pseudo.'"');
