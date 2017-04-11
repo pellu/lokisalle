@@ -1,8 +1,8 @@
 <?php
-$pdo = new PDO('mysql:dbname=lokisalle;host=localhost','root','');
+$pdo = new PDO('mysql:dbname=lokisalle;host=localhost','root','root');
 
 
-$racine='/lokisalle/'; //Dev /lokisalle/ - Prod /
+$racine='/master/lokisalle/'; //Dev /lokisalle/ - Prod /
 $racines='http://'.$_SERVER["HTTP_HOST"].$racine.'';
 $racinea='http://'.$_SERVER["HTTP_HOST"].$racine.'admin/';
 
