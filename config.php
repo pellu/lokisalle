@@ -4,7 +4,7 @@ $pdo = new PDO('mysql:dbname=lokisalle;host=localhost','root','');
 $racine='/lokisalle/'; //Dev /lokisalle/ - Prod /
 $racines='http://'.$_SERVER["HTTP_HOST"].$racine.'';
 $racinea='http://'.$_SERVER["HTTP_HOST"].$racine.'admin/';
-
+//TEST
 //Verif user existe
 if(isset($_SESSION['membre'])){
 	$pseudo=$_SESSION['membre'];
