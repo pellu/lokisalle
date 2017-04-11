@@ -23,13 +23,12 @@
           <div class="modal-body">
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="connexion"><p>
+              <div id="resultat"></div>
                 <form method="post" data-toggle="validator">
                   <div class="form-group has-feedback">
-                   Modif requete php<br>
-                   <div id="resultat"></div>
                    <label>Nom d'utilisateur</label>
                    <input type="text" class="form-control" name="pseudo" placeholder="Pseudo" id="pseudo" value="" required data-error="Vous devez écrire votre pseudo">
-                   <span class="glyphicon form-control-feedback" aria-hidden="true" style="top: 45px;"></span>
+                   <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                    <div class="help-block with-errors"></div>
                  </div>
                  <div class="form-group has-feedback">
@@ -47,7 +46,7 @@
                   $("#submit").click(function(e){
                     e.preventDefault();
                     $.post(
-                      'connexion.php',
+                      '<?= $racines; ?>connexion.php',
                       {
                         pseudo: $("#pseudo").val(),
                         password : $("#password").val()

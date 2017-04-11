@@ -1,7 +1,6 @@
 <?php
+session_start();
 include('config.php');
-
-
 
 if(isset($_POST['pseudo']) && isset($_POST['password'])){
     $resultat = $pdo -> prepare('SELECT * FROM membre WHERE pseudo=:pseudo');
@@ -12,24 +11,40 @@ if(isset($_POST['pseudo']) && isset($_POST['password'])){
         $users = $resultat -> fetch(PDO::FETCH_ASSOC);
 
         if($users['mdp'] == sha1($_POST['password'])){
-            $_SESSION['membre'] = $_POST['pseudo'];
+            $_SESSION['user'] = $_POST['pseudo'];
             $_SESSION['userid'] = $users['id_membre'];
-            // header('Location: '.$racinea.'');
-            echo "Success";
+            ?>
+            <script type="text/javascript">
+                window.location = "<?php echo $_SERVER["HTTP_REFERER"]; ?>";
+            </script>
+             <div class="alert alert-success fade in">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Succès!</strong> La connexion est réussis.<a href="<?php echo $_SERVER["HTTP_REFERER"]; ?>">Rafraichir la page</a>
+            </div>
+            <?php
         }else{
-            echo "Password";
+            ?>
+            <div class="alert alert-danger fade in">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Attention!</strong> Le mot de passe que vous avez mis n'est pas le bon.
+            </div>
+            <?php
         }
     }else{
         ?>
-<div class="alert alert-warning fade in">
-    <a href="#" class="close" data-dismiss="alert">&times;</a>
-    <strong>Warning!</strong> There was a problem with your network connection.
-</div>
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Attention!</strong> Le pseudo que vous avez mis n'existe pas.
+        </div>
         <?php
-        echo "Pseudo";
+
     }
 }else{
-    echo "error";
+    ?>
+    <div class="alert alert-danger fade in">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Attention!</strong> Vous n'avez rien écrit dans les champs
+    </div>
+    <?php
 }
 ?>
- 

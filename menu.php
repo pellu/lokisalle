@@ -30,16 +30,22 @@
 				<li <?php if($pagename=='Qui sommes-nous ?'){echo 'class="active"';}else{} ?>><a href="<?= $racines; ?>quisommesnous/">Qui sommes nous ?</a></li>
 				<li><a href="<?= $racines; ?>contact/">Contact</a></li>
 				<?php
-				if(isset($_SESSION['membre'])){
+				if(isset($_SESSION['user'])){
 					?>
-					<li>
-						<a href="#">Profil</a>
-					</li>
-					<li <?php if($pagename=='Paramètres'){echo 'class="active"';}else{} ?>>
-						<a href="#">Parametres</a>
-					</li>
-					<li>
-						<a href="#">Deconnexion</a>
+
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profil <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li <?php if($pagename=='Profil'){echo 'class="active"';}else{} ?>>
+								<a href="<?= $racines; ?>profil/">Mon profil</a>
+							</li>
+							<li <?php if($pagename=='Paramètres'){echo 'class="active"';}else{} ?>>
+								<a href="<?= $racines; ?>profil/parametres/">Parametres</a>
+							</li>
+							<li>
+								<a href="<?= $racines; ?>profil/deconnexion/">Deconnexion</a>
+							</li>
+						</ul>
 					</li>
 					<?php
 					if($levelstatut=='1'){
@@ -49,8 +55,9 @@
 						</li>
 						<?php
 					}else{
-		            //Pas de bouton admin vu que l'utilisateur n'es pas admin
+		            		//Pas de bouton admin vu que l'utilisateur n'es pas admin
 					}
+
 				}else{
 					?>
 					<li>

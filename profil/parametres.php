@@ -1,7 +1,7 @@
 <?php
 session_start();
 $pagename="Qui sommes-nous ?";
-include('menu.php'); ?>
+include('../menu.php'); ?>
 
 <div class="container">
 	<div class="row">
@@ -23,5 +23,5 @@ Modification de son profil
 	</div>
 </div>
 <?php
-include('footer.php');
+include('../footer.php');
 ?>
