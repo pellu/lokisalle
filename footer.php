@@ -28,13 +28,7 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="connexion"><p>
 
-                          <form>
-                            <p>
-                              Nom d'utilisateur : <input type="text" id="username" />
-                              Mot de passe : <input type="password" id="password" />
-                              <input type="submit" id="submit" value="Se connecter !" />
-                          </p>
-                      </form>
+
 <div id="resultat">
 </div>
 
@@ -43,7 +37,7 @@
                          Modif requete php<br>
                          <div id="resultat"></div>
                          <label>Nom d'utilisateur</label>
-                         <input type="text" class="form-control" name="pseudo" placeholder="Pseudo" id="pseudo" value="<?php $pseudo; ?>" required data-error="Vous devez écrire votre pseudo">
+                         <input type="text" class="form-control" name="pseudo" placeholder="Pseudo" id="username" value="<?php $pseudo; ?>" required data-error="Vous devez écrire votre pseudo">
                          <span class="glyphicon form-control-feedback" aria-hidden="true" style="top: 45px;"></span>
                          <div class="help-block with-errors"></div>
                      </div>
