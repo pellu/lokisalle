@@ -1,45 +1,35 @@
 <?php
+include('config.php');
 
-    /**
-     * Nous créons deux variables : $username et $password qui valent respectivement "Sdz" et "salut"
-     */
 
-    $username = "Sdz";
-    $password = "salut";
 
-    if( isset($_POST['username']) && isset($_POST['password']) ){
-
-        if($_POST['username'] == $username && $_POST['password'] == $password){ // Si les infos correspondent...
-            session_start();
-            $_SESSION['user'] = $username;
-            echo "Success";        
-        }
-        else{ // Sinon
-            echo "Failed";
-        }
-
-    }
-
-/*
-
-$msg='';
-$pseudo='';
-if($_POST){
-    $resultat = $pdo -> prepare('SELECT password,id FROM users WHERE pseudo=:pseudo');
+if(isset($_POST['pseudo']) && isset($_POST['password'])){
+    $resultat = $pdo -> prepare('SELECT * FROM membre WHERE pseudo=:pseudo');
     $resultat -> bindParam(':pseudo', $_POST['pseudo'], PDO::PARAM_STR);
     $resultat -> execute();
 
     if($resultat -> rowCount() > 0 ){
         $users = $resultat -> fetch(PDO::FETCH_ASSOC);
-        if($users['password'] == sha1($_POST['password'])){
+
+        if($users['mdp'] == sha1($_POST['password'])){
             $_SESSION['membre'] = $_POST['pseudo'];
-            $_SESSION['userid'] = $users['id'];
-            header('Location: '.$racinea.'');
+            $_SESSION['userid'] = $users['id_membre'];
+            // header('Location: '.$racinea.'');
+            echo "Success";
         }else{
-            $msg .= '<div class="erreur">Erreur de mot de passe !</div>';
+            echo "Password";
         }
     }else{
-        $msg .= '<div class="erreur">Erreur de pseudo !</div>';
+        ?>
+<div class="alert alert-warning fade in">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Warning!</strong> There was a problem with your network connection.
+</div>
+        <?php
+        echo "Pseudo";
     }
-}*/
+}else{
+    echo "error";
+}
 ?>
+ 
