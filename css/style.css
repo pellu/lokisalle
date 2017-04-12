@@ -23,7 +23,7 @@
 /* ---------
 --- ERROR FOR SELECT IN FORM
 --------- */
-.form-control + .form-control-feedback {
+/*.form-control + .form-control-feedback {
   right: 12px;
 }
 
@@ -51,7 +51,7 @@
 .input-group > .select-style {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
-}
+}*/
 
 /* ---------
 --- TABS / MODAL

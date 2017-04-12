@@ -1,9 +1,8 @@
 <?php
 $pdo = new PDO('mysql:dbname=lokisalle;host=localhost','root','');
-//$pdo = new PDO('mysql:dbname=lokisalle;host=localhost','root','root');
+//MAC rajouter root
 
-$racine='/lokisalle/';
-//$racine='/';
+$racine='/lokisalle/'; // Prod / - pas prod /lokisalle/
 $racines='http://'.$_SERVER["HTTP_HOST"].$racine.'';
 $racinea='http://'.$_SERVER["HTTP_HOST"].$racine.'admin/';
 $actuel = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];

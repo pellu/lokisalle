@@ -61,7 +61,7 @@
 				}else{
 					?>
 					<li>
-						<a type="button" href="" data-toggle="modal" data-target="#insciptionConnexion">Inscription - Connexion</a>
+						<a type="button" href="" data-toggle="modal" data-target="#insciptionConnexion">Connexion</a>
 					</li>
 					<?php
 				}
