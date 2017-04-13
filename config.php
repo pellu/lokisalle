@@ -5,6 +5,7 @@ $pdo = new PDO('mysql:dbname=lokisalle;host=localhost','root','');
 $racine='/lokisalle/'; // Prod / - pas prod /lokisalle/
 $racines='http://'.$_SERVER["HTTP_HOST"].$racine.'';
 $racinea='http://'.$_SERVER["HTTP_HOST"].$racine.'admin/';
+$racinep='http://'.$_SERVER["HTTP_HOST"].$racine.'profil/';
 $actuel = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
 //Verif user existe

@@ -1,4 +1,6 @@
-<?php include('header.php'); ?>
+<?php
+session_start();
+include('header.php'); ?>
 <div id="wrapper">
 	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -18,17 +20,17 @@
 				<a href="<?= $racines; ?>"><i class="fa fa-fw fa-user"></i> Accès au site</a>
 			</li>
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= $resultsql['prenom'].' '. $resultsql['nom']; ?> <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+						<a href="<?= $racinep; ?>"><i class="fa fa-fw fa-user"></i> Mon profil</a>
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-fw fa-gear"></i> Paramètres</a>
+						<a href="<?= $racinep; ?>parametres/"><i class="fa fa-fw fa-gear"></i> Paramètres</a>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="#"><i class="fa fa-fw fa-power-off"></i> Deconnexion</a>
+						<a href="<?= $racinep; ?>deconnexion.php"><i class="fa fa-fw fa-power-off"></i> Deconnexion</a>
 					</li>
 				</ul>
 			</li>
@@ -40,16 +42,16 @@
 					<a href="<?= $racinea; ?>"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
 				</li>
 				<li <?php if($pagename=='Salles'){echo 'class="active"';}else{} ?>>
-					<a href="<?= $racinea; ?>gestion_salles/"><i class="fa fa-fw fa-bar-chart-o"></i> Salles</a>
+					<a href="<?= $racinea; ?>salles/"><i class="fa fa-fw fa-bar-chart-o"></i> Salles</a>
 				</li>
 				<li <?php if($pagename=='Avis'){echo 'class="active"';}else{} ?>>
-					<a href="<?= $racinea; ?>gestion_avis/"><i class="fa fa-fw fa-table"></i> Avis</a>
+					<a href="<?= $racinea; ?>avis/"><i class="fa fa-fw fa-table"></i> Avis</a>
 				</li>
 				<li <?php if($pagename=='Produits'){echo 'class="active"';}else{} ?>>
-					<a href="<?= $racinea; ?>gestion_produits/"><i class="fa fa-fw fa-edit"></i> Produits</a>
+					<a href="<?= $racinea; ?>produits/"><i class="fa fa-fw fa-edit"></i> Produits</a>
 				</li>
 				<li <?php if($pagename=='Membres'){echo 'class="active"';}else{} ?>>
-					<a href="<?= $racinea; ?>gestion_membres/"><i class="fa fa-fw fa-desktop"></i> Membres</a>
+					<a href="<?= $racinea; ?>membres/"><i class="fa fa-fw fa-desktop"></i> Membres</a>
 				</li>
 			</ul>
 		</div>
