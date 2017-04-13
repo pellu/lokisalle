@@ -3,8 +3,51 @@
  */
 
 /* ---------
+--- BASE
+--------- */
+body {
+    font-family: 'Dosis', sans-serif;
+    font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6, a {
+    color: #C1272D;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #80171B;
+}
+
+label {
+    color: #888;
+}
+
+p {
+    color: #666;
+}
+
+.btn-default {
+    color: #C1272D;
+    background-color: #fff;
+    border-color: #C1272D;
+    font-weight: bold;
+}
+
+.btn-default:hover {
+    color: #fff!important;
+    background-color: #C1272D!important;
+    border-color: #C1272D!important;
+    font-weight: bold;
+    transition: all 0.5s ease-out;
+	-webkit-transition: all 0.5s ease-in;
+}
+
+
+/* ---------
 --- MENU
 --------- */
+
 .nav.navbar-nav.navbar-right{
   margin-right: 50px;
 }
@@ -18,6 +61,19 @@
     overflow: hidden;
     margin-bottom: 10px;
   }
+}
+
+.navbar-inverse {
+    background-color: #C1272D!important;
+    border-color: #C1272D!important;
+}
+
+.navbar-collapse.collapse ul li a {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav>.active>a {
+    background-color: #80171B!important;
 }
 
 /* ---------
@@ -56,23 +112,29 @@
 /* ---------
 --- TABS / MODAL
 --------- */
+
 .nav-tabs {
-  border-bottom: 2px solid #DDD;
+  border-bottom: none;
 }
+
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
   border-width: 0;
 }
+
+/* -- DÉBUT DES ONGLETS À MODIFER -- */
 .nav-tabs > li > a {
   border: none; color: #666;
 }
+
 .nav-tabs > li.active > a, .nav-tabs > li > a:hover {
   border: none;
-  color: #4285F4 !important;
+  color: #C1272D !important;
   background: transparent;
 }
+
 .nav-tabs > li > a::after {
   content: "";
-  background: #4285F4;
+  background: #C1272D;
   height: 2px;
   position: absolute;
   width: 100%;
@@ -81,18 +143,20 @@
   transition: all 250ms ease 0s;
   transform: scale(0);
 }
+
 .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after {
   transform: scale(1);
 }
+
 .tab-nav > li > a::after {
-  background: #21527d none repeat scroll 0% 0%;
+  background: #C1272D none repeat scroll 0% 0%;
   color: #fff;
 }
+/* -- FIN -- */
 
 .card {
   width: 90%;
   background: #FFF none repeat scroll 0% 0%;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
   margin-bottom: 30px;
 }
 

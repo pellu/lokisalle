@@ -1,5 +1,4 @@
 <?php include('header.php'); ?>
-</style>
 <!-- Navigation -->
 
 <div id="wrapper">
@@ -13,20 +12,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<?= $racines; ?>">Lokisalle</a>
+			<a href="<?= $racines; ?>" class="navbar-brand"><img src="<?= $racines; ?>img/logo.svg" alt="logo" style="whidth:130px; height:30px;"></a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li <?php if($pagename=='Lokisalle'){echo 'class="active"';}else{} ?>><a href="<?= $racines; ?>">Home</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catégories <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="<?= $racines; ?>categorie/reunion/">Réunion</a></li>
-						<li><a href="<?= $racines; ?>categorie/bureau/">Bureau</a></li>
-						<li><a href="<?= $racines; ?>categorie/formation/">Formation</a></li>
-					</ul>
-				</li>
+			<ul class="nav navbar-nav navbar-left">
+                <li <?php if($pagename=='Lokisalle' ){echo 'class="active"';}else{} ?>><a href="<?= $racines; ?>">Accueil</a></li>
 				<li <?php if($pagename=='Qui sommes-nous ?'){echo 'class="active"';}else{} ?>><a href="<?= $racines; ?>quisommesnous/">Qui sommes nous ?</a></li>
 				<li><a href="<?= $racines; ?>contact/">Contact</a></li>
 				<?php
@@ -68,5 +59,5 @@
 				?>
 			</ul>
 		</div>
-	</div>
-</nav>
+    </nav>
+</div>

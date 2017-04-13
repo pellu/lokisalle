@@ -77,14 +77,14 @@ include('menu.php');
            <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
             <div class="form-group has-feedback">
              <label>Capacité</label>
-             <input type="text" class="form-control" name="capactite" placeholder="Capacité" id="capactite" value="" required data-error="Vous devez ajouter une Capacité">
+             <input type="text" class="form-control" name="capacite" placeholder="Capacité" id="capacite" value="" required data-error="Vous devez ajouter une Capacité">
              <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
              <div class="help-block with-errors"></div>
            </div>
          </div>
          <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
            <label>Catégorie</label>
-           <select name="categorie" class="form-control">
+           <select name="categorie" id="categorie" class="form-control">
             <option value="1">Réunion</option>
             <option value="2">Bureau</option>
             <option value="3">Formation</option>

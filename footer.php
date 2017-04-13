@@ -21,7 +21,7 @@
           </div>
           <div class="modal-body">
             <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="connexion"><p>
+              <div role="tabpanel" class="tab-pane active" id="connexion">
                 <div id="resultat"></div>
                 <form method="post" data-toggle="validator">
                   <div class="form-group has-feedback">
@@ -83,7 +83,7 @@
                 <div class="form-group ">
                   <label for="civilite">Sexe</label><br>
                   <label>
-                    <input type="radio" name="civilite" id="civilite2" value="h" checked> Homme
+                  <input type="radio" name="civilite" id="civilite2" value="h" checked> Homme
                   </label>
                   <label>
                     <input type="radio" name="civilite" id="civilite2" value="f"> Femme
@@ -137,8 +137,9 @@
       </div>
     </div>
   </div>
-  <script src="<?= $racines; ?>js/jquery.js"></script>
-  <script src="<?= $racines; ?>js/bootstrap.min.js"></script>
-  <script src="<?= $racines; ?>js/validator.js"></script>
+
+<script src="<?= $racines; ?>js/jquery.js"></script>
+<script src="<?= $racines; ?>js/bootstrap.min.js"></script>
+<script src="<?= $racines; ?>js/validator.js"></script>
 </body>
 </html>
