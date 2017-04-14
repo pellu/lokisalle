@@ -52,7 +52,7 @@
 				}else{
 					?>
 					<li>
-						<a href="" class="glyphicon glyphicon-user" data-toggle="modal" data-target="#insciptionConnexion"></a>
+                        <a href="" class="glyphicon glyphicon-user" data-toggle="modal" data-target="#insciptionConnexion">&nbsp;<span style="font-family:'Dosis',sans-serif; font-weight:900; font-size:14px;">Connexion</span></a>
 					</li>
 					<?php
 				}

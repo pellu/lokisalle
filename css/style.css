@@ -101,7 +101,12 @@ p {
     background-color: #80171B;
 }
 
-
+/* ---------
+--- MENU - SMARTPHONE
+--------- */
+.navbar-inverse .navbar-toggle {
+    border-color: transparent;
+}
 
 /* ---------
 --- TABS / MODAL
@@ -236,4 +241,16 @@ body {
 
 footer {
   margin: 50px 0;
+}
+
+
+/* ---------
+--- FOOTER
+--------- */
+
+footer {
+    width: 100%;
+    padding: 10px;
+    background-color: #EFEFEF;
+    text-align: center;
 }
