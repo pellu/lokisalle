@@ -56,11 +56,11 @@ include('../menu.php'); ?>
                         
                             $der_cmd->bindParam(':userid', $_SESSION['userid'], PDO::PARAM_INT);
                             $der_cmd -> execute(); 
-                    $cmd_list = $der_cmd->fetchAll(PDO::FETCH_ASSOC);
+                            $cmd_list = $der_cmd->fetchAll(PDO::FETCH_ASSOC);
                         
-                            echo '<pre>';
-                            print_r($cmd_list);
-                            echo '</pre>';
+                            //echo '<pre>';
+                            //print_r($cmd_list);
+                            //echo '</pre>';
                                 
                             if($der_cmd->rowCount()==0){
                                 echo 'Pas de commande faite !';  
@@ -68,30 +68,20 @@ include('../menu.php'); ?>
                         ?>
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Id Client</th>
-                                                <th>Id Commande</th>
-                                                <th>Date d'enregistrement</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                    <tbody>
-                                                
+                                
+                           
                                     <?php foreach($cmd_list as $row){ ?>
+                                    <div>
+                                        <img src="#" alt="" class="col-lg-4">
+                                        <div class="col-lg-8">
+                                            <h3><?=$row['titre'];?></h3>
+                                            <p><?=$row['description'];?></p>
+                                            <button>Voir Salle</button>
+                                        </div>
+                                    </div>
                     
-                                    <tr>
-                                        <td><?=$row['id_membre'];?></td>
-                                        <td><?=$row['id_commande'];?></td>
-                                        <td><?=$row['date_enregistrement'];?></td>
-                                        <td><?=$row['date_arrivee'];?></td>
-                                    </tr>
-                                    
                                     <?php } ?>
-                                    </tbody>
-                                </table>
+                                   
                             </div>
                         </div>
                         <?php } ?>    
