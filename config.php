@@ -1,5 +1,5 @@
 <?php
-$pdo = new PDO('mysql:dbname=lokisalle;host=localhost','root','');
+$pdo = new PDO('mysql:dbname=lokisalle;host=localhost','root','root');
 //MAC rajouter root
 
 $racine='/lokisalle/'; // Prod / - pas prod /lokisalle/
