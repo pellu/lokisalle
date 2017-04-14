@@ -34,7 +34,7 @@
                                 if($levelstatut=='1'){
                                 ?>
                                 <li>
-                                    <a href="#">Admin</a>
+                                    <a href="<?= $racinea; ?>">Admin</a>
                                 </li>
                                 <?php
                                     }else{
