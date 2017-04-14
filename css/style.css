@@ -72,42 +72,41 @@ p {
     color: white;
 }
 
+/* Survole pour le menu qui change de couleur */
 .navbar-inverse .navbar-nav>.active>a {
     background-color: #80171B!important;
 }
 
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:active, .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a.active {
+    background-color: #80171B!important;
+    border: transparent 0px;
+}
+
+/* -- Liens du menu dans Profil (changement de couleur et tout le tralala) -- */
+.dropdown-menu > li > a {
+    background-color: #C1272D;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu > li > a.active  {
+    background-color: #80171B;
+}
+
+/* Pas de marge dans le menu de Profil*/
+.navbar-nav>li>.dropdown-menu {
+    padding: 0;
+}
+/* -- FIN -- */
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
+    background-color: #80171B;
+}
+
 /* ---------
---- ERROR FOR SELECT IN FORM
+--- MENU - SMARTPHONE
 --------- */
-/*.form-control + .form-control-feedback {
-  right: 12px;
+.navbar-inverse .navbar-toggle {
+    border-color: transparent;
 }
-
-.select-style {
-  padding: 0;
-  margin: 0;
-  border: 0 solid transparent;
-  border-radius: 4px;
-  overflow: hidden;
-  background: #fff url('data:image/gif;base64,R0lGODlhDwAUAIABAAAAAP///yH5BAEAAAEALAAAAAAPABQAAAIXjI+py+0Po5wH2HsXzmw//lHiSJZmUAAAOw==') no-repeat calc(100% - 30px) 50%;
-}
-
-.select-style select {
-  padding: 5px 8px;
-  width: 100%;
-  box-shadow: none;
-  background-color: transparent;
-  background-image: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  color: rgba(0, 0, 0, 0.6);
-}
-
-.input-group > .select-style {
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-}*/
 
 /* ---------
 --- TABS / MODAL
@@ -115,6 +114,18 @@ p {
 
 .nav-tabs {
   border-bottom: none;
+    margin-left: auto;
+  margin-right: auto;
+}
+
+.modal #presentation .nav-tabs > li.active > a, .nav-tabs > li > a {
+    width: 100%;
+    text-align: center;
+    background-color: #C1272D;
+}
+
+.modal #presentation .nav-tabs > li.active > a, .nav-tabs > li > a:hover {
+    background-color: #80171B;
 }
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
@@ -123,16 +134,22 @@ p {
 
 /* -- DÉBUT DES ONGLETS À MODIFER -- */
 .nav-tabs > li > a {
-  border: none; color: #666;
+  border: none; 
+    color: white;
 }
 
-.nav-tabs > li.active > a, .nav-tabs > li > a:hover {
+.modal li {
+    width: 50%;
+    float: left;
+}
+
+/*.nav-tabs > li.active > a, .nav-tabs > li > a:hover {
   border: none;
   color: #C1272D !important;
   background: transparent;
-}
+}*/
 
-.nav-tabs > li > a::after {
+/*.nav-tabs > li > a::after {
   content: "";
   background: #C1272D;
   height: 2px;
@@ -142,7 +159,7 @@ p {
   bottom: -1px;
   transition: all 250ms ease 0s;
   transform: scale(0);
-}
+}*/
 
 .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after {
   transform: scale(1);
@@ -151,6 +168,10 @@ p {
 .tab-nav > li > a::after {
   background: #C1272D none repeat scroll 0% 0%;
   color: #fff;
+}
+
+.modal-header {
+    border-bottom: 0px;
 }
 /* -- FIN -- */
 
@@ -163,6 +184,10 @@ p {
 .modal-header {
   margin-bottom: 0px;
   padding-bottom: 0px;
+}
+
+.modal .nav li a {
+    padding: 10px 10px;
 }
 
 /* ---------
@@ -216,4 +241,16 @@ body {
 
 footer {
   margin: 50px 0;
+}
+
+
+/* ---------
+--- FOOTER
+--------- */
+
+footer {
+    width: 100%;
+    padding: 10px;
+    background-color: #EFEFEF;
+    text-align: center;
 }

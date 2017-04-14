@@ -12,7 +12,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a href="<?= $racines; ?>" class="navbar-brand"><img src="<?= $racines; ?>img/logo.svg" alt="logo" style="whidth:130px; height:30px;"></a>
+			<a href="<?= $racines; ?>" class="navbar-brand"><img src="<?= $racines; ?>img/logo.svg" alt="logo" style="height:20px;"></a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="navbar-collapse collapse">
@@ -30,29 +30,29 @@
 							<li <?php if($pagename=='Profil'){echo 'class="active"';}else{} ?>>
 								<a href="<?= $racines; ?>profil/">Mon profil</a>
 							</li>
-							<li <?php if($pagename=='Paramètres'){echo 'class="active"';}else{} ?>>
-								<a href="<?= $racines; ?>profil/parametres/">Parametres</a>
-							</li>
+							<?php
+                                if($levelstatut=='1'){
+                                ?>
+                                <li>
+                                    <a href="#">Admin</a>
+                                </li>
+                                <?php
+                                    }else{
+                                            //Pas de bouton admin vu que l'utilisateur n'es pas admin
+                                    }
+                                ?>
 							<li>
 								<a href="<?= $racines; ?>profil/deconnexion/">Deconnexion</a>
 							</li>
 						</ul>
 					</li>
 					<?php
-					if($levelstatut=='1'){
-						?>
-						<li>
-							<a href="#">Admin</a>
-						</li>
-						<?php
-					}else{
-		            		//Pas de bouton admin vu que l'utilisateur n'es pas admin
-					}
+					
 
 				}else{
 					?>
 					<li>
-						<a type="button" href="" data-toggle="modal" data-target="#insciptionConnexion">Connexion</a>
+                        <a href="" class="glyphicon glyphicon-user" data-toggle="modal" data-target="#insciptionConnexion">&nbsp;<span style="font-family:'Dosis',sans-serif; font-weight:900; font-size:14px;">Connexion</span></a>
 					</li>
 					<?php
 				}
