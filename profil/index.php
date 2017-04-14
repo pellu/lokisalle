@@ -15,20 +15,25 @@ include('../menu.php'); ?>
                         </h2>
                         <p>
                             Vous êtes inscrit depuis le
-                            <?=
-                            date("d/m/Y", $resultsql['date_enregistrement']);?>.
+                            <?=date("d/m/Y", $resultsql['date_enregistrement']);?>.
                         </p>
                     </div>
-                    <img src="http://www.assuropoil.fr/wp-content/uploads/assurance-chat-assurer-son-chat.jpg" alt="photo de profil" class="col-lg-3">
                     <div class="col-md-6 col-centered">
                         <p>Pseudo<button class="glyphicon glyphicon-edit edit" aria-hidden="true"></button></p>
-                        <p><?= $resultsql['pseudo'];?></p>
+                        <p>
+                            <?= $resultsql['pseudo'];?>
+                        </p>
                         <p>Prénom<button class="glyphicon glyphicon-edit edit" aria-hidden="true"></button></p>
-                        <p><?= $resultsql['prenom'];?></p>
+                        <p>
+                            <?= $resultsql['prenom'];?>
+                        </p>
                         <p>Nom<button class="glyphicon glyphicon-edit edit" aria-hidden="true"></button></p>
-                        <p><?= $resultsql['nom'];?></p>
+                        <p>
+                            <?= $resultsql['nom'];?>
+                        </p>
                         <p>Civilité<button class="glyphicon glyphicon-edit edit" aria-hidden="true"></button></p>
-                        <p><?php
+                        <p>
+                            <?php
                             if ($resultsql['civilite'] == 'h') {
                                 echo "Homme";
                             } elseif ($resultsql['civilite'] == 'f') {
@@ -36,15 +41,18 @@ include('../menu.php'); ?>
                             } else {
                                 echo "Autre";
                             }
-                        ?></p>
+                        ?>
+                        </p>
                         <p>Mail<button class="glyphicon glyphicon-edit edit" aria-hidden="true"></button></p>
-                        <p><?= $resultsql['email'];?></p>
-                        
+                        <p>
+                            <?= $resultsql['email'];?>
+                        </p>
+
                         <button>Supprimer mon profil</button>
                     </div>
                     <div class="col-lg-12">
                         <h2 class="page-header">Vos dernières commandes :</h2>
-                        
+
                         <?php 
                         
                             $der_cmd = $pdo->prepare('
@@ -68,27 +76,32 @@ include('../menu.php'); ?>
                         ?>
                         <div class="row">
                             <div class="col-lg-12">
-                                
-                           
-                                    <?php foreach($cmd_list as $row){ ?>
-                                    <div>
-                                        <img src="#" alt="" class="col-lg-4">
-                                        <div class="col-lg-8">
-                                            <h3><?=$row['titre'];?></h3>
-                                            <p><?=$row['description'];?></p>
-                                            <button>Voir Salle</button>
-                                        </div>
+
+
+                                <?php foreach($cmd_list as $row){ ?>
+                                <div>
+                                    <img src="#" alt="" class="col-lg-4">
+                                    <div class="col-lg-8">
+                                        <h3>
+                                            <?=$row['titre'];?> |<span> Reservé du <?=date("d/m/Y", $row['date_arrivee']);?> au <?=date("d/m/Y", $row['date_depart']);?></span>
+                                        </h3>
+                                        <p>Adresse : <?=$row['adresse'];?> <?=$row['ville'];?> <?=$row['cp'];?></p>
+                                        <p>Coût : <?=$row['prix'];?> € pour <?=$row['capacite'];?> places</p>
+                                        <p>
+                                            <?=$row['description'];?>
+                                        </p>
+                                        <button><a href="#">Voir le produit</a></button>
                                     </div>
-                    
-                                    <?php } ?>
-                                   
+                                </div>
+                                <?php } ?>
+
                             </div>
                         </div>
-                        <?php } ?>    
+                        <?php } ?>
                     </div>
-                </div>              
+                </div>
             </div>
         </div>
     </div>
-    
-<?php include('../footer.php'); ?>
+
+    <?php include('../footer.php'); ?>
