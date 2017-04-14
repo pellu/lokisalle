@@ -10,15 +10,10 @@
     <div class="modal fade" id="insciptionConnexion" role="dialog">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <div class="card"><h4 class="modal-title">
-              <ul class="nav nav-tabs" role="tablist">
+            <ul id="presentation" class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#connexion" aria-controls="connexion" role="tab" data-toggle="tab">Connexion</a></li>
                 <li role="presentation"><a href="#inscription" aria-controls="inscription" role="tab" data-toggle="tab">Inscription</a></li>
-              </ul></h4>
-            </div>
-          </div>
+            </ul>
           <div class="modal-body">
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="connexion">
