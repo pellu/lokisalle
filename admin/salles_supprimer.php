@@ -7,7 +7,7 @@ if(isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])){
 	$resultat->execute();
 	if($resultat->rowCount() > 0){
 		$salle=$resultat->fetch(PDO::FETCH_ASSOC);
-		$chemin_photo_a_supprimer=RACINE_SERVEUR.$racine.'photo/'.$salle['photo'];
+		$chemin_photo_a_supprimer=RACINE_SERVEUR.$racine.'images/'.$salle['photo'];
 		if($salle['photo'] != 'default.jpg' && file_exists($chemin_photo_a_supprimer)){
 			unlink($chemin_photo_a_supprimer);
 		}

@@ -23,10 +23,7 @@ include('header.php'); ?>
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= $resultsql['prenom'].' '. $resultsql['nom']; ?> <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="<?= $racinep; ?>"><i class="fa fa-fw fa-user"></i> Mon profil</a>
-					</li>
-					<li>
-						<a href="<?= $racinep; ?>parametres/"><i class="fa fa-fw fa-gear"></i> Paramètres</a>
+						<a href="<?= $racines; ?>profil/"><i class="fa fa-fw fa-user"></i> Mon profil</a>
 					</li>
 					<li class="divider"></li>
 					<li>

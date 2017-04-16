@@ -27,6 +27,18 @@ include('menu.php');
       $msg .= '<div class="alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Attention!</strong> Veuillez ajouter une ville.</div>';
     }
 
+    if(empty($_POST['adresse'])){
+      $msg .= '<div class="alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Attention!</strong> Veuillez ajouter une adresse.</div>';
+    }
+
+    if(empty($_POST['codepostal'])){
+      $msg .= '<div class="alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Attention!</strong> Veuillez ajouter un codepostal.</div>';
+    }
+
+    if(empty($_POST['capacite'])){
+      $msg .= '<div class="alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Attention!</strong> Veuillez ajouter une capacite.</div>';
+    }
+
     //Génération de l'url aléatoire pour l'image
     function random($str) {
       $string = "";
@@ -201,57 +213,111 @@ $produits=$resultat->fetchAll(PDO::FETCH_ASSOC);
               <?php endforeach; ?>
               <td>
 
-                <a type="button" class="btn" data-toggle="modal" data-target="#modalModif<?= $valeur['id_salle'] ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                <a href="#" data-toggle="modal" data-target="#modalModif<?= $valeur['id_salle'] ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
 
                 <div class="modal fade" id="modalModif<?= $valeur['id_salle'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                        <h4 class="modal-title" id="myModalLabel">Modification de la salle n° <?= $valeur['id_salle'] ?></h4>
                       </div>
                       <div class="modal-body">
-                        <form method="POST" action="<?= $racinea ?>salles_modifier.php?id=<?= $valeur['id_salle'] ?>" data-toggle="validator" novalidate="true">
-                          <div class="col-lg-12"><br>
-                            <h3>Modifier</h3>
-                            <p>La modification de la photo sera immédiate et irréversible !</p>
-                            <div class="form-group">
-                              <label>Titre</label>
-                              <input type="text" class="form-control" name="title" placeholder="Titre" value="<?= $valeur['titre'] ?>" required="" data-error="Vous devez écrire un titre">
-                              <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                              <div class="help-block with-errors"></div>
-                            </div>
-                            <label>Catégorie</label>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
-                            <div class="form-group">
-                              <label>Description</label>
-                              <textarea class="form-control" name="description" placeholder="Description" required="" data-error="Vous devez écrire une description">trhtrhtrhrhttr</textarea>
-                              <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                              <div class="help-block with-errors"></div>
-                            </div>
-                            <input type="hidden" class="form-control" name="pseudo" value="admin">
-                            <button type="submit" name="edit" class="btn btn-success" value="38">Je modifie ma photo</button>
-                            <br><br></div>
-                          </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
+                        <form method="POST" action="<?= $racinea ?>salles_modifier.php?id=<?= $valeur['id_salle'] ?>" data-toggle="validator" novalidate="true" enctype="multipart/form-data">
+                          <div class="col-lg-12 col-md-12 col-ls-12 col-xs-12">
+                            <div class="form-group has-feedback">
+                             <label>Titre</label>
+                             <input type="text" class="form-control" name="titre" placeholder="Titre" id="titre" value="<?= $valeur['titre'] ?>" required data-error="Vous devez ajouter un titre">
+                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                             <div class="help-block with-errors"></div>
+                           </div>
+                           <div class="form-group has-feedback">
+                             <label>Description</label>
+                             <textarea class="form-control" id="description" name="description" required data-error="Vous devez ajouter une description"><?= $valeur['description'] ?></textarea>
+                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                             <div class="help-block with-errors"></div>
+                           </div>
+                         </div>
+                         <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                           <div class="form-group has-feedback">
+                             <label>Ville</label>
+                             <input type="text" class="form-control" name="ville" placeholder="Ville" id="ville" value="<?= $valeur['ville'] ?>" required data-error="Vous devez ajouter une ville">
+                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                             <div class="help-block with-errors"></div>
+                           </div>
+                         </div>
+                         <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                           <div class="form-group has-feedback">
+                             <label>Code postal</label>
+                             <input type="text" class="form-control" name="codepostal" placeholder="Code postal" id="codepostal" value="<?= $valeur['cp'] ?>" required data-error="Vous devez ajouter une Code postal">
+                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                             <div class="help-block with-errors"></div>
+                           </div>
+                         </div>
+                         <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                           <div class="form-group has-feedback">
+                             <label>Adresse</label>
+                             <input type="text" class="form-control" name="adresse" placeholder="Adresse" id="adresse" value="<?= $valeur['adresse'] ?>" required data-error="Vous devez ajouter une adresse">
+                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                             <div class="help-block with-errors"></div>
+                           </div>
+                         </div>
+                         <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                          <div class="form-group has-feedback">
+                           <label>Capacité</label>
+                           <input type="text" class="form-control" name="capacite" placeholder="Capacité" id="capacite" value="<?= $valeur['capacite'] ?>" required data-error="Vous devez ajouter une Capacité">
+                           <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                           <div class="help-block with-errors"></div>
+                         </div>
+                       </div>
+                       <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                         <label>Catégorie</label>
+                         <select name="categorie" id="categorie" class="form-control">
+                          <option <?php if($valeur['categorie']==1){echo "selected";} ?> value="1">Réunion</option>
+                          <option <?php if($valeur['categorie']==2){echo "selected";} ?> value="2">Bureau</option>
+                          <option <?php if($valeur['categorie']==3){echo "selected";} ?> value="3">Formation</option>
+                        </select>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                        <label>Votre photo <span></span></label>
+                        <div class="btn btn-success">
+                          <input type="hidden" name="photo_actuelle" value="<?= $valeur['photo'] ?>">
+                          <input name="photo" class="uploads" id="photo" type="file" id="photo" accept="image/*" class="uploads"/>
                         </div>
                       </div>
-                    </div>
+                      <input type="submit" id="submitsalle" value="J'ajoute la salle" class="btn btn-default">
+                    </form>
                   </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <a href="#" data-toggle="modal" data-target="#modalSupprimer<?= $valeur['id_salle'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 
 
-                </td>
-                <td><a href="salle_supprimer.php?id=<?= $valeur['id_salle'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
-              </tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+
+            <div class="modal fade" id="modalSupprimer<?= $valeur['id_salle'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Supprimer la salle n° <?= $valeur['id_salle'] ?></h4>
+                  </div>
+                  <div class="modal-body">
+                    <a type="button" class="btn btn-danger" href="<?= $racinea ?>salles_supprimer.php?id=<?= $valeur['id_salle'] ?>">Je valide la suppression de la salle n°<?= $valeur['id_salle'] ?></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+</div>
 </div>
 <?php include('footer.php'); ?>
