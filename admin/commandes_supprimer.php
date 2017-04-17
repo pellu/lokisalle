@@ -9,8 +9,9 @@ if(isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])){
 	$resultat->execute();
 	if($resultat->rowCount() > 0){
 		$commande=$resultat->fetch(PDO::FETCH_ASSOC);
-		
 		$resultat=$pdo->exec("DELETE FROM commande WHERE id_commande=$commande[id_commande]");
+		$modif=$pdo->prepare("UPDATE produit SET etat='libre' WHERE id_produit=$commande[id_produit]");
+		$modif->execute();
 		if($resultat != FALSE){
 			header('location:'.$racinea.'commandes/');
 		}

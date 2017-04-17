@@ -1,11 +1,8 @@
 Ce qui reste à faire :
 
-Redirection après connexion/inscription, réactiver le js
-
 Admin:
 - Trie des colonnes
 - Statistiques admin
-- Affichage des commandes admin
 
 Front :
 - Affichage des produits page d'accueil / nombre de résultat / voir plus
@@ -15,6 +12,8 @@ Front :
 - Ajout commentaire/note (seulement si connecté, sinon modal connexion, fiche d'un produit) / Calcul de la note moyenne
 - Envoi du formulaire de contact par mail
 - Design accueil/Contact/Produit
+
+Quand une commande est réalisée, modification du produit pour mettre reserve, quand une commande est supprimée modifier le produit pour mettre libre
 
 Pour la présentation :
 - Validation W3C (avant samedi si possible sinon samedi)

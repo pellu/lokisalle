@@ -149,7 +149,6 @@ include('menu.php');
                           echo $valeur2.' - '.$rowsalle['titre'];
                         } ?>
                       </td>
-
                     <?php elseif($indice2 == 'prix') : ?>
                       <td>
                         <?php echo $valeur2.' €'; ?>

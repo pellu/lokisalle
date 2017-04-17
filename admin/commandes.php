@@ -26,6 +26,7 @@ include('menu.php');
                   <?php $colonne = $resultat -> getColumnMeta($i); ?>
                   <th><?= $colonne['name'] ?></th>
                 <?php endfor; ?>
+                <th colspan="1">Prix</th>
                 <th colspan="2">Actions</th>
               </tr>
             </thead>
@@ -33,31 +34,70 @@ include('menu.php');
               <?php foreach ($commandes as $indice => $valeur) : ?>
                 <tr>
                   <?php foreach ($valeur as $indice2 => $valeur2) : ?>
-                      <td><?= $valeur2; ?></td>
-                  <?php endforeach; ?>
-                  <td>
-                    <a href="#" data-toggle="modal" data-target="#modalSupprimer<?= $valeur['id_commande'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                    <div class="modal fade" id="modalSupprimer<?= $valeur['id_commande'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Supprimer la commande n° <?= $valeur['id_commande'] ?></h4>
-                          </div>
-                          <div class="modal-body">
+                    <?php if($indice2 == 'id_commande') : ?>
+                      <td><?php echo $valeur2; ?></td>
+                    <?php elseif($indice2 == 'id_membre') : ?>
+                      <td>
+                      <?php //Affiche le pseudo de l'utilisateur en plus de son id
+                      $query = $pdo->prepare('SELECT * FROM membre WHERE id_membre="'.$valeur2.'"');
+                      $query->execute();
+                      $list = $query->fetchAll();
+                      foreach ($list as $row) {
+                        echo $valeur2.' - '.$row['pseudo'];
+                      } ?>
+                    </td>
+                  <?php elseif($indice2 == 'id_produit') : ?>
+                    <td>
+                      <?php
+                      $queryb = $pdo->prepare('SELECT * FROM produit WHERE id_produit="'.$valeur['id_produit'].'"');
+                      $queryb->execute();
+                      $listb = $queryb->fetchAll();
+                      foreach ($listb as $row) {
+                        $queryc = $pdo->prepare('SELECT * FROM salle WHERE id_salle="'.$row['id_salle'].'"');
+                        $queryc->execute();
+                        $listc = $queryc->fetchAll();
+                        foreach ($listc as $rowc) {
+                          echo $valeur2.' - '.$rowc['titre'].'<br>'.$row['date_arrivee'].' au '.$row['date_depart'];
+                        }
+                      }
+                      ?>
+                    </td>
+                  <?php else : ?>
+                    <td><?= $valeur2; ?></td>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+                <td>
+                  <?php
+                  $querya = $pdo->prepare('SELECT * FROM produit WHERE id_produit="'.$valeur['id_produit'].'"');
+                  $querya->execute();
+                  $lista = $querya->fetchAll();
+                  foreach ($lista as $row) {
+                    echo $row['prix'].' €';
+                  } ?>
+                </td>
+                <td>
+                  <a href="#" data-toggle="modal" data-target="#modalSupprimer<?= $valeur['id_commande'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                  <div class="modal fade" id="modalSupprimer<?= $valeur['id_commande'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="myModalLabel">Supprimer la commande n° <?= $valeur['id_commande'] ?></h4>
+                        </div>
+                        <div class="modal-body">
                           <a type="button" class="btn btn-danger" href="<?= $racinea ?>commandes_supprimer.php?id=<?= $valeur['id_commande'] ?>">Je valide la suppression de la commande n°<?= $valeur['id_commande'] ?></a>
-                          </div>
                         </div>
                       </div>
                     </div>
-                  </td>
-                </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
-        </div>
+                  </div>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+</div>
 </div>
 <?php include('footer.php'); ?>
