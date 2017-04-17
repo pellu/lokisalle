@@ -114,7 +114,7 @@ include('menu.php');
        </div>
      </div>
      <?php $p2 = array("paris"=>array("75001", "75002", "75003", "75004", "75005", "75006", "75007", "75008", "75009", "75010", "75011", "75012", "75013", "75014", "75015", "75016", "75017", "75018", "75019", "75020"), "lyon"=>array("69001", "69002", "69003", "69004", "69005", "69006", "69007", "69008", "69009"), "marseille"=>array("13001", "13002", "13003", "13004", "13005", "13006", "13007", "13008", "13009", "13010", "13011", "13012", "13013", "13014", "13015")); ?>
-     <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+     <div class="col-lg-6 col-md-6 col-ls-6">
        <label>Ville</label>
        <select name="ville" id="ville" class="form-control" onchange="changeSelect(this);">
         <option value="">Choisir</option>
@@ -123,13 +123,13 @@ include('menu.php');
         <option value="marseille">Marseille</option>
       </select>
     </div>
-    <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+    <div class="col-lg-6 col-md-6 col-ls-6">
      <label>Code postal</label>
      <select name="codepostal" id="codepostal" class="form-control">
       <option value="">Mon choix...</option>
     </select>
   </div>
-  <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+  <div class="col-lg-6 col-md-6 col-ls-6">
    <div class="form-group has-feedback">
      <label>Adresse</label>
      <input type="text" class="form-control" name="adresse" placeholder="Adresse" id="adresse" value="<?= $adresse ?>" required data-error="Vous devez ajouter une adresse">
@@ -137,7 +137,7 @@ include('menu.php');
      <div class="help-block with-errors"></div>
    </div>
  </div>
- <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+ <div class="col-lg-6 col-md-6 col-ls-6">
   <div class="form-group has-feedback">
    <label>Capacité</label>
    <input type="text" class="form-control" name="capacite" placeholder="Capacité" id="capacite" value="<?= $capacite ?>" required data-error="Vous devez ajouter une Capacité">
@@ -145,7 +145,7 @@ include('menu.php');
    <div class="help-block with-errors"></div>
  </div>
 </div>
-<div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+<div class="col-lg-6 col-md-6 col-ls-6">
  <label>Catégorie</label>
  <select name="categorie" id="categorie" class="form-control">
   <option value="1">Réunion</option>
@@ -153,7 +153,7 @@ include('menu.php');
   <option value="3">Formation</option>
 </select>
 </div>
-<div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+<div class="col-lg-6 col-md-6 col-ls-6">
  <div class="form-group has-feedback">
   <label>Votre photo</label>
   <div class="fileUpload btn btn-success">
@@ -268,7 +268,7 @@ $produits=$resultat->fetchAll(PDO::FETCH_ASSOC);
                              <div class="help-block with-errors"></div>
                            </div>
                          </div>
-                         <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                         <div class="col-lg-6 col-md-6 col-ls-6">
                            <label>Ville</label>
                            <select name="ville" id="ville" class="form-control" onchange="changeSelect(this);">
                             <option <?php if($valeur['categorie']=='paris'){echo "selected";} ?> value="paris">Paris</option>
@@ -276,7 +276,7 @@ $produits=$resultat->fetchAll(PDO::FETCH_ASSOC);
                             <option <?php if($valeur['categorie']=='marseille'){echo "selected";} ?> value="marseille">Marseille</option>
                           </select>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                        <div class="col-lg-6 col-md-6 col-ls-6">
                          <div class="form-group has-feedback">
                            <label>Code postal</label>
                            <input type="text" class="form-control" name="codepostal" placeholder="Code postal" id="codepostal" value="<?= $valeur['cp'] ?>" required data-error="Vous devez ajouter une Code postal">
@@ -284,7 +284,7 @@ $produits=$resultat->fetchAll(PDO::FETCH_ASSOC);
                            <div class="help-block with-errors"></div>
                          </div>
                        </div>
-                       <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                       <div class="col-lg-6 col-md-6 col-ls-6">
                          <div class="form-group has-feedback">
                            <label>Adresse</label>
                            <input type="text" class="form-control" name="adresse" placeholder="Adresse" id="adresse" value="<?= $valeur['adresse'] ?>" required data-error="Vous devez ajouter une adresse">
@@ -292,7 +292,7 @@ $produits=$resultat->fetchAll(PDO::FETCH_ASSOC);
                            <div class="help-block with-errors"></div>
                          </div>
                        </div>
-                       <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                       <div class="col-lg-6 col-md-6 col-ls-6">
                         <div class="form-group has-feedback">
                          <label>Capacité</label>
                          <input type="text" class="form-control" name="capacite" placeholder="Capacité" id="capacite" value="<?= $valeur['capacite'] ?>" required data-error="Vous devez ajouter une Capacité">
@@ -300,7 +300,7 @@ $produits=$resultat->fetchAll(PDO::FETCH_ASSOC);
                          <div class="help-block with-errors"></div>
                        </div>
                      </div>
-                     <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                     <div class="col-lg-6 col-md-6 col-ls-6">
                        <label>Catégorie</label>
                        <select name="categorie" id="categorie" class="form-control">
                         <option <?php if($valeur['categorie']==1){echo "selected";} ?> value="1">Réunion</option>
@@ -308,7 +308,7 @@ $produits=$resultat->fetchAll(PDO::FETCH_ASSOC);
                         <option <?php if($valeur['categorie']==3){echo "selected";} ?> value="3">Formation</option>
                       </select>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                    <div class="col-lg-6 col-md-6 col-ls-6">
                       <label>Votre photo <span></span></label>
                       <div class="btn btn-success">
                         <input type="hidden" name="photo_actuelle" value="<?= $valeur['photo'] ?>">
