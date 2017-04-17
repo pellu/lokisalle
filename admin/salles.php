@@ -1,4 +1,5 @@
 <?php
+session_start();
 $pagename="Salles";
 include('menu.php');
 ?>

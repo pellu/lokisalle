@@ -87,7 +87,7 @@ if($_POST AND isset($_GET['id'])){
 <style type="text/css">
 	label{color: white};
 </style>
-<form method="POST" action="<?= $racinea ?>salles_modifier.php?id=<?= $_POST['id'] ?>" data-toggle="validator" novalidate="true" enctype="multipart/form-data">
+<form method="POST" action="<?= $racinea ?>salles_modifier.php?id=<?= $_GET['id'] ?>" data-toggle="validator" novalidate="true" enctype="multipart/form-data">
 	<div class="col-lg-12 col-md-12 col-ls-12 col-xs-12">
 		<div class="form-group has-feedback">
 			<label>Titre</label>

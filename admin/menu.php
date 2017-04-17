@@ -27,7 +27,7 @@ include('header.php'); ?>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="<?= $racinep; ?>deconnexion.php"><i class="fa fa-fw fa-power-off"></i> Deconnexion</a>
+						<a href="<?= $racines; ?>profil/deconnexion/"><i class="fa fa-fw fa-power-off"></i> Deconnexion</a>
 					</li>
 				</ul>
 			</li>
