@@ -83,6 +83,9 @@ include('menu.php');
 
       if($resultat -> execute()){
         ?>
+        <script type="text/javascript">
+          window.location = "<?php echo $_SERVER["HTTP_REFERER"]; ?>";
+        </script>
         <div class="alert alert-success fade in">
           <a href="#" class="close" data-dismiss="alert">&times;</a>
           <strong>Succès!</strong> L'ajout de la salle est ok.<a href="<?php echo $_SERVER["HTTP_REFERER"]; ?>">Rafraichir la page</a>
@@ -115,19 +118,23 @@ include('menu.php');
      </div>
      <?php $p2 = array("paris"=>array("75001", "75002", "75003", "75004", "75005", "75006", "75007", "75008", "75009", "75010", "75011", "75012", "75013", "75014", "75015", "75016", "75017", "75018", "75019", "75020"), "lyon"=>array("69001", "69002", "69003", "69004", "69005", "69006", "69007", "69008", "69009"), "marseille"=>array("13001", "13002", "13003", "13004", "13005", "13006", "13007", "13008", "13009", "13010", "13011", "13012", "13013", "13014", "13015")); ?>
      <div class="col-lg-6 col-md-6 col-ls-6">
-       <label>Ville</label>
-       <select name="ville" id="ville" class="form-control" onchange="changeSelect(this);">
-        <option value="">Choisir</option>
-        <option value="paris">Paris</option>
-        <option value="lyon">Lyon</option>
-        <option value="marseille">Marseille</option>
-      </select>
+       <div class="form-group">
+         <label>Ville</label>
+         <select name="ville" id="ville" class="form-control" onchange="changeSelect(this);">
+          <option value="">Choisir</option>
+          <option value="paris">Paris</option>
+          <option value="lyon">Lyon</option>
+          <option value="marseille">Marseille</option>
+        </select>
+      </div>
     </div>
     <div class="col-lg-6 col-md-6 col-ls-6">
-     <label>Code postal</label>
-     <select name="codepostal" id="codepostal" class="form-control">
-      <option value="">Mon choix...</option>
-    </select>
+      <div class="form-group">
+       <label>Code postal</label>
+       <select name="codepostal" id="codepostal" class="form-control">
+        <option value="">Mon choix...</option>
+      </select>
+    </div>
   </div>
   <div class="col-lg-6 col-md-6 col-ls-6">
    <div class="form-group has-feedback">
@@ -154,10 +161,10 @@ include('menu.php');
 </select>
 </div>
 <div class="col-lg-6 col-md-6 col-ls-6">
+<label>Votre photo</label>
  <div class="form-group has-feedback">
-  <label>Votre photo</label>
   <div class="fileUpload btn btn-success">
-    <input name="photo" class="uploads" id="photo" type="file" id="fichier_a_uploader" accept="image/*" class="uploads" required data-error="Vous devez choisir une image"/>
+    <input name="photo" class="uploads" id="photo" type="file" id="fichier_a_uploader" accept="image/*" class="uploads form-control" required data-error="Vous devez choisir une image"/>
   </div>
 
   <script>

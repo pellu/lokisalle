@@ -86,10 +86,10 @@ include('menu.php');
                         //Affiche la note en étoiles
                         switch ($valeur2) {
                           case 1:
-                          echo '<i class="fa fa-star"></i><i class="fa fa-o"></i><i class="fa fa-o"></i><i class="fa fa-star-o" ></i><i class="fa fa-star-o"></i>';
+                          echo '<i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>';
                           break;
                           case 2:
-                          echo '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-o"></i><i class="fa fa-star-o" ></i><i class="fa fa-star-o"></i>';
+                          echo '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>';
                           break;
                           case 3:
                           echo '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o" ></i><i class="fa fa-star-o"></i>';
@@ -98,7 +98,7 @@ include('menu.php');
                           echo '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star" ></i><i class="fa fa-star-o"></i>';
                           break;
                           case 5:
-                          echo '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star" ></i><i class="fa fa-star-star"></i>';
+                          echo '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star" ></i><i class="fa fa-star"></i>';
                           break;
                           default:
                           echo '<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>';

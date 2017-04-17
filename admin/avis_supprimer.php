@@ -1,4 +1,6 @@
 <?php
+ob_start();
+session_start();
 include('header.php');
 
 if(isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])){

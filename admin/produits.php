@@ -49,6 +49,9 @@ include('menu.php');
 
         if($resultat -> execute()){
           ?>
+          <script type="text/javascript">
+            window.location = "<?php echo $_SERVER["HTTP_REFERER"]; ?>";
+          </script>
           <div class="alert alert-success fade in">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
             <strong>Succès!</strong> L'ajout du produit est ok.<a href="<?php echo $_SERVER["HTTP_REFERER"]; ?>">Rafraichir la page</a>
@@ -104,7 +107,10 @@ include('menu.php');
         <div class="col-lg-6 col-md-6 col-ls-6">
           <div class="form-group">
             <label>Etat</label>
-            <input type="text" class="form-control" name="etat" placeholder="Etat" id="etat" value="<?= $etat ?>" required data-error="Vous devez choisir un état">
+            <select name="etat" id="etat" class="form-control">
+              <option value="libre">Libre</option>
+              <option value="reserve">Réservé</option>
+            </select>
           </div>
         </div>
         <input type="submit" id="submitproduit" value="J'ajoute le produit" class="btn btn-default">
@@ -146,19 +152,16 @@ include('menu.php');
 
                     <?php elseif($indice2 == 'prix') : ?>
                       <td>
-                        <?php
-                        echo $valeur2.' €';
-                        ?>
+                        <?php echo $valeur2.' €'; ?>
                       </td>
                     <?php else : ?>
                       <td><?= $valeur2; ?></td>
                     <?php endif; ?>
                   <?php endforeach; ?>
                   <td>
+                    <a href="#" data-toggle="modal" data-target="#modalModif<?= $valeur['id_produit'] ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
 
-                    <a href="#" data-toggle="modal" data-target="#modalModif<?= $valeur['id_salle'] ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-
-                    <div class="modal fade" id="modalModif<?= $valeur['id_salle'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal fade" id="modalModif<?= $valeur['id_produit'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -166,7 +169,7 @@ include('menu.php');
                             <h4 class="modal-title" id="myModalLabel">Modification du produit n° <?= $valeur['id_produit'] ?></h4>
                           </div>
                           <div class="modal-body">
-                            <form method="POST" action="<?= $racinea ?>salles_modifier.php?id=<?= $valeur['id_salle'] ?>" data-toggle="validator" novalidate="true" enctype="multipart/form-data">
+                            <form method="POST" action="<?= $racinea ?>produits_modifier.php?id=<?= $valeur['id_produit'] ?>" data-toggle="validator" novalidate="true" enctype="multipart/form-data">
                               <div class="col-lg-12 col-md-12 col-ls-12">
                                 <div class="form-group">
                                   <label>Choix de la salle</label>
@@ -176,65 +179,68 @@ include('menu.php');
                                     $query->execute();
                                     $list = $query->fetchAll();
                                     foreach ($list as $row) {
-                                      echo '<option value="'.$row["id_salle"].'">'.$row["titre"].'</option>';
-                                    } ?>
-                                  </select>
+                                      ?><option <?php if($row['id_salle'] == $valeur['id_salle']){echo "selected";} ?> value="<?= $row['id_salle']; ?>"><?= $row["titre"] ?></option>
+                                      <?php } ?>
+                                    </select>
+                                  </div>
                                 </div>
-                              </div>
-                              <div class="col-lg-6 col-md-6 col-ls-6">
-                                <div class="form-group">
-                                  <label>Date d'arrivée</label>
-                                  <input type="text" class="form-control" name="date_arrivee" placeholder="Date d'arrivée" id="date_arrivee" value="<?= $valeur['date_arrivee'] ?>" required data-error="Vous devez choisir une date d'arrivée">
+                                <div class="col-lg-6 col-md-6 col-ls-6">
+                                  <div class="form-group">
+                                    <label>Date d'arrivée</label>
+                                    <input type="text" class="form-control" name="date_arrivee" placeholder="Date d'arrivée" id="date_arrivee" value="<?= $valeur['date_arrivee'] ?>" required data-error="Vous devez choisir une date d'arrivée">
+                                  </div>
                                 </div>
-                              </div>
-                              <div class="col-lg-6 col-md-6 col-ls-6">
-                                <div class="form-group">
-                                  <label>Date de départ</label>
-                                  <input type="text" class="form-control" name="date_depart" placeholder="Date de départ" id="date_depart" value="<?= $valeur['date_depart'] ?>" required data-error="Vous devez choisir une date de départ">
+                                <div class="col-lg-6 col-md-6 col-ls-6">
+                                  <div class="form-group">
+                                    <label>Date de départ</label>
+                                    <input type="text" class="form-control" name="date_depart" placeholder="Date de départ" id="date_depart" value="<?= $valeur['date_depart'] ?>" required data-error="Vous devez choisir une date de départ">
+                                  </div>
                                 </div>
-                              </div>
-                              <div class="col-lg-6 col-md-6 col-ls-6">
-                                <div class="form-group">
-                                  <label>Prix</label>
-                                  <input type="text" class="form-control" name="prix" placeholder="Prix" id="prix" value="<?= $valeur['prix'] ?>" required data-error="Vous devez choisir un prix">
+                                <div class="col-lg-6 col-md-6 col-ls-6">
+                                  <div class="form-group">
+                                    <label>Prix</label>
+                                    <input type="text" class="form-control" name="prix" placeholder="Prix" id="prix" value="<?= $valeur['prix'] ?>" required data-error="Vous devez choisir un prix">
+                                  </div>
                                 </div>
-                              </div>
-                              <div class="col-lg-6 col-md-6 col-ls-6">
-                                <div class="form-group">
-                                  <label>Etat</label>
-                                  <input type="text" class="form-control" name="etat" placeholder="Etat" id="etat" value="<?= $valeur['etat'] ?>" required data-error="Vous devez choisir un état">
+                                <div class="col-lg-6 col-md-6 col-ls-6">
+                                  <div class="form-group">
+                                    <label>Etat</label>
+                                    <select name="etat" id="etat" class="form-control">
+                                      <option <?php if($valeur['etat']=='libre'){echo "selected";} ?> value="libre">Libre</option>
+                                      <option <?php if($valeur['etat']=='reserve'){echo "selected";} ?> value="reserve">Réservé</option>
+                                    </select>
+                                  </div>
                                 </div>
-                              </div>
-                            <input type="submit" id="submitsalle" value="Je modifie la salle" class="btn btn-default">
-                          </form>
+                                <input type="submit" id="submitsalle" value="Je modifie la salle" class="btn btn-default">
+                              </form>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <a href="#" data-toggle="modal" data-target="#modalSupprimer<?= $valeur['id_produit'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                  <div class="modal fade" id="modalSupprimer<?= $valeur['id_produit'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title" id="myModalLabel">Supprimer la salle n° <?= $valeur['id_produit'] ?></h4>
-                        </div>
-                        <div class="modal-body">
-                          <a type="button" class="btn btn-danger" href="<?= $racinea ?>salles_supprimer.php?id=<?= $valeur['id_produit'] ?>">Je valide la suppression de la salle n°<?= $valeur['id_produit'] ?></a>
+                    </td>
+                    <td>
+                      <a href="#" data-toggle="modal" data-target="#modalSupprimer<?= $valeur['id_produit'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                      <div class="modal fade" id="modalSupprimer<?= $valeur['id_produit'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title" id="myModalLabel">Supprimer la salle n° <?= $valeur['id_produit'] ?></h4>
+                            </div>
+                            <div class="modal-body">
+                              <a type="button" class="btn btn-danger" href="<?= $racinea ?>produits_supprimer.php?id=<?= $valeur['id_produit'] ?>">Je valide la suppression de la salle n°<?= $valeur['id_produit'] ?></a>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
+                    </td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
-<?php include('footer.php'); ?>
+  <?php include('footer.php'); ?>

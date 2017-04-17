@@ -1,7 +1,9 @@
 Ce qui reste à faire :
 
+Redirection après connexion/inscription, réactiver le js
+
 Admin:
-- Select de la salle déjà choisis lors de la modification d'un produit
+- Trie des colonnes
 - Statistiques admin
 - Affichage des commandes admin
 
@@ -16,7 +18,7 @@ Front :
 
 Pour la présentation :
 - Validation W3C (avant samedi si possible sinon samedi)
-- Remplissage du site (CGV/mentions légales/supprimer CGU du footer), multiple utilisateurs, multiple salles, multiple produits, multiple commandes, multiple avis (samedi/dimanche)
+- Remplissage du site (CGV/mentions légales/supprimer CGU du footer(pas demandé dans le cahier des charges)), multiple utilisateurs, multiple salles, multiple produits, multiple commandes, multiple avis (samedi/dimanche)
 - Mettre le site sur un serveur de prod (mise en ligne samedi)
 
 Contrôles demandés :
