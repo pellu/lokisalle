@@ -1,10 +1,7 @@
 <?php
-session_start();
 include('header.php'); ?>
 <div id="wrapper">
-	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 				<span class="sr-only">Toggle navigation</span>
@@ -14,7 +11,6 @@ include('header.php'); ?>
 			</button>
 			<a class="navbar-brand" href="<?= $racinea; ?>">Admin Lokisalle</a>
 		</div>
-		<!-- Top Menu Items -->
 		<ul class="nav navbar-right top-nav">
 			<li>
 				<a href="<?= $racines; ?>"><i class="fa fa-fw fa-user"></i> Accès au site</a>
@@ -32,25 +28,26 @@ include('header.php'); ?>
 				</ul>
 			</li>
 		</ul>
-		<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav side-nav">
 				<li <?php if($pagename=='Accueil'){echo 'class="active"';}else{} ?>>
 					<a href="<?= $racinea; ?>"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
 				</li>
+				<li <?php if($pagename=='Membres'){echo 'class="active"';}else{} ?>>
+					<a href="<?= $racinea; ?>membres/"><i class="fa fa-fw fa-desktop"></i> Membres</a>
+				</li>
 				<li <?php if($pagename=='Salles'){echo 'class="active"';}else{} ?>>
 					<a href="<?= $racinea; ?>salles/"><i class="fa fa-fw fa-bar-chart-o"></i> Salles</a>
-				</li>
-				<li <?php if($pagename=='Avis'){echo 'class="active"';}else{} ?>>
-					<a href="<?= $racinea; ?>avis/"><i class="fa fa-fw fa-table"></i> Avis</a>
 				</li>
 				<li <?php if($pagename=='Produits'){echo 'class="active"';}else{} ?>>
 					<a href="<?= $racinea; ?>produits/"><i class="fa fa-fw fa-edit"></i> Produits</a>
 				</li>
-				<li <?php if($pagename=='Membres'){echo 'class="active"';}else{} ?>>
-					<a href="<?= $racinea; ?>membres/"><i class="fa fa-fw fa-desktop"></i> Membres</a>
+				<li <?php if($pagename=='Commandes'){echo 'class="active"';}else{} ?>>
+					<a href="<?= $racinea; ?>commandes/"><i class="fa fa-fw fa-shopping-cart"></i> Commandes</a>
+				</li>
+				<li <?php if($pagename=='Avis'){echo 'class="active"';}else{} ?>>
+					<a href="<?= $racinea; ?>avis/"><i class="fa fa-fw fa-comments"></i> Avis</a>
 				</li>
 			</ul>
 		</div>
-		<!-- /.navbar-collapse -->
 	</nav>
