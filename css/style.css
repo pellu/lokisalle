@@ -248,9 +248,34 @@ footer {
 --- PROFIL
 --------- */
 
+.col-lg-12 {
+    margin-bottom: 20px;
+}
+
+.page-header {
+    padding-bottom: 0px!important;
+    margin: 0px!important;
+    border-bottom: none;
+}
+
 .col-lg-12 p {
     margin: 0px;
-    color: rebeccapurple;
+    color: #999;
+}
+
+.col-centered .intituler {
+    color: #C1272D;
+    font-weight: bold;
+    margin: -5px;
+}
+
+.btn-modif {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.modif {
+    margin-top: 10px;
 }
 
 
