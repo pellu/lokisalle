@@ -1,11 +1,15 @@
 <?php
 session_start();
 $pagename="Profil";
+<<<<<<< Updated upstream
 include('../menu.php');
 if(empty($_SESSION['user'])){
 	header('Location: '.$racines.'');
 }
 ?>
+=======
+include('../menu.php'); ?>
+>>>>>>> Stashed changes
 
     <div class="container">
         <div class="row">
