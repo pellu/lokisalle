@@ -2,7 +2,7 @@
 session_start();
 $pagename="Profil";
 include('../menu.php');
-if(isset($_SESSION['user'])){
+if(empty($_SESSION['user'])){
 	header('Location: '.$racines.'');
 }
 ?>

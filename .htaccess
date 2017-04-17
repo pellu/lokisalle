@@ -10,5 +10,5 @@ RewriteCond $1 !^(index\.php|css|gfx|js|swf|robots\.txt|favicon\.ico)
 RewriteCond %{REQUEST_URI} !-d
 RewriteRule ^([^/]+)/$ $1.php [L]
 
-#ErrorDocument 404 http://localhost/lokisalle/404/
+ErrorDocument 404 http://localhost/lokisalle/404/
 ErrorDocument 500 http://localhost/lokisalle/404/
