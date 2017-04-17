@@ -38,6 +38,9 @@ include('menu.php');
     if(empty($_POST['capacite'])){
       $msg .= '<div class="alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Attention!</strong> Veuillez ajouter une capacite.</div>';
     }
+    if (!is_numeric($_POST['capacite'])){  
+      $msg .= '<div class="alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Attention!</strong> Chiffres seulement acceptés pour la Capacité.</div>';
+    }    
 
     //Génération de l'url aléatoire pour l'image
     function random($str) {
@@ -87,6 +90,10 @@ include('menu.php');
       }
     }
   }
+  if(isset($_POST['titre'])) { $titre = $_POST['titre']; }else{ $titre = ''; }
+  if(isset($_POST['description'])) { $description = $_POST['description']; }else{ $description = ''; }
+  if(isset($_POST['adresse'])) { $adresse = $_POST['adresse']; }else{ $adresse = ''; }
+  if(isset($_POST['capacite'])) { $capacite = $_POST['capacite']; }else{ $capacite = ''; }
   echo $msg;
   ?>
   <div class="collapse" id="collapseAjout">
@@ -94,66 +101,88 @@ include('menu.php');
       <div class="col-lg-12 col-md-12 col-ls-12 col-xs-12">
         <div class="form-group has-feedback">
          <label>Titre</label>
-         <input type="text" class="form-control" name="titre" placeholder="Titre" id="titre" value="" required data-error="Vous devez ajouter un titre">
+         <input type="text" class="form-control" name="titre" placeholder="Titre" id="titre" value="<?= $titre ?>" required data-error="Vous devez ajouter un titre">
          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
          <div class="help-block with-errors"></div>
        </div>
        <div class="form-group has-feedback">
          <label>Description</label>
-         <textarea class="form-control" id="description" name="description" required data-error="Vous devez ajouter une description"></textarea>
+         <textarea class="form-control" id="description" name="description" required data-error="Vous devez ajouter une description"><?= $description ?></textarea>
          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
          <div class="help-block with-errors"></div>
        </div>
      </div>
+     <?php $p2 = array("paris"=>array("75001", "75002", "75003", "75004", "75005", "75006", "75007", "75008", "75009", "75010", "75011", "75012", "75013", "75014", "75015", "75016", "75017", "75018", "75019", "75020"), "lyon"=>array("69001", "69002", "69003", "69004", "69005", "69006", "69007", "69008", "69009"), "marseille"=>array("13001", "13002", "13003", "13004", "13005", "13006", "13007", "13008", "13009", "13010", "13011", "13012", "13013", "13014", "13015")); ?>
      <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
-       <div class="form-group has-feedback">
-         <label>Ville</label>
-         <input type="text" class="form-control" name="ville" placeholder="Ville" id="ville" value="" required data-error="Vous devez ajouter une ville">
-         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-         <div class="help-block with-errors"></div>
-       </div>
-     </div>
-     <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
-       <div class="form-group has-feedback">
-         <label>Code postal</label>
-         <input type="text" class="form-control" name="codepostal" placeholder="Code postal" id="codepostal" value="" required data-error="Vous devez ajouter une Code postal">
-         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-         <div class="help-block with-errors"></div>
-       </div>
-     </div>
-     <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
-       <div class="form-group has-feedback">
-         <label>Adresse</label>
-         <input type="text" class="form-control" name="adresse" placeholder="Adresse" id="adresse" value="" required data-error="Vous devez ajouter une adresse">
-         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-         <div class="help-block with-errors"></div>
-       </div>
-     </div>
-     <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
-      <div class="form-group has-feedback">
-       <label>Capacité</label>
-       <input type="text" class="form-control" name="capacite" placeholder="Capacité" id="capacite" value="" required data-error="Vous devez ajouter une Capacité">
-       <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-       <div class="help-block with-errors"></div>
-     </div>
-   </div>
-   <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
-     <label>Catégorie</label>
-     <select name="categorie" id="categorie" class="form-control">
-      <option value="1">Réunion</option>
-      <option value="2">Bureau</option>
-      <option value="3">Formation</option>
+       <label>Ville</label>
+       <select name="ville" id="ville" class="form-control" onchange="changeSelect(this);">
+        <option value="">Choisir</option>
+        <option value="paris">Paris</option>
+        <option value="lyon">Lyon</option>
+        <option value="marseille">Marseille</option>
+      </select>
+    </div>
+    <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+     <label>Code postal</label>
+     <select name="codepostal" id="codepostal" class="form-control">
+      <option value="">Mon choix...</option>
     </select>
   </div>
   <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
    <div class="form-group has-feedback">
-    <label>Votre photo</label>
-    <div class="fileUpload btn btn-success">
-      <input name="photo" class="uploads" id="photo" type="file" id="fichier_a_uploader" accept="image/*" class="uploads" required data-error="Vous devez choisir une image"/>
-    </div>
-    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-    <div class="help-block with-errors"></div>
+     <label>Adresse</label>
+     <input type="text" class="form-control" name="adresse" placeholder="Adresse" id="adresse" value="<?= $adresse ?>" required data-error="Vous devez ajouter une adresse">
+     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+     <div class="help-block with-errors"></div>
+   </div>
+ </div>
+ <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+  <div class="form-group has-feedback">
+   <label>Capacité</label>
+   <input type="text" class="form-control" name="capacite" placeholder="Capacité" id="capacite" value="<?= $capacite ?>" required data-error="Vous devez ajouter une Capacité">
+   <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+   <div class="help-block with-errors"></div>
+ </div>
+</div>
+<div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+ <label>Catégorie</label>
+ <select name="categorie" id="categorie" class="form-control">
+  <option value="1">Réunion</option>
+  <option value="2">Bureau</option>
+  <option value="3">Formation</option>
+</select>
+</div>
+<div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+ <div class="form-group has-feedback">
+  <label>Votre photo</label>
+  <div class="fileUpload btn btn-success">
+    <input name="photo" class="uploads" id="photo" type="file" id="fichier_a_uploader" accept="image/*" class="uploads" required data-error="Vous devez choisir une image"/>
   </div>
+
+  <script>
+    //Système pour changer le select codepostal en fonction de la ville
+    function changeSelect(selected){
+      //on recupere le php
+      var data = <?php echo json_encode($p2); ?>;
+      console.log("selected.value : "+selected.value+", data[selected.value] : "+data[selected.value]);
+      var codepostal = document.getElementById("codepostal");
+      //on efface tous les children options
+      while (codepostal.firstChild) {
+        codepostal.removeChild(codepostal.firstChild);
+      }
+      //on rajoute les nouveaux children options
+      for (var chaqueSousTitre of data[selected.value]){
+       var opt = document.createElement("option");
+       opt.value= chaqueSousTitre;
+       opt.innerHTML = chaqueSousTitre;
+       codepostal.appendChild(opt);
+     }
+   }
+ </script>
+
+ <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+ <div class="help-block with-errors"></div>
+</div>
 </div>
 <input type="submit" id="submitsalle" value="J'ajoute la salle" class="btn btn-default">
 </form>
@@ -239,82 +268,79 @@ $produits=$resultat->fetchAll(PDO::FETCH_ASSOC);
                            </div>
                          </div>
                          <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
-                           <div class="form-group has-feedback">
-                             <label>Ville</label>
-                             <input type="text" class="form-control" name="ville" placeholder="Ville" id="ville" value="<?= $valeur['ville'] ?>" required data-error="Vous devez ajouter une ville">
-                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                             <div class="help-block with-errors"></div>
-                           </div>
-                         </div>
-                         <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
-                           <div class="form-group has-feedback">
-                             <label>Code postal</label>
-                             <input type="text" class="form-control" name="codepostal" placeholder="Code postal" id="codepostal" value="<?= $valeur['cp'] ?>" required data-error="Vous devez ajouter une Code postal">
-                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                             <div class="help-block with-errors"></div>
-                           </div>
-                         </div>
-                         <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
-                           <div class="form-group has-feedback">
-                             <label>Adresse</label>
-                             <input type="text" class="form-control" name="adresse" placeholder="Adresse" id="adresse" value="<?= $valeur['adresse'] ?>" required data-error="Vous devez ajouter une adresse">
-                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                             <div class="help-block with-errors"></div>
-                           </div>
-                         </div>
-                         <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
-                          <div class="form-group has-feedback">
-                           <label>Capacité</label>
-                           <input type="text" class="form-control" name="capacite" placeholder="Capacité" id="capacite" value="<?= $valeur['capacite'] ?>" required data-error="Vous devez ajouter une Capacité">
+                           <label>Ville</label>
+                           <select name="ville" id="ville" class="form-control" onchange="changeSelect(this);">
+                            <option <?php if($valeur['categorie']=='paris'){echo "selected";} ?> value="paris">Paris</option>
+                            <option <?php if($valeur['categorie']=='lyon'){echo "selected";} ?> value="lyon">Lyon</option>
+                            <option <?php if($valeur['categorie']=='marseille'){echo "selected";} ?> value="marseille">Marseille</option>
+                          </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                         <div class="form-group has-feedback">
+                           <label>Code postal</label>
+                           <input type="text" class="form-control" name="codepostal" placeholder="Code postal" id="codepostal" value="<?= $valeur['cp'] ?>" required data-error="Vous devez ajouter une Code postal">
                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                            <div class="help-block with-errors"></div>
                          </div>
                        </div>
                        <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
-                         <label>Catégorie</label>
-                         <select name="categorie" id="categorie" class="form-control">
-                          <option <?php if($valeur['categorie']==1){echo "selected";} ?> value="1">Réunion</option>
-                          <option <?php if($valeur['categorie']==2){echo "selected";} ?> value="2">Bureau</option>
-                          <option <?php if($valeur['categorie']==3){echo "selected";} ?> value="3">Formation</option>
-                        </select>
+                         <div class="form-group has-feedback">
+                           <label>Adresse</label>
+                           <input type="text" class="form-control" name="adresse" placeholder="Adresse" id="adresse" value="<?= $valeur['adresse'] ?>" required data-error="Vous devez ajouter une adresse">
+                           <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                           <div class="help-block with-errors"></div>
+                         </div>
+                       </div>
+                       <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                        <div class="form-group has-feedback">
+                         <label>Capacité</label>
+                         <input type="text" class="form-control" name="capacite" placeholder="Capacité" id="capacite" value="<?= $valeur['capacite'] ?>" required data-error="Vous devez ajouter une Capacité">
+                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                         <div class="help-block with-errors"></div>
+                       </div>
+                     </div>
+                     <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                       <label>Catégorie</label>
+                       <select name="categorie" id="categorie" class="form-control">
+                        <option <?php if($valeur['categorie']==1){echo "selected";} ?> value="1">Réunion</option>
+                        <option <?php if($valeur['categorie']==2){echo "selected";} ?> value="2">Bureau</option>
+                        <option <?php if($valeur['categorie']==3){echo "selected";} ?> value="3">Formation</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                      <label>Votre photo <span></span></label>
+                      <div class="btn btn-success">
+                        <input type="hidden" name="photo_actuelle" value="<?= $valeur['photo'] ?>">
+                        <input name="photo" class="uploads" id="photo" type="file" id="photo" accept="image/*" class="uploads"/>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6">
-                        <label>Votre photo <span></span></label>
-                        <div class="btn btn-success">
-                          <input type="hidden" name="photo_actuelle" value="<?= $valeur['photo'] ?>">
-                          <input name="photo" class="uploads" id="photo" type="file" id="photo" accept="image/*" class="uploads"/>
-                        </div>
-                      </div>
-                      <input type="submit" id="submitsalle" value="J'ajoute la salle" class="btn btn-default">
-                    </form>
-                  </div>
+                    </div>
+                    <input type="submit" id="submitsalle" value="Je modifie la salle" class="btn btn-default">
+                  </form>
                 </div>
               </div>
             </div>
-          </td>
-          <td>
-            <a href="#" data-toggle="modal" data-target="#modalSupprimer<?= $valeur['id_salle'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-
-
-
-            <div class="modal fade" id="modalSupprimer<?= $valeur['id_salle'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Supprimer la salle n° <?= $valeur['id_salle'] ?></h4>
-                  </div>
-                  <div class="modal-body">
-                    <a type="button" class="btn btn-danger" href="<?= $racinea ?>salles_supprimer.php?id=<?= $valeur['id_salle'] ?>">Je valide la suppression de la salle n°<?= $valeur['id_salle'] ?></a>
-                  </div>
+          </div>
+        </td>
+        <td>
+          <a href="#" data-toggle="modal" data-target="#modalSupprimer<?= $valeur['id_salle'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+          <div class="modal fade" id="modalSupprimer<?= $valeur['id_salle'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Supprimer la salle n° <?= $valeur['id_salle'] ?></h4>
+                </div>
+                <div class="modal-body">
+                  <a type="button" class="btn btn-danger" href="<?= $racinea ?>salles_supprimer.php?id=<?= $valeur['id_salle'] ?>">Je valide la suppression de la salle n°<?= $valeur['id_salle'] ?></a>
                 </div>
               </div>
             </div>
-          </td>
-        </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
+          </div>
+        </td>
+      </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>
 </div>
 </div>
 </div>
