@@ -1,10 +1,10 @@
     <div class="container">
       <footer>
-        <div class="row">
-          <div class="col-lg-12">
-            <p>Lokisalle 2017 - <a href="<?= $racines; ?>mentionslegales/">Mentions Légales</a> - <a href="<?= $racines; ?>cgv/">Conditions générales de ventes</a> - <a href="<?= $racines; ?>cgu/">Conditions générales d'utilisation</a></p>
+          <div class="row">
+              <div class="col-lg-12">
+                  <p>Lokisalle 2017 - <a href="<?= $racines; ?>mentionslegales/">Mentions Légales</a> - <a href="<?= $racines; ?>cgv/">Conditions générales de ventes</a> - <a href="<?= $racines; ?>cgu/">Conditions générales d'utilisation</a></p>
+              </div>
           </div>
-        </div>
       </footer>
     </div>
     <div class="modal fade" id="insciptionConnexion" role="dialog">

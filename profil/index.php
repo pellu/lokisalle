@@ -1,7 +1,11 @@
 <?php
 session_start();
 $pagename="Profil";
-include('../menu.php'); ?>
+include('../menu.php');
+if(isset($_SESSION['user'])){
+	header('Location: '.$racines.'');
+}
+?>
 
     <div class="container">
         <div class="row">

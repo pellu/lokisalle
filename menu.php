@@ -19,7 +19,7 @@
 			<ul class="nav navbar-nav navbar-left">
                 <li <?php if($pagename=='Lokisalle' ){echo 'class="active"';}else{} ?>><a href="<?= $racines; ?>">Accueil</a></li>
 				<li <?php if($pagename=='Qui sommes-nous ?'){echo 'class="active"';}else{} ?>><a href="<?= $racines; ?>quisommesnous/">Qui sommes nous ?</a></li>
-				<li><a href="<?= $racines; ?>contact/">Contact</a></li>
+				<li <?php if($pagename=='contact'){echo 'class="active"';}else{} ?>><a href="<?= $racines; ?>contact/">Contact</a></li>
 				<?php
 				if(isset($_SESSION['user'])){
 					?>
