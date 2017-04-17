@@ -19,6 +19,7 @@ if($levelstatut != 1){
     <link href="<?= $racinea; ?>css/sb-admin.css" rel="stylesheet">
     <link href="<?= $racinea; ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?= $racinea; ?>css/jquery-ui.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <script src="<?= $racinea; ?>js/jquery.js"></script>
     <script src="<?= $racinea; ?>js/jquery-ui.js"></script>
     <script>

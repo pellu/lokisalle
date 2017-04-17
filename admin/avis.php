@@ -19,7 +19,7 @@ include('menu.php');
     <div class="row">
       <div class="col-lg-12 col-md-12 col-ls-12 col-xs-12">
         <div class="table-responsive">
-          <table class="table table-bordered table-hover">
+          <table id="table" class="table table-bordered table-hover table tablesorter">
             <thead>
               <tr>
                 <?php for($i =0; $i < $resultat -> columnCount(); $i ++) : ?>
@@ -68,8 +68,8 @@ include('menu.php');
                         $query->execute();
                         $list = $query->fetchAll();
                         foreach ($list as $row) {
-                          echo $valeur2.' - '.$row['pseudo'];
-                        } ?>
+                          echo $valeur2.' - '.$row['pseudo']; }
+                          ?>
                       </td>
                     <?php elseif($indice2 == 'id_salle') : ?>
                       <td><?php
@@ -78,8 +78,8 @@ include('menu.php');
                         $querysalle->execute();
                         $listsalle = $querysalle->fetchAll();
                         foreach ($listsalle as $rowsalle) {
-                          echo $valeur2.' - '.$rowsalle['titre'];
-                        } ?>
+                          echo $valeur2.' - '.$rowsalle['titre']; }
+                          ?>
                       </td>
                     <?php elseif($indice2 == 'note') : ?>
                       <td><?php
@@ -161,4 +161,30 @@ include('menu.php');
 </div>
 </div>
 </div>
+
+<script>$(document).ready(function() {
+    $('.table').DataTable({
+      //disable sorting on last column
+      "columnDefs": [
+        { "orderable": false, "targets": 5 }
+      ],
+      language: {
+        'paginate': {
+          'previous': '<span class="fa fa-chevron-left"></span>',
+          'next': '<span class="fa fa-chevron-right"></span>'
+        },
+        //customize number of elements to be displayed
+        "lengthMenu": 'Affichage <select class="form-control input-sm">'+
+        '<option value="10">10</option>'+
+        '<option value="20">20</option>'+
+        '<option value="30">30</option>'+
+        '<option value="40">40</option>'+
+        '<option value="50">50</option>'+
+        '<option value="-1">Tout</option>'+
+        '</select> résultats'
+      }
+    })  
+} );
+</script>
+
 <?php include('footer.php'); ?>

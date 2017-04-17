@@ -100,4 +100,30 @@ include('menu.php');
   </div>
 </div>
 </div>
+
+<script>$(document).ready(function() {
+    $('.table').DataTable({
+      //disable sorting on last column
+      "columnDefs": [
+        { "orderable": false, "targets": 5 }
+      ],
+      language: {
+        'paginate': {
+          'previous': '<span class="fa fa-chevron-left"></span>',
+          'next': '<span class="fa fa-chevron-right"></span>'
+        },
+        //customize number of elements to be displayed
+        "lengthMenu": 'Affichage <select class="form-control input-sm">'+
+        '<option value="10">10</option>'+
+        '<option value="20">20</option>'+
+        '<option value="30">30</option>'+
+        '<option value="40">40</option>'+
+        '<option value="50">50</option>'+
+        '<option value="-1">Tout</option>'+
+        '</select> résultats'
+      }
+    })  
+} );
+</script>
+
 <?php include('footer.php'); ?>
