@@ -1,6 +1,6 @@
 <?php
 session_start();
-$pagename="Avis";
+$pagename="Produits";
 include('menu.php');
 ?>
 <div id="page-wrapper">
@@ -8,13 +8,13 @@ include('menu.php');
     <div class="row">
       <div class="col-lg-12">
         <h1 class="page-header">
-          Avis
+          Produits
       </h1>
   </div>
 </div>
 <?php
-$resultat=$pdo->query("SELECT * FROM avis");
-$avis=$resultat->fetchAll(PDO::FETCH_ASSOC);
+$resultat=$pdo->query("SELECT * FROM produit");
+$produits=$resultat->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="row">
     <div class="col-lg-12 col-md-12 col-ls-12 col-xs-12">
@@ -30,7 +30,7 @@ $avis=$resultat->fetchAll(PDO::FETCH_ASSOC);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($avis as $indice => $valeur) : ?>
+                    <?php foreach ($produits as $indice => $valeur) : ?>
                         <tr>
                           <?php foreach ($valeur as $indice2 => $valeur2) : ?>
                             <?php if($indice2 == 'photo') :
