@@ -23,19 +23,19 @@ if(empty($_SESSION['user'])){
                         </p>
                     </div>
                     <div class="col-md-6 col-centered">
-                        <p>Pseudo<button type="button" data-toggle="modal" data-target="#modifierpseudo"><span class="glyphicon glyphicon-edit edit"></span></button></p>
+                        <p class="intituler">Pseudo<button class="btn-modif" type="button" data-toggle="modal" data-target="#modifierpseudo"><span class="glyphicon glyphicon-edit edit"></span></button></p>
                         <p>
                             <?= $resultsql['pseudo'];?>
                         </p>
-                        <p>Prénom<button type="button" data-toggle="modal" data-target="#modifierprenom"><span class="glyphicon glyphicon-edit edit"></span></button></p>
+                        <p class="intituler">Prénom<button class="btn-modif" type="button" data-toggle="modal" data-target="#modifierprenom"><span class="glyphicon glyphicon-edit edit"></span></button></p>
                         <p>
                             <?= $resultsql['prenom'];?>
                         </p>
-                        <p>Nom<button type="button" data-toggle="modal" data-target="#modifiernom"><span class="glyphicon glyphicon-edit edit"></span></button></p>
+                        <p class="intituler">Nom<button class="btn-modif" type="button" data-toggle="modal" data-target="#modifiernom"><span class="glyphicon glyphicon-edit edit"></span></button></p>
                         <p>
                             <?= $resultsql['nom'];?>
                         </p>
-                        <p>Civilité<button type="button" data-toggle="modal" data-target="#modifiercivilite"><span class="glyphicon glyphicon-edit edit"></span></button></p>
+                        <p class="intituler">Civilité<button class="btn-modif" type="button" data-toggle="modal" data-target="#modifiercivilite"><span class="glyphicon glyphicon-edit edit"></span></button></p>
                         <p>
                             <?php
                             if ($resultsql['civilite'] == 'h') {
@@ -47,14 +47,16 @@ if(empty($_SESSION['user'])){
                             }
                         ?>
                         </p>
-                        <p>Mail<button type="button" data-toggle="modal" data-target="#modifiermail"><span class="glyphicon glyphicon-edit edit"></span></button></p>
+                        <p class="intituler">Mail<button class="btn-modif" type="button" data-toggle="modal" data-target="#modifiermail"><span class="glyphicon glyphicon-edit edit"></span></button></p>
                         <p>
                             <?= $resultsql['email'];?>
                         </p>
-
-                        <button type="button" data-toggle="modal" data-target="#modifiermdp">Modifer mon mot de passe</button>
-                        <button type="button" data-toggle="modal" data-target="#supprimercompte">Supprimer mon profil</button>
+                        
+                        <button class="modif" type="button" data-toggle="modal" data-target="#modifiermdp">Modifer mon mot de passe</button>
+                        <button class="modif" type="button" data-toggle="modal" data-target="#supprimercompte">Supprimer mon profil</button>
                     </div>
+                    <p><br></p>
+                    <p><br></p>
                     <div class="col-lg-12">
                         <h2 class="page-header">Vos dernières commandes :</h2>
 
