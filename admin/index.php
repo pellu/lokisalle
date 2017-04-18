@@ -30,6 +30,20 @@ include('menu.php');
 								</thead>
 								<tbody>
 									<tr>
+										<?php
+										$querysallenote = $pdo->prepare('
+											SELECT * FROM produit
+											LEFT JOIN salle ON salle.id_salle=produit.id_salle,
+											LEFT JOIN avis ON avis.id_produit=produit.id_produit
+											WHERE id_produit=13');
+										$querysallenote->execute();
+										$topsallenote = $querysallenote->fetchAll();
+										foreach ($topsallenote as $row) {
+
+											echo '<td>'.$row['id_salle'].'</td>';
+										}
+										?>
+										
 										<td>Salle ???</td>
 										<td>Note ???</td>
 										<td>Note moyenne ???</td>

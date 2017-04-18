@@ -19,7 +19,7 @@ include('menu.php');
     <div class="row">
       <div class="col-lg-12 col-md-12 col-ls-12 col-xs-12">
         <div class="table-responsive">
-          <table class="table table-bordered table-hover">
+          <table id="table" class="table table-bordered table-hover">
             <thead>
               <tr>
                 <?php for($i =0; $i < $resultat -> columnCount(); $i ++) : ?>

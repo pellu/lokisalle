@@ -124,7 +124,7 @@ include('menu.php');
     <div class="row">
       <div class="col-lg-12 col-md-12 col-ls-12 col-xs-12">
         <div class="table-responsive">
-          <table class="table table-bordered table-hover">
+          <table id="table" class="table table-bordered table-hover">
             <thead>
               <tr>
                 <?php for($i =0; $i < $resultat -> columnCount(); $i ++) : ?>
@@ -146,7 +146,23 @@ include('menu.php');
                         $querysalle->execute();
                         $listsalle = $querysalle->fetchAll();
                         foreach ($listsalle as $rowsalle) {
+                          $image = $valeur2;
+                          $trouve_moi = ".";
+                          $position = strpos($image, $trouve_moi);
+                          $image_sans_extension = substr($image, 0, $position);
                           echo $valeur2.' - '.$rowsalle['titre'];
+                          ?>
+                    <a type="button" class="btn" data-toggle="modal" data-target="#modal<?= $image_sans_extension ?>"><img src="<?= $racine.'images/'.$rowsalle['photo'] ?>" height="80"></a>
+                    <div id="modal<?= $image_sans_extension ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel<?= $image_sans_extension ?>" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-body">
+                            <img src="<?= $racine.'images/'.$rowsalle['photo'] ?>" class="img-responsive">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <?php
                         } ?>
                       </td>
                     <?php elseif($indice2 == 'prix') : ?>
@@ -159,7 +175,6 @@ include('menu.php');
                   <?php endforeach; ?>
                   <td>
                     <a href="#" data-toggle="modal" data-target="#modalModif<?= $valeur['id_produit'] ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-
                     <div class="modal fade" id="modalModif<?= $valeur['id_produit'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -242,4 +257,28 @@ include('menu.php');
       </div>
     </div>
   </div>
-  <?php include('footer.php'); ?>
+  <script>$(document).ready(function() {
+    $('.table').DataTable({
+      //disable sorting on last column
+      "columnDefs": [
+      { "orderable": false, "targets": 5 }
+      ],
+      language: {
+        'paginate': {
+          'previous': '<span class="fa fa-chevron-left"></span>',
+          'next': '<span class="fa fa-chevron-right"></span>'
+        },
+        //customize number of elements to be displayed
+        "lengthMenu": 'Affichage <select class="form-control input-sm">'+
+        '<option value="10">10</option>'+
+        '<option value="20">20</option>'+
+        '<option value="30">30</option>'+
+        '<option value="40">40</option>'+
+        '<option value="50">50</option>'+
+        '<option value="-1">Tout</option>'+
+        '</select> résultats'
+      }
+    })  
+  } );
+</script>
+<?php include('footer.php'); ?>
