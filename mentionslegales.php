@@ -8,13 +8,9 @@ include('menu.php'); ?>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">
-						Mentions Légales
-					</h1>
+					<h1 class="page-header">Mentions Légales</h1>
 				</div>
-				<div class="col-md-6 col-md-offset-3 col-centered">
-					<strong>La seule contrepartie à l'utilisation de ces mentions légales, est l'engagement total à laisser le lien crédit subdelirium sur cette page de mentions légales.</strong><br />
-                    Vos mentions légales :
+				<div class="col-md-11 col-md-offset-1 col-centered">
                     <h2>Informations légales</h2>
                     <h3>1. Présentation du site.</h3>
                     <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site <a href="http://www.lokisalle.com/">www.lokisalle.com</a> l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi :</p>
