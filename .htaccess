@@ -1,14 +1,12 @@
 Options +FollowSymlinks
 RewriteEngine on
 
-RewriteCond $1 !^(index\.php|css|gfx|js|swf|robots\.txt|favicon\.ico)
+RewriteCond $1 !^(index\.php|fiche_produit|css|gfx|js|swf|robots\.txt|favicon\.ico)
 
-#RewriteRule ^u/([0-9a-zA-Z]+) u.php?id=$1
-#RewriteRule ^c/([0-9a-zA-Z]+) c.php?id=$1
-#RewriteRule ^p/([0-9a-zA-Z]+) p.php?id=$1
+RewriteRule ^fiche_produit/([0-9]+) fiche_produit.php?id=$1
 
 RewriteCond %{REQUEST_URI} !-d
 RewriteRule ^([^/]+)/$ $1.php [L]
 
-#ErrorDocument 404 http://localhost/lokisalle/404/
+ErrorDocument 404 http://localhost/lokisalle/404/
 ErrorDocument 500 http://localhost/lokisalle/404/

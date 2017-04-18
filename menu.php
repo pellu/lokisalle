@@ -1,10 +1,7 @@
 <?php include('header.php'); ?>
-<!-- Navigation -->
 
 <div id="wrapper">
-	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="sr-only">Toggle navigation</span>
@@ -14,12 +11,11 @@
 			</button>
 			<a href="<?= $racines; ?>" class="navbar-brand"><img src="<?= $racines; ?>img/logo.svg" alt="logo" style="height:20px;"></a>
 		</div>
-		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-left">
                 <li <?php if($pagename=='Lokisalle' ){echo 'class="active"';}else{} ?>><a href="<?= $racines; ?>">Accueil</a></li>
 				<li <?php if($pagename=='Qui sommes-nous ?'){echo 'class="active"';}else{} ?>><a href="<?= $racines; ?>quisommesnous/">Qui sommes nous ?</a></li>
-				<li><a href="<?= $racines; ?>contact/">Contact</a></li>
+				<li <?php if($pagename=='contact'){echo 'class="active"';}else{} ?>><a href="<?= $racines; ?>contact/">Contact</a></li>
 				<?php
 				if(isset($_SESSION['user'])){
 					?>
@@ -38,7 +34,7 @@
                                 </li>
                                 <?php
                                     }else{
-                                            //Pas de bouton admin vu que l'utilisateur n'es pas admin
+                                    //Pas de bouton admin vu que l'utilisateur n'es pas admin
                                     }
                                 ?>
 							<li>

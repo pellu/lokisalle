@@ -1,288 +1,144 @@
 <?php
+session_start();
 $pagename="Accueil";
 include('menu.php');
 ?>
 <div id="page-wrapper">
-
 	<div class="container-fluid">
-
-		<!-- Page Heading -->
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					Statistiques<small>Top 5 des salles les mieux notées
-Top 5 des salles les plus commandées
-Top 5 des membres qui achètent le plus (en termes de quantité).
-Top 5 des membres qui achètent le plus cher (en termes de prix)</small>
+					Statistiques
 				</h1>
-				<ol class="breadcrumb">
-					<li class="active">
-						<i class="fa fa-dashboard"></i> Dashboard
-					</li>
-				</ol>
 			</div>
 		</div>
-		<!-- /.row -->
-
 		<div class="row">
-			<div class="col-lg-12">
-				<div class="alert alert-info alert-dismissable">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
-				</div>
-			</div>
-		</div>
-		<!-- /.row -->
-
-		<div class="row">
-			<div class="col-lg-3 col-md-6">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<div class="row">
-							<div class="col-xs-3">
-								<i class="fa fa-comments fa-5x"></i>
-							</div>
-							<div class="col-xs-9 text-right">
-								<div class="huge">26</div>
-								<div>New Comments!</div>
-							</div>
-						</div>
-					</div>
-					<a href="#">
-						<div class="panel-footer">
-							<span class="pull-left">View Details</span>
-							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-							<div class="clearfix"></div>
-						</div>
-					</a>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="panel panel-green">
-					<div class="panel-heading">
-						<div class="row">
-							<div class="col-xs-3">
-								<i class="fa fa-tasks fa-5x"></i>
-							</div>
-							<div class="col-xs-9 text-right">
-								<div class="huge">12</div>
-								<div>New Tasks!</div>
-							</div>
-						</div>
-					</div>
-					<a href="#">
-						<div class="panel-footer">
-							<span class="pull-left">View Details</span>
-							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-							<div class="clearfix"></div>
-						</div>
-					</a>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="panel panel-yellow">
-					<div class="panel-heading">
-						<div class="row">
-							<div class="col-xs-3">
-								<i class="fa fa-shopping-cart fa-5x"></i>
-							</div>
-							<div class="col-xs-9 text-right">
-								<div class="huge">124</div>
-								<div>New Orders!</div>
-							</div>
-						</div>
-					</div>
-					<a href="#">
-						<div class="panel-footer">
-							<span class="pull-left">View Details</span>
-							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-							<div class="clearfix"></div>
-						</div>
-					</a>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="panel panel-red">
-					<div class="panel-heading">
-						<div class="row">
-							<div class="col-xs-3">
-								<i class="fa fa-support fa-5x"></i>
-							</div>
-							<div class="col-xs-9 text-right">
-								<div class="huge">13</div>
-								<div>Support Tickets!</div>
-							</div>
-						</div>
-					</div>
-					<a href="#">
-						<div class="panel-footer">
-							<span class="pull-left">View Details</span>
-							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-							<div class="clearfix"></div>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-		<!-- /.row -->
-
-		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
-					</div>
-					<div class="panel-body">
-						<div id="morris-area-chart"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /.row -->
-
-		<div class="row">
-			<div class="col-lg-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Donut Chart</h3>
-					</div>
-					<div class="panel-body">
-						<div id="morris-donut-chart"></div>
-						<div class="text-right">
-							<a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Tasks Panel</h3>
-					</div>
-					<div class="panel-body">
-						<div class="list-group">
-							<a href="#" class="list-group-item">
-								<span class="badge">just now</span>
-								<i class="fa fa-fw fa-calendar"></i> Calendar updated
-							</a>
-							<a href="#" class="list-group-item">
-								<span class="badge">4 minutes ago</span>
-								<i class="fa fa-fw fa-comment"></i> Commented on a post
-							</a>
-							<a href="#" class="list-group-item">
-								<span class="badge">23 minutes ago</span>
-								<i class="fa fa-fw fa-truck"></i> Order 392 shipped
-							</a>
-							<a href="#" class="list-group-item">
-								<span class="badge">46 minutes ago</span>
-								<i class="fa fa-fw fa-money"></i> Invoice 653 has been paid
-							</a>
-							<a href="#" class="list-group-item">
-								<span class="badge">1 hour ago</span>
-								<i class="fa fa-fw fa-user"></i> A new user has been added
-							</a>
-							<a href="#" class="list-group-item">
-								<span class="badge">2 hours ago</span>
-								<i class="fa fa-fw fa-check"></i> Completed task: "pick up dry cleaning"
-							</a>
-							<a href="#" class="list-group-item">
-								<span class="badge">yesterday</span>
-								<i class="fa fa-fw fa-globe"></i> Saved the world
-							</a>
-							<a href="#" class="list-group-item">
-								<span class="badge">two days ago</span>
-								<i class="fa fa-fw fa-check"></i> Completed task: "fix error on sales page"
-							</a>
-						</div>
-						<div class="text-right">
-							<a href="#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Transactions Panel</h3>
+						<h3 class="panel-title"><i class="fa fa-fw fa-comment"></i> Top 5 des salles les mieux notées</h3>
 					</div>
 					<div class="panel-body">
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover table-striped">
 								<thead>
 									<tr>
-										<th>Order #</th>
-										<th>Order Date</th>
-										<th>Order Time</th>
-										<th>Amount (USD)</th>
+										<th>Salle</th>
+										<th>Note moyenne</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>3326</td>
-										<td>10/21/2013</td>
-										<td>3:29 PM</td>
-										<td>$321.33</td>
-									</tr>
-									<tr>
-										<td>3325</td>
-										<td>10/21/2013</td>
-										<td>3:20 PM</td>
-										<td>$234.34</td>
-									</tr>
-									<tr>
-										<td>3324</td>
-										<td>10/21/2013</td>
-										<td>3:03 PM</td>
-										<td>$724.17</td>
-									</tr>
-									<tr>
-										<td>3323</td>
-										<td>10/21/2013</td>
-										<td>3:00 PM</td>
-										<td>$23.71</td>
-									</tr>
-									<tr>
-										<td>3322</td>
-										<td>10/21/2013</td>
-										<td>2:49 PM</td>
-										<td>$8345.23</td>
-									</tr>
-									<tr>
-										<td>3321</td>
-										<td>10/21/2013</td>
-										<td>2:23 PM</td>
-										<td>$245.12</td>
-									</tr>
-									<tr>
-										<td>3320</td>
-										<td>10/21/2013</td>
-										<td>2:15 PM</td>
-										<td>$5663.54</td>
-									</tr>
-									<tr>
-										<td>3319</td>
-										<td>10/21/2013</td>
-										<td>2:13 PM</td>
-										<td>$943.45</td>
-									</tr>
+									<?php
+									$resultat = $pdo -> query("SELECT s.titre, AVG(a.note) as moyenne from salle s, avis a where s.id_salle = a.id_salle group by s.titre LIMIT 5");
+									$resultat->execute();
+									$topresultat = $resultat->fetchAll();
+
+									foreach ($topresultat as $row) {
+										echo '<tr><td>'.$row['titre'].'</td>';
+										echo '<td>'.$row['moyenne'].'</td></tr>';
+									}
+									?>
 								</tbody>
 							</table>
 						</div>
-						<div class="text-right">
-							<a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="fa fa-fw fa-sort-amount-desc"></i> Top 5 des salles les plus commandées</h3>
+					</div>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover table-striped">
+								<thead>
+									<tr>
+										<th>Salle</th>
+										<th>Nombre de commandes</th>
+									</tr>
+								</thead>
+								<tbody>
+									
+									<?php
+									$resultat2 = $pdo -> query("SELECT count(c.id_commande) as nombre_de_reservation, s.titre FROM commande c, salle s, produit p where s.id_salle = p.id_salle AND p.id_produit = c.id_produit GROUP BY s.id_salle LIMIT 5");
+									$resultat2->execute();
+									$topresultat2 = $resultat2->fetchAll();
+
+									foreach ($topresultat2 as $row) {
+										echo '<tr><td>'.$row['titre'].'</td>';
+										echo '<td>'.$row['nombre_de_reservation'].'</td></tr>';
+									}
+									?>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="fa fa-fw  fa-shopping-cart"></i> Top 5 des membres qui achètent le plus (en termes de quantité)</h3>
+					</div>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover table-striped">
+								<thead>
+									<tr>
+										<th>Pseudo</th>
+										<th>Quantité</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+									$resultat3 = $pdo -> query("SELECT count(*) as quantite, m.pseudo from commande c, produit p, membre m where c.id_membre = m.id_membre AND p.id_produit = c.id_produit group by m.id_membre LIMIT 5");
+									$resultat3->execute();
+									$topresultat3 = $resultat3->fetchAll();
+
+									foreach ($topresultat3 as $row) {
+										echo '<tr><td>'.$row['pseudo'].'</td>';
+										echo '<td>'.$row['quantite'].'</td></tr>';
+									}
+									?>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Top 5 des membres qui achètent le plus cher (en termes de prix)</h3>
+					</div>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover table-striped">
+								<thead>
+									<tr>
+										<th>Pseudo</th>
+										<th>Montant</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+									$resultat4 = $pdo -> query("SELECT m.pseudo, sum(p.prix) as prixTotal from produit p, membre m, commande c where p.id_produit = c.id_produit and c.id_membre = m.id_membre group by m.pseudo LIMIT 5");
+									$resultat4->execute();
+									$topresultat4 = $resultat4->fetchAll();
+
+									foreach ($topresultat4 as $row) {
+										echo '<tr><td>'.$row['pseudo'].'</td>';
+										echo '<td>'.$row['prixTotal'].'</td></tr>';
+									}
+									?>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- /.row -->
-
 	</div>
-	<!-- /.container-fluid -->
-
 </div>
-<!-- /#page-wrapper -->
-
-</div>
-<!-- /#wrapper -->
 <?php include('footer.php'); ?>

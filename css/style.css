@@ -245,13 +245,48 @@ footer {
 
 
 /* ---------
+--- PROFIL
+--------- */
+
+.col-lg-12 {
+    margin-bottom: 20px;
+}
+
+.page-header {
+    padding-bottom: 0px!important;
+    margin: 0px!important;
+    border-bottom: none;
+}
+
+.col-lg-12 p, .col-lg-12 ul li {
+    margin: 0px;
+    color: #999;
+}
+
+.col-centered .intituler {
+    color: #C1272D;
+    font-weight: bold;
+    margin: -5px;
+}
+
+.btn-modif {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.modif {
+    margin-top: 10px;
+}
+
+
+/* ---------
 --- FOOTER
 --------- */
 
 footer {
     width: 100%;
     padding: 10px;
-    background-color: #EFEFEF;
+    /*background-color: #EFEFEF;*/
     text-align: center;
 }
 
