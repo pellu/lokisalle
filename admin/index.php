@@ -24,30 +24,20 @@ include('menu.php');
 								<thead>
 									<tr>
 										<th>Salle</th>
-										<th>Nb note</th>
 										<th>Note moyenne</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<?php
-										$querysallenote = $pdo->prepare('
-											SELECT * FROM produit
-											LEFT JOIN salle ON salle.id_salle=produit.id_salle,
-											LEFT JOIN avis ON avis.id_produit=produit.id_produit
-											WHERE id_produit=13');
-										$querysallenote->execute();
-										$topsallenote = $querysallenote->fetchAll();
-										foreach ($topsallenote as $row) {
+									<?php
+									$resultat = $pdo -> query("SELECT s.titre, AVG(a.note) as moyenne from salle s, avis a where s.id_salle = a.id_salle group by s.titre LIMIT 5");
+									$resultat->execute();
+									$topresultat = $resultat->fetchAll();
 
-											echo '<td>'.$row['id_salle'].'</td>';
-										}
-										?>
-										
-										<td>Salle ???</td>
-										<td>Note ???</td>
-										<td>Note moyenne ???</td>
-									</tr>
+									foreach ($topresultat as $row) {
+										echo '<tr><td>'.$row['titre'].'</td>';
+										echo '<td>'.$row['moyenne'].'</td></tr>';
+									}
+									?>
 								</tbody>
 							</table>
 						</div>
@@ -69,10 +59,17 @@ include('menu.php');
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>Salle ???</td>
-										<td>nb commandes ???</td>
-									</tr>
+									
+									<?php
+									$resultat2 = $pdo -> query("SELECT count(c.id_commande) as nombre_de_reservation, s.titre FROM commande c, salle s, produit p where s.id_salle = p.id_salle AND p.id_produit = c.id_produit GROUP BY s.id_salle LIMIT 5");
+									$resultat2->execute();
+									$topresultat2 = $resultat2->fetchAll();
+
+									foreach ($topresultat2 as $row) {
+										echo '<tr><td>'.$row['titre'].'</td>';
+										echo '<td>'.$row['nombre_de_reservation'].'</td></tr>';
+									}
+									?>
 								</tbody>
 							</table>
 						</div>
@@ -94,10 +91,16 @@ include('menu.php');
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>pseudo ???</td>
-										<td>quantité ???</td>
-									</tr>
+									<?php
+									$resultat3 = $pdo -> query("SELECT count(*) as quantite, m.pseudo from commande c, produit p, membre m where c.id_membre = m.id_membre AND p.id_produit = c.id_produit group by m.id_membre LIMIT 5");
+									$resultat3->execute();
+									$topresultat3 = $resultat3->fetchAll();
+
+									foreach ($topresultat3 as $row) {
+										echo '<tr><td>'.$row['pseudo'].'</td>';
+										echo '<td>'.$row['quantite'].'</td></tr>';
+									}
+									?>
 								</tbody>
 							</table>
 						</div>
@@ -119,10 +122,16 @@ include('menu.php');
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>pseudo ???</td>
-										<td>Montant ???</td>
-									</tr>
+									<?php
+									$resultat4 = $pdo -> query("SELECT m.pseudo, sum(p.prix) as prixTotal from produit p, membre m, commande c where p.id_produit = c.id_produit and c.id_membre = m.id_membre group by m.pseudo LIMIT 5");
+									$resultat4->execute();
+									$topresultat4 = $resultat4->fetchAll();
+
+									foreach ($topresultat4 as $row) {
+										echo '<tr><td>'.$row['pseudo'].'</td>';
+										echo '<td>'.$row['prixTotal'].'</td></tr>';
+									}
+									?>
 								</tbody>
 							</table>
 						</div>
