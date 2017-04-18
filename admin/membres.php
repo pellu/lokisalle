@@ -25,7 +25,7 @@ include('menu.php');
     <div class="row">
       <div class="col-lg-12 col-md-12 col-ls-12 col-xs-12">
         <div class="table-responsive">
-          <table class="table table-bordered table-hover">
+          <table id="table" class="table table-bordered table-hover">
             <thead>
               <tr>
                 <?php for($i =0; $i < $resultat -> columnCount(); $i ++) : ?>
@@ -33,7 +33,7 @@ include('menu.php');
 
                   <th><?= $colonne['name'] ?></th>
                 <?php endfor; ?>
-                <th colspan="2">Actions</th>
+                <th >Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -59,7 +59,7 @@ include('menu.php');
                           echo "Désactivé";
                         }else{
                           echo "Utilisateur";
-                        } ?>
+                        } ?></td>
                       <?php elseif($indice2 == 'date_enregistrement') : ?>
                         <td><?php
                           echo date("d/m/Y", $valeur2);
@@ -129,14 +129,14 @@ include('menu.php');
                                       </select>
                                     </div>
                                   </div>
-                                    <div class="form-group">
-                                      <label>Statut</label>
-                                      <select name="statut" id="statut" class="form-control">
-                                        <option <?php if($valeur['statut']==0){echo "selected";} ?> value="0">Utilisateur</option>
-                                        <option <?php if($valeur['statut']==1){echo "selected";} ?> value="1">Admin</option>
-                                        <option <?php if($valeur['statut']==2){echo "selected";} ?> value="2">Désactivé</option>
-                                      </select>
-                                    </div>
+                                  <div class="form-group">
+                                    <label>Statut</label>
+                                    <select name="statut" id="statut" class="form-control">
+                                      <option <?php if($valeur['statut']==0){echo "selected";} ?> value="0">Utilisateur</option>
+                                      <option <?php if($valeur['statut']==1){echo "selected";} ?> value="1">Admin</option>
+                                      <option <?php if($valeur['statut']==2){echo "selected";} ?> value="2">Désactivé</option>
+                                    </select>
+                                  </div>
                                   <input type="submit" id="submitmembres" value="Je modifie le membre" class="btn btn-default">
                                 </form>
                               </div>
@@ -153,4 +153,28 @@ include('menu.php');
         </div>
       </div>
     </div>
-    <?php include('footer.php'); ?>
+    <script>$(document).ready(function() {
+      $('.table').DataTable({
+      //disable sorting on last column
+      "columnDefs": [
+      { "orderable": false, "targets": 5 }
+      ],
+      language: {
+        'paginate': {
+          'previous': '<span class="fa fa-chevron-left"></span>',
+          'next': '<span class="fa fa-chevron-right"></span>',
+        },
+        //customize number of elements to be displayed
+        "lengthMenu": 'Affichage <select class="form-control input-sm">'+
+        '<option value="10">10</option>'+
+        '<option value="20">20</option>'+
+        '<option value="30">30</option>'+
+        '<option value="40">40</option>'+
+        '<option value="50">50</option>'+
+        '<option value="-1">Tout</option>'+
+        '</select> résultats'
+      }
+    })  
+    } );
+  </script>
+  <?php include('footer.php'); ?>

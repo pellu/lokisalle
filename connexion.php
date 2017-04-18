@@ -28,7 +28,7 @@ if(isset($_POST['pseudo']) && isset($_POST['password'])){
                 $_SESSION['userid'] = $users['id_membre'];
                 ?>
                 <script type="text/javascript">
-                    //window.location = "<?php echo $_SERVER["HTTP_REFERER"]; ?>";
+                    window.location = "<?php echo $_SERVER["HTTP_REFERER"]; ?>";
                 </script>
                  <div class="alert alert-success fade in">
                     <a href="#" class="close" data-dismiss="alert">&times;</a>
