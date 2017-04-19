@@ -82,24 +82,26 @@ if(empty($_SESSION['user'])){
                             }else{
                         ?>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-12 col-md-12 col-ls-12">
 
 
                                 <?php foreach($cmd_list as $row){ ?>
-                                <div>
-                                    <img src="<?php echo $racines."images/".$row['photo']?>" alt="" class="col-lg-4">
-                                    <div class="col-lg-8">
+                                <div class="row">
+                                    <img src="<?php echo $racines."images/".$row['photo']?>" alt="<?= $row['titre']; ?>" class="col-lg-6 col-md-6 col-ls-6">                        
+                                    <div class="col-lg-6 col-md-6 col-ls-6">
                                         <h3>
                                             <?=$row['titre'];?> |<span> Reservé du <?=date("d/m/Y", $row['date_arrivee']);?> au <?=date("d/m/Y", $row['date_depart']);?></span>
                                         </h3>
                                         <p>Adresse : <?=$row['adresse'];?> <?=$row['ville'];?> <?=$row['cp'];?></p>
                                         <p>Coût : <?=$row['prix'];?> € pour <?=$row['capacite'];?> places</p>
+                                     
                                         <p>
                                             <?=$row['description'];?>
                                         </p>
                                         <button><a href="#">Voir le produit</a></button>
                                     </div>
                                 </div>
+                                <br>
                                 <?php } ?>
 
                             </div>
