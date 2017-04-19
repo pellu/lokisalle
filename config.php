@@ -21,4 +21,9 @@ if(isset($_SESSION['user'])){
 }else{
 	$levelstatut=0;
 }
-?>
+
+$url = $_SERVER['REQUEST_URI'];
+$part = explode ("/", $url);
+if(!empty($part[3])){
+  $idproduit = $part[3]; //3 in local / 2 in prod  
+}

@@ -1,99 +1,68 @@
 <?php
 require_once("config.php");
 
-
 if($_POST){
 	extract($_POST);
 
-	if(strlen($capacite) == 0 ){
-		$msg .= '<p style="color: white; background-color: red; padding: 10px;">Attention : Vous devez renseigner la capacité recherchée !</p>'; 
+	echo "<pre>";
+	print_r($_POST);
+	echo "</pre>";
+
+	$requete = "SELECT s.id_salle, p.id_produit, s.photo, s.titre, p.prix, s.description, s.ville, p.date_arrivee, p.date_depart
+	FROM salle s, produit p
+	
+	WHERE p.id_salle = s.id_salle";
+	
+	if($_POST['capacite']){
+		$requete .= " AND capacite >=".$_POST['capacite'];
+	}
+	if($_POST['categorie']){
+		$requete .= " AND categorie =".$_POST['categorie'];
 	}
 	
-	if(strlen($date_arrivee) !=0 && strlen($date_depart) != 0){
-		// Transforme date
-		$date_en_arrivee = convertDateEn($date_arrivee);
-		$date_en_depart = convertDateEn($date_depart);
-		// Contrôle des dates
-		$date_actuelle = Date("Y-m-d"); // Obtention de la date actuelle
-		$ts_date_actuelle = strtotime($date_actuelle);
-		$ts_date_en_arrivee = strtotime($date_en_arrivee);
-		$ts_date_en_depart = strtotime($date_en_depart);
-		if (($ts_date_en_arrivee < $ts_date_actuelle) || ($ts_date_en_depart < $ts_date_actuelle)) {
-			$msg .= '<p style="color: white; background-color: red; padding: 10px;">Attention ! Recherche sur des dates antérieures !</p>'; 
-		}
-		
-		if ($ts_date_en_arrivee > $ts_date_en_depart ) {
-			$msg .= '<p style="color: white; background-color: red; padding: 10px;">Attention ! La date d\'arrivée est après la date de départ !</p>'; 
-		}
-		
-		// la requête proposée est :
-		$etat = "libre";
-		$requete = "SELECT s.id_salle, p.id_produit, s.photo, s.titre, p.prix, s.description, s.ville, p.date_arrivee, p.date_depart
-		FROM salle s, produit p
-		WHERE p.id_salle = s.id_salle
-		AND p.date_arrivee BETWEEN '" . $date_en_arrivee . "' AND '" . $date_en_depart . "'
-		AND p.date_depart BETWEEN '" . $date_en_arrivee . "' AND '" . $date_en_depart . "'
-		AND capacite <= " . $capacite . "
-		AND ville = '" . $ville . "'
-		AND prix <= " . $prix . "
-		AND p.etat = '" . $etat . "'
-		ORDER BY p.date_arrivee";
-	}else{
-		// requête sans les dates de bornage
-		$etat = "libre";
-		$requete = "SELECT s.id_salle, p.id_produit, s.photo, s.titre, p.prix, s.description, s.ville, p.date_arrivee, p.date_depart
-		FROM salle s, produit p
-		WHERE p.id_salle = s.id_salle
-		AND capacite <= " . $capacite . "
-		AND ville = '" . $ville . "'
-		AND prix <= " . $prix . "
-		AND p.etat = '" . $etat . "'
-		ORDER BY p.date_arrivee";
-	}if(empty($msg)){
-		// Requête à traiter
-		$resultat = $pdo -> query($requete);
-		
-		echo '<div class="container">';
-		echo '<div class="row">';
-		echo '<div class="col-md-9">';
-		// Tester si la requête renvoie un résultat$reponse!=false
-		if($resultat->num_rows != 0){
-			echo '<h2 style="text-align:center;">Résultats</h2>';
-			while ($ligne = $resultat -> fetch_assoc()) {
-			//Récupération de la note
-				$note_avis = calcul_note($ligne['id_salle']);
-				
-			//Traitement des dates
-				$date_arrivee_reformat = date("d/m/Y", strtotime($ligne['date_arrivee'])); 
-				$date_depart_reformat = date("d/m/Y", strtotime($ligne['date_depart'])); 
-			//Affichage
-				echo '<div class="col-sm-4 col-lg-4 col-md-4">';
-				echo '<div class="thumbnail">';
-				echo '<a href="fiche_produit.php?salle=' . $ligne['id_salle'] . '&produit=' . $ligne['id_produit'] . '"><img src="'. RACINE_SITE . 'photo/' . $ligne['photo'] . '" alt=""></a>';
-				echo '<div class="caption">';
-				echo '<h4 class="pull-left">' . '<a href="fiche_produit.php?salle=' . $ligne['id_salle'] . '&produit=' . $ligne['id_produit'] .'"> ' . $ligne['titre'] . '</a></h4>';
-				echo '<h4 class="pull-right">' . $ligne['prix'] . '  €</h4>';
-				echo '<p class="pull-left">' . substr($ligne['description'], 0, 30) . '...' . '</p>';
-				echo '<p class="pull-left"><span class="glyphicon glyphicon-search"></span> Du ' . $date_arrivee_reformat . ' au ' . $date_depart_reformat . '</p>'; 
-				echo '</div>';
-				echo '<div class="ratings">';
-				echo '<p class="pull-right"><a href="#"><span class="glyphicon glyphicon-zoom-out"></span>&nbsp;Voir</a></p>';
-				if ($note_avis!= 0){
-					for ($j = 0 ; $j < $note_avis; $j++){
-						echo '<span class="glyphicon glyphicon-star"></span>';
-					}
-				}else{
-					echo '<span class="glyphicon glyphicon-arrow-right">&nbsp;Aucun avis</span>';
-					
-				}
-				
-				echo '</p></div></div></div>';
-			//Affichage
-		} // fermeture du while
-	}else{
-		$msg .= '<p style="color: white; background-color: green; padding: 10px;">Aucune salle n\'est disponible avec les options sélectionnées</p>'; 
+	if($_POST['prix']){
+		$requete .= " AND prix <=".$_POST['prix'];
 	}
-	
-	echo '</div></div></div>';	
+	if($_POST['ville']){
+		$requete .= " AND ville ='".$_POST['ville']."'";
+	}
+	if($_POST['date_arrivee']){
+		$requete .= " AND date_arrivee >='".$_POST['date_arrivee']."'";
+	}
+	$requete .= " AND p.etat = 'libre' ORDER BY p.date_arrivee";
+
+	$query = $pdo->prepare($requete);
+	$query->execute();
+	$list = $query->fetchAll();
+
+	foreach ($list as $row) {
+		if($row == 1){
+			echo "Le site n'a pas encore de produits";
+		}else{
+			?>
+			<div class="col-sm-4 col-lg-4 col-md-4">
+				<div class="thumbnail">
+					<img src="<?= $racines; ?>images/<?= $row['photo']; ?>" alt="<?= $row['titre']; ?>">
+					<div class="caption">
+						<h4 class="pull-right"><?= $row['prix']; ?> €</h4>
+						<h4><a href="<?= $racines; ?>fiche_produit/<?= $row['id_produit']; ?>"><?= $row['titre']; ?></a>
+						</h4>
+						<p><?= $row['description']; ?></p>
+						<p>Du <?= $row['date_arrivee']; ?> au <?= $row['date_depart']; ?></p>
+					</div>
+					<div class="ratings">
+						<p class="pull-right">15 reviews</p>
+						<p>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<?php
+		}
+	}
 }
-}	

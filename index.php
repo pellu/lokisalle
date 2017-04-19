@@ -3,18 +3,89 @@ session_start();
 $pagename="Lokisalle";
 include('menu.php');
 
-$query = $pdo->prepare('SELECT * FROM produit INNER JOIN salle ON salle.id_salle=produit.id_salle ORDER BY id_produit DESC LIMIT 0, 10');
+$query = $pdo->prepare('SELECT * FROM produit INNER JOIN salle ON salle.id_salle=produit.id_salle WHERE produit.etat="libre" ORDER BY id_produit DESC LIMIT 0, 10');
 $query->execute();
 $list = $query->fetchAll();
-?>
 
+//Compter nombre de résultat
+$nRows = $pdo->query('SELECT count(*) FROM produit WHERE produit.etat="libre"')->fetchColumn();
+?>
+        <script src="<?= $racinea; ?>js/jquery.js"></script>
+        <script src="<?= $racinea; ?>js/jquery-ui.js"></script>
+        <script>
+          $( function() {
+            var dateFormat = "dd-mm-yy",
+            from = $( "#date_arrivee" )
+            .datepicker({
+             defaultDate: "+1w",
+             minDate: 0,
+             changeMonth: true,
+             showWeek: true,
+             numberOfMonths: 2,
+             closeText: "Fermer",
+             prevText: "Précédent",
+             nextText: "Suivant",
+             currentText: "Aujourd\'hui",
+             monthNames: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+             monthNamesShort: ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."],
+             dayNames: ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"],
+             dayNamesShort: ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."],
+             dayNamesMin: ["D", "L", "M", "M", "J", "V", "S"],
+             weekHeader: "Sem.",
+             dateFormat: "dd-mm-yy",
+             firstDay: 1,
+             isRTL: false,
+             showMonthAfterYear: true,
+             yearSuffix: ""
+         })
+            .on( "change", function() {
+              to.datepicker( "option", "minDate", getDate( this ) );
+          }),
+            to = $( "#date_depart" ).datepicker({
+             defaultDate: "+1w",
+             minDate: 0,
+             changeMonth: true,
+             showWeek: true,
+             numberOfMonths: 2,
+             closeText: "Fermer",
+             prevText: "Précédent",
+             nextText: "Suivant",
+             currentText: "Aujourd\'hui",
+             monthNames: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+             monthNamesShort: ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."],
+             dayNames: ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"],
+             dayNamesShort: ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."],
+             dayNamesMin: ["D", "L", "M", "M", "J", "V", "S"],
+             weekHeader: "Sem.",
+             dateFormat: "dd-mm-yy",
+             firstDay: 1,
+             isRTL: false,
+             showMonthAfterYear: true,
+             yearSuffix: ""
+         })
+            .on( "change", function() {
+                from.datepicker( "option", "maxDate", getDate( this ) );
+            });
+
+            function getDate( element ) {
+              var date;
+              try {
+                date = $.datepicker.parseDate( dateFormat, element.value );
+            } catch( error ) {
+                date = null;
+            }
+
+            return date;
+        }
+    } );
+</script>
 <div class="container">
     <div class="row">
         <div class="col-sm-3 col-lg-3 col-md-3">
 
             <div class="form-group" style="text-align:center;">
                 <h2>Recherche</h2>
-                <p>Il y a ??? résultats</p>
+                <p>Il y a <?= $nRows; ?> résultat<?php if($nRows > 1){echo "s";}?></p>
                 <p><a href="<?= $racines ?>">Tout afficher</a></p>
             </div>
 
@@ -23,38 +94,33 @@ $list = $query->fetchAll();
                 <div class="form-group">
                     <label>Catégorie</label>
                     <select class="form-control" id="categorie" onchange="recupPHP()">
-                        <option value="reunion" selected>reunion</option>
-                        <option value="bureau">bureau</option>
-                        <option value="formation">formation</option>
+                        <option value="" selected>Choisir une catégorie</option>
+                        <option value="1">Réunion</option>
+                        <option value="2">Bureau</option>
+                        <option value="3">Formation</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Ville</label>
                     <select class="form-control" id="ville" onchange="recupPHP()">
-                        <option value="Paris" selected>Paris</option>
-                        <option value="Lyon">Lyon</option>
-                        <option value="Marseille">Marseille</option>
+                        <option value="" selected>Choisir une ville</option>
+                        <option value="paris">Paris</option>
+                        <option value="lyon">Lyon</option>
+                        <option value="marseille">Marseille</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Capacité</label>
-                    <select class="form-control" id="capacite" onchange="recupPHP()">
-                        <?php
-                        $i= 1;
-                        while ($i <= 100) {
-                            if ($i == 20)
-                               { echo '<option value="' . $i . '" selected >' . $i . '</option>'; }
-                           else { echo '<option value="' . $i . '">' . $i . '</option>'; }
-                           $i++; } ?>
-                       </select>
-                   </div>
+                    <input type="range" value="0" min="0" max="1000" step="20" name="capacite" id="capacite" oninput="document.getElementById('AfficheCapacite').textContent=value" onchange="recupPHP()"/>
+                    <p>Entre 0 et <span id="AfficheCapacite">0</span> places</p>
+                </div>
 
-                   <div class="form-group">
+                <div class="form-group">
                     <label>Prix</label>
-                    <input type="range" min="0" max="1500" step="5" name="prix" id="prix" oninput="document.getElementById('AfficheRange').textContent=value" onchange="recupPHP()"/>
-                    <span id="AfficheRange">0</span>
+                    <input type="range" value="0" min="0" max="5000" step="50" name="prix" id="prix" oninput="document.getElementById('AffichePrix').textContent=value" onchange="recupPHP()"/>
+                    <p>Entre 0 € et <span id="AffichePrix">0</span> €</p>
                 </div>
 
                 <div class="form-group">
@@ -79,9 +145,7 @@ $list = $query->fetchAll();
 
         <div class="col-sm-9 col-lg-9 col-md-9" id="myDiv">
 
-
             <?php
-
             foreach ($list as $row) {
 
                 if($row == 1){
@@ -143,7 +207,6 @@ $list = $query->fetchAll();
             ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             ajax.send(req=parameters);
             requete(reponse);
-
         }
     </script>
     <?php include('footer.php'); ?>
