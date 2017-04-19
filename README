@@ -1,22 +1,22 @@
 Ce qui reste à faire :
 
-Admin:
-- Trie des colonnes
-
 Front :
 - Affichage des produits page d'accueil / nombre de résultat / voir plus
-- Gestion des colonnes de filtrage page d'accueil (catégories/ville/capacité/prix/période)
-- Affichage d'un produit (titre-note/ bouton réservé si connecté sinon modal de connexion/photo, description, localisation maps,/info complémentaires : arrivé,départ,capacité,catégorie,adresse et tarif/autres produits de la même catégorie)
+- Gestion des colonnes de filtrage page d'accueil (période/avis)
+
+- Affichage d'un produit (note/ bouton réservé si connecté sinon modal de connexion/photo, localisation maps)
 - Commande d'un produit (bouton réserver sur la fiche d'un produit)
 - Ajout commentaire/note (seulement si connecté, sinon modal connexion, fiche d'un produit) / Calcul de la note moyenne
 - Envoi du formulaire de contact par mail
 - Design accueil/Contact/Produit
 
+- Bonux : Afficher limite capacité et prix en fonction du maximum affiché
+
 Quand une commande est réalisée, modification du produit pour mettre reserve, quand une commande est supprimée modifier le produit pour mettre libre
 
 Pour la présentation :
 - Validation W3C (avant samedi si possible sinon samedi)
-- Remplissage du site (CGV/mentions légales/supprimer CGU du footer(pas demandé dans le cahier des charges)), multiple utilisateurs, multiple salles, multiple produits, multiple commandes, multiple avis (samedi/dimanche)
+- Remplissage du site multiple utilisateurs, multiple salles, multiple produits, multiple commandes, multiple avis (samedi/dimanche)
 - Mettre le site sur un serveur de prod (mise en ligne samedi)
 
 Contrôles demandés :

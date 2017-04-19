@@ -36,7 +36,7 @@ if($_POST){
             <strong>Attention!</strong> Veuillez renseigner un pseudo !
         </div>';
     }
-    if(strlen($_POST['password']) < 5){
+    if(strlen($_POST['password']) < 6){
         $msg .= '<div class="alert alert-danger fade in">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
             <strong>Attention!</strong> Veuillez renseigner un mot de passe d\'au moins 6 caractères.

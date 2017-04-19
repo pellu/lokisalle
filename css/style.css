@@ -19,6 +19,12 @@ a:hover {
     color: #80171B;
 }
 
+.page-header {
+    padding-bottom: 10px!important;
+    margin: 0px!important;
+    border-bottom: none;
+}
+
 label {
     color: #888;
 }
@@ -250,12 +256,6 @@ footer {
 
 .col-lg-12 {
     margin-bottom: 20px;
-}
-
-.page-header {
-    padding-bottom: 0px!important;
-    margin: 0px!important;
-    border-bottom: none;
 }
 
 .col-lg-12 p, .col-lg-12 ul li {
