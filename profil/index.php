@@ -90,7 +90,7 @@ if(empty($_SESSION['user'])){
                                     <img src="<?php echo $racines."images/".$row['photo']?>" alt="<?= $row['titre']; ?>" class="col-lg-6 col-md-6 col-ls-6">                        
                                     <div class="col-lg-6 col-md-6 col-ls-6">
                                         <h3>
-                                            <?=$row['titre'];?> |<span> Reservé du <?=date("d/m/Y", $row['date_arrivee']);?> au <?=date("d/m/Y", $row['date_depart']);?></span>
+                                            <?=$row['titre'];?> |<span> Reservé du <?=$row['date_arrivee'];?> au <?=$row['date_depart'];?></span>
                                         </h3>
                                         <p>Adresse : <?=$row['adresse'];?> <?=$row['ville'];?> <?=$row['cp'];?></p>
                                         <p>Coût : <?=$row['prix'];?> € pour <?=$row['capacite'];?> places</p>
@@ -98,7 +98,7 @@ if(empty($_SESSION['user'])){
                                         <p>
                                             <?=$row['description'];?>
                                         </p>
-                                        <button><a href="#">Voir le produit</a></button>
+                                        <button><a href="<?=$racines."fiche_produit/".$row['id_produit'];?>">Voir le produit</a></button>
                                     </div>
                                 </div>
                                 <br>
