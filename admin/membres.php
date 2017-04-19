@@ -157,7 +157,7 @@ include('menu.php');
       $('.table').DataTable({
       //disable sorting on last column
       "columnDefs": [
-      { "orderable": false, "targets": 5 }
+      { "orderable": false, "targets": 9 }
       ],
       language: {
         'paginate': {

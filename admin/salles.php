@@ -202,7 +202,7 @@ include('menu.php');
                 <?php $colonne = $resultat -> getColumnMeta($i); ?>
                 <th><?= $colonne['name'] ?></th>
               <?php endfor; ?>
-              <th colspan="2">Actions</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -318,8 +318,6 @@ include('menu.php');
                     </div>
                   </div>
                 </div>
-              </td>
-              <td>
                 <a href="#" data-toggle="modal" data-target="#modalSupprimer<?= $valeur['id_salle'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                 <div class="modal fade" id="modalSupprimer<?= $valeur['id_salle'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                   <div class="modal-dialog" role="document">
@@ -348,7 +346,7 @@ include('menu.php');
   $('.table').DataTable({
       //disable sorting on last column
       "columnDefs": [
-      { "orderable": false, "targets": 5 }
+      { "orderable": false, "targets": 9 }
       ],
       language: {
         'paginate': {
