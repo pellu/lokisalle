@@ -58,7 +58,7 @@ if(empty($_SESSION['user'])){
                     <p><br></p>
                     <p><br></p>
                     <div class="col-lg-12">
-                        <h2 class="page-header">Vos dernières commandes :</h2>
+                        <h2 class="page-header" style="margin-top: 50px!important;">Vos dernières commandes :</h2>
 
                         <?php 
                         
