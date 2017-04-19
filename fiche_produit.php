@@ -63,7 +63,65 @@ foreach($cmd_list as $row){
                     <?=$row['description'];?>
 
                     <h3>Localisation</h3>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.04982597066!2d2.295621251593011!3d48.838188279183846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e670155e708f7b%3A0xc1375b95f3fddee5!2s300+Rue+de+Vaugirard%2C+75015+Paris!5e0!3m2!1sen!2sfr!4v1492434024878" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <div id="map"></div>
+                    <style>
+                      /* Always set the map height explicitly to define the size of the div
+                       * element that contains the map. */
+                      #map {
+                        height: 300px;
+                      }
+           
+                    </style>
+                    <?php
+                        // On prépare l'adresse à rechercher
+                           
+                        $address = $row['adresse'].' '.$row['cp'].' '.$row['ville'];
+
+                        // On prépare l'URL du géocodeur
+                        $geocoder = "http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false";
+
+                        // Pour cette exemple, je vais considérer que ma chaîne n'est pas
+                        // en UTF8, le géocoder ne fonctionnant qu'avec du texte en UTF8
+                        $url_address = utf8_encode($address);
+
+                        // Penser a encoder votre adresse
+                        $url_address = urlencode($url_address);
+
+                        // On prépare notre requête
+                        $query = sprintf($geocoder,$url_address);
+
+                        // On interroge le serveur
+                        $results = file_get_contents($query);
+
+                        // On affiche le résultat
+                        $result = json_decode($results);
+                        
+                        $lat = $result->results[0]->geometry->location->lat;
+                        $lon = $result->results[0]->geometry->location->lng;
+ 
+                    ?>
+                           
+                    <script>
+                       
+                      var map;
+                      function initMap() {
+                        map = new google.maps.Map(document.getElementById('map'), {
+                          center: {lat: <?= $lat ?>, lng: <?= $lon ?>},
+                          zoom: 15
+                        });
+                      
+                        var myLatlng = new google.maps.LatLng(<?= $lat ?>,<?= $lon ?>);
+                        
+                        var marker = new google.maps.Marker({
+                            position: myLatlng,
+                            map: map
+                        });
+                    
+                      }
+                    </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCe6qiRuxyCMUJOC2FQfwh9gEZ9UEskfhE&callback=initMap" async defer></script>
+                    
+                    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.04982597066!2d2.295621251593011!3d48.838188279183846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e670155e708f7b%3A0xc1375b95f3fddee5!2s300+Rue+de+Vaugirard%2C+75015+Paris!5e0!3m2!1sen!2sfr!4v1492434024878" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe> -->
                 </div>
                 
             </div>
@@ -75,8 +133,8 @@ foreach($cmd_list as $row){
 
 					<div class="col-sm-4 col-xs-4">
 						
-                            <p><span class="glyphicon glyphicon-calendar"></span> Arrivée : <?=date("d/m/Y", $row['date_arrivee']);?></p>
-                            <p><span class="glyphicon glyphicon-calendar"></span> Départ : <?=date("d/m/Y", $row['date_depart']);?></p>
+                            <p><span class="glyphicon glyphicon-calendar"></span> Arrivée : <?=$row['date_arrivee'];?></p>
+                            <p><span class="glyphicon glyphicon-calendar"></span> Départ : <?=$row['date_depart'];?></p>
                  
 					</div>
 
