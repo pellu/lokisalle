@@ -34,7 +34,6 @@
                 <input type="hidden" name="robot" value="">
                 <input type="submit" id="submitconnexion" value="Connexion" class="btn btn-default">
               </form>
-              <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
               <script>
                 $(document).ready(function(){
                   $("#submitconnexion").click(function(e){
@@ -102,7 +101,6 @@
                 <input type="hidden" name="robot" value="">
                 <input type="submit" id="submitinscription" value="Je m'inscris" class="btn btn-default">
               </form>
-              <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
               <script>
                 $(document).ready(function(){
                   $("#submitinscription").click(function(e){
@@ -133,8 +131,7 @@
     </div>
   </div>
 
-<script src="<?= $racines; ?>js/jquery.js"></script>
-<script src="<?= $racines; ?>js/bootstrap.min.js"></script>
+<script src="<?= $racinea; ?>js/bootstrap.min.js"></script>
 <script src="<?= $racines; ?>js/validator.js"></script>
 </body>
 </html>

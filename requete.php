@@ -19,7 +19,6 @@ if($_POST){
 	if($_POST['categorie']){
 		$requete .= " AND categorie =".$_POST['categorie'];
 	}
-	
 	if($_POST['prix']){
 		$requete .= " AND prix <=".$_POST['prix'];
 	}
@@ -28,6 +27,9 @@ if($_POST){
 	}
 	if($_POST['date_arrivee']){
 		$requete .= " AND date_arrivee >='".$_POST['date_arrivee']."'";
+	}
+	if($_POST['date_depart']){
+		$requete .= " AND date_depart <='".$_POST['date_depart']."'";
 	}
 	$requete .= " AND p.etat = 'libre' ORDER BY p.date_arrivee";
 
