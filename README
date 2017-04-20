@@ -1,23 +1,27 @@
 Ce qui reste à faire :
 
 Front :
-- Affichage des produits page d'accueil / nombre de résultat / voir plus
-- Gestion des colonnes de filtrage page d'accueil (période/avis)
+- Affichage des produits page d'accueil / nombre de résultat (modifier en fonction du ) / voir plus
+- Gestion des colonnes de filtrage page d'accueil (avis)
 
-- Affichage d'un produit (note/ bouton réservé si connecté sinon modal de connexion/photo, localisation maps)
-- Commande d'un produit (bouton réserver sur la fiche d'un produit)
+- Affichage d'un produit (note)
 - Ajout commentaire/note (seulement si connecté, sinon modal connexion, fiche d'un produit) / Calcul de la note moyenne
+
+- Réduire le texte affichée dans la boucle page d'accueil / pareil dans admin
+- Lien vers le produit dans la boucle sur la photo
+- Debug connexion/reserver sur page produit
+
 - Envoi du formulaire de contact par mail
-- Design accueil/Contact/Produit
+- Design Contact
+- Remplissage bdd
+- Remplissage qui sommes nous ?
 
 - Bonux : Afficher limite capacité et prix en fonction du maximum affiché
 
-Quand une commande est réalisée, modification du produit pour mettre reserve, quand une commande est supprimée modifier le produit pour mettre libre
-
 Pour la présentation :
-- Validation W3C (avant samedi si possible sinon samedi)
+- Validation W3C
 - Remplissage du site multiple utilisateurs, multiple salles, multiple produits, multiple commandes, multiple avis (samedi/dimanche)
-- Mettre le site sur un serveur de prod (mise en ligne samedi)
+- Mettre le site sur un serveur de prod (mise en ligne vendredi)
 
 Contrôles demandés :
 OK -  Que se passe t-il si un membre tente de s’inscrire avec un pseudo d’une lettre ? avec un pseudo de 100 lettres ? avec un pseudo « !£%£ ̈ » ?
@@ -25,10 +29,10 @@ PAS OK -  Peut-on créer ou réserver un produit sur des dates antérieures dans
 chevauchent ?
 OK -  Y’a-t-il des moyens d’altérer le comportement initialement prévu du site via l’url ou d’autres points d’entrée (sécurité injection sql, lfi, xss, etc.) ?
 OK le membre n'es pas supprimé, juste désactivé -  Que se passe t’il lorsqu’un membre est supprimé (commandes, avis, etc) ? Que se passe t’il lorsqu’une salle est supprimée (produits, avis, commandes, etc.) ?
-PAS OK -  Que ce passe t’il si un internaute tente de se rendre sur une fiche produit sans id ? ou avec un mauvais id ?
+OK -  Que ce passe t’il si un internaute tente de se rendre sur une fiche produit sans id ? ou avec un mauvais id ?
 
 Fonctionnalités backoffice :
 OK -  Le clic sur une photo doit entrainer une ouverture en lightbox.
-PAS OK -  Le tri sur une colonne doit être proposé
-PAS OK -  La pagination doit être proposée s’il y a un nombre de résultats conséquent.
+OK -  Le tri sur une colonne doit être proposé
+OK -  La pagination doit être proposée s’il y a un nombre de résultats conséquent.
 PAS OK -  Si elle est trop longue, la description doit être coupée (lors de l’affichage des salles).
