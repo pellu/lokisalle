@@ -268,9 +268,9 @@ include('menu.php');
                           <div class="col-lg-6 col-md-6 col-ls-6">
                             <label>Ville</label>
                             <select name="ville" id="ville" class="form-control" onchange="changeSelect(this);">
-                              <option <?php if($valeur['categorie']=='paris'){echo "selected";} ?> value="paris">Paris</option>
-                              <option <?php if($valeur['categorie']=='lyon'){echo "selected";} ?> value="lyon">Lyon</option>
-                              <option <?php if($valeur['categorie']=='marseille'){echo "selected";} ?> value="marseille">Marseille</option>
+                              <option <?php if($valeur['categorie']=='1'){echo "selected";} ?> value="paris">Paris</option>
+                              <option <?php if($valeur['categorie']=='3'){echo "selected";} ?> value="lyon">Lyon</option>
+                              <option <?php if($valeur['categorie']=='2'){echo "selected";} ?> value="marseille">Marseille</option>
                             </select>
                           </div>
                           <div class="col-lg-6 col-md-6 col-ls-6">
