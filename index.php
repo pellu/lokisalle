@@ -3,7 +3,7 @@ session_start();
 $pagename="Lokisalle";
 include('menu.php');
 
-$query = $pdo->prepare('SELECT * FROM produit INNER JOIN salle ON salle.id_salle=produit.id_salle WHERE produit.etat="libre" ORDER BY id_produit DESC LIMIT 0, 10');
+$query = $pdo->prepare('SELECT * FROM produit INNER JOIN salle ON salle.id_salle=produit.id_salle WHERE produit.etat="libre" ORDER BY produit.date_arrivee LIMIT 0, 10');
 $query->execute();
 $list = $query->fetchAll();
 
@@ -16,7 +16,6 @@ $nRows = $pdo->query('SELECT count(*) FROM produit WHERE produit.etat="libre"')-
 
             <div class="form-group" style="text-align:center;">
                 <h2>Recherche</h2>
-                <p>Il y a <?= $nRows; ?> résultat<?php if($nRows > 1){echo "s";}?></p>
                 <p><a href="<?= $racines ?>">Tout afficher</a></p>
             </div>
 
@@ -75,6 +74,7 @@ $nRows = $pdo->query('SELECT count(*) FROM produit WHERE produit.etat="libre"')-
         </div>
 
         <div class="col-sm-9 col-lg-9 col-md-9" id="myDiv">
+            <p>Il y a <?= $nRows; ?> produit<?php if($nRows > 1){echo "s";}?> disponible actuellement</p>
 
             <?php
             foreach ($list as $row) {
@@ -85,22 +85,54 @@ $nRows = $pdo->query('SELECT count(*) FROM produit WHERE produit.etat="libre"')-
                     ?>
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="<?= $racines; ?>images/<?= $row['photo']; ?>" alt="<?= $row['titre']; ?>">
+                            <a href="<?= $racines; ?>fiche_produit/<?= $row['id_produit']; ?>"><img src="<?= $racines; ?>images/<?= $row['photo']; ?>" alt="<?= $row['titre']; ?>"></a>
                             <div class="caption">
                                 <h4 class="pull-right"><?= $row['prix']; ?> €</h4>
                                 <h4><a href="<?= $racines; ?>fiche_produit/<?= $row['id_produit']; ?>"><?= $row['titre']; ?></a>
                                 </h4>
-                                <p><?= $row['description']; ?></p>
+                                <p><?= substr($row['description'], 0, 60); ?> ...</p>
                                 <p>Du <?= $row['date_arrivee']; ?> au <?= $row['date_depart']; ?></p>
                             </div>
+                            
                             <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
+                                <p class="pull-right">
+                                    <?php
+                                    $totalavis = $pdo -> query("SELECT COUNT(note) AS totalnote FROM avis WHERE id_salle='".$row['id_salle']."'");
+                                    $totalavis->execute();
+                                    $nbavis = $totalavis->fetchAll();                                               
+
+                                    foreach ($nbavis as $rowa) {
+                                        if($rowa['totalnote']==0){
+
+                                        }else{
+                                            echo $rowa['totalnote'].' avis';
+                                        }
+                                    }
+                                    ?>
+                                </p>
                                 <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
+                                    <?php
+                                    $resultatavis = $pdo -> query("SELECT AVG(note) AS moyenne FROM avis WHERE id_salle='".$row['id_salle']."'");
+                                    $resultatavis->execute();
+                                    $topavis = $resultatavis->fetchAll();                                               
+
+                                    foreach ($topavis as $rowb) {
+
+                                        if(round($rowb['moyenne'])== 0) {
+                                            echo 'Pas de note pour la salle';
+                                        }elseif (round($rowb['moyenne']) == 1) {
+                                            echo '<i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
+                                        }elseif (round($rowb['moyenne']) == 2) {
+                                            echo '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"> </i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
+                                        }elseif (round($rowb['moyenne']) == 3) {
+                                            echo '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
+                                        }elseif (round($rowb['moyenne']) == 4) {
+                                            echo '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i>';
+                                        }else{
+                                            echo '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>';
+                                        }
+                                    }
+                                    ?>
                                 </p>
                             </div>
                         </div>

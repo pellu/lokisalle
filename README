@@ -1,22 +1,17 @@
 Ce qui reste à faire :
 
 Front :
-- Affichage des produits page d'accueil / nombre de résultat (modifier en fonction du ) / voir plus
-- Gestion des colonnes de filtrage page d'accueil (avis)
+- Accueil voir plus 
 
 - Affichage d'un produit (note)
 - Ajout commentaire/note (seulement si connecté, sinon modal connexion, fiche d'un produit) / Calcul de la note moyenne
 
-- Réduire le texte affichée dans la boucle page d'accueil / pareil dans admin
-- Lien vers le produit dans la boucle sur la photo
-- Debug connexion/reserver sur page produit
+- Debug page profil bouton menu
 
 - Envoi du formulaire de contact par mail
-- Design Contact
+- Design Contact / profil
 - Remplissage bdd
 - Remplissage qui sommes nous ?
-
-- Bonux : Afficher limite capacité et prix en fonction du maximum affiché
 
 Pour la présentation :
 - Validation W3C
@@ -35,4 +30,4 @@ Fonctionnalités backoffice :
 OK -  Le clic sur une photo doit entrainer une ouverture en lightbox.
 OK -  Le tri sur une colonne doit être proposé
 OK -  La pagination doit être proposée s’il y a un nombre de résultats conséquent.
-PAS OK -  Si elle est trop longue, la description doit être coupée (lors de l’affichage des salles).
+OK -  Si elle est trop longue, la description doit être coupée (lors de l’affichage des salles).

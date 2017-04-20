@@ -152,17 +152,17 @@ include('menu.php');
                           $image_sans_extension = substr($image, 0, $position);
                           echo $valeur2.' - '.$rowsalle['titre'];
                           ?>
-                    <a type="button" class="btn" data-toggle="modal" data-target="#modal<?= $image_sans_extension ?>"><img src="<?= $racine.'images/'.$rowsalle['photo'] ?>" height="80"></a>
-                    <div id="modal<?= $image_sans_extension ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel<?= $image_sans_extension ?>" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-body">
-                            <img src="<?= $racine.'images/'.$rowsalle['photo'] ?>" class="img-responsive">
+                          <a type="button" class="btn" data-toggle="modal" data-target="#modal<?= $image_sans_extension ?>"><img src="<?= $racine.'images/'.$rowsalle['photo'] ?>" height="80"></a>
+                          <div id="modal<?= $image_sans_extension ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel<?= $image_sans_extension ?>" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-body">
+                                  <img src="<?= $racine.'images/'.$rowsalle['photo'] ?>" class="img-responsive">
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                    <?php
+                          <?php
                         } ?>
                       </td>
                     <?php elseif($indice2 == 'prix') : ?>
@@ -186,7 +186,7 @@ include('menu.php');
                             <form method="POST" action="<?= $racinea ?>produits_modifier.php?id=<?= $valeur['id_produit'] ?>" data-toggle="validator" novalidate="true" enctype="multipart/form-data">
                               <div class="col-lg-12 col-md-12 col-ls-12">
                                 <div class="form-group">
-                                  <label>Choix de la salle</label>
+                                  <label>Choix de la salle</label><br>
                                   <select name="id_salle" id="id_salle" class="form-control">
                                     <?php
                                     $query = $pdo->prepare('SELECT * FROM salle');
@@ -198,34 +198,34 @@ include('menu.php');
                                     </select>
                                   </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-ls-6">
+                                <div class="col-lg-6 col-md-6 col-ls-6" style="margin-top: 20px;">
                                   <div class="form-group">
                                     <label>Date d'arrivée</label>
                                     <input type="text" class="form-control" name="date_arrivee" placeholder="Date d'arrivée" id="date_arrivee" value="<?= $valeur['date_arrivee'] ?>" required data-error="Vous devez choisir une date d'arrivée">
                                   </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-ls-6">
+                                <div class="col-lg-6 col-md-6 col-ls-6" style="margin-top: 20px;">
                                   <div class="form-group">
                                     <label>Date de départ</label>
                                     <input type="text" class="form-control" name="date_depart" placeholder="Date de départ" id="date_depart" value="<?= $valeur['date_depart'] ?>" required data-error="Vous devez choisir une date de départ">
                                   </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-ls-6">
+                                <div class="col-lg-6 col-md-6 col-ls-6" style="margin-top: 20px;">
                                   <div class="form-group">
-                                    <label>Prix</label>
+                                    <label>Prix</label><br>
                                     <input type="text" class="form-control" name="prix" placeholder="Prix" id="prix" value="<?= $valeur['prix'] ?>" required data-error="Vous devez choisir un prix">
                                   </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-ls-6">
+                                <div class="col-lg-6 col-md-6 col-ls-6" style="margin-top: 20px;">
                                   <div class="form-group">
-                                    <label>Etat</label>
+                                    <label>Etat</label><br>
                                     <select name="etat" id="etat" class="form-control">
                                       <option <?php if($valeur['etat']=='libre'){echo "selected";} ?> value="libre">Libre</option>
                                       <option <?php if($valeur['etat']=='reserve'){echo "selected";} ?> value="reserve">Réservé</option>
                                     </select>
                                   </div>
                                 </div>
-                                <input type="submit" id="submitsalle" value="Je modifie la salle" class="btn btn-default">
+                                <input type="submit" id="submitsalle" value="Je modifie la salle" class="btn btn-default"  style="margin-top: 20px;">
                               </form>
                             </div>
                           </div>
@@ -259,7 +259,7 @@ include('menu.php');
     $('.table').DataTable({
       //disable sorting on last column
       "columnDefs": [
-        { "orderable": false, "targets": 6 }
+      { "orderable": false, "targets": 6 }
       ],
       language: {
         'paginate': {
