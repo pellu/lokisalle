@@ -11,6 +11,7 @@
         <?= 'Lokisalle | ' . $pagename ?>
     </title>
     <link href="<?= $racines; ?>css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= $racinea; ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?= $racines; ?>css/style.css" rel="stylesheet">
     <link href="<?= $racines; ?>css/profil.css" rel="stylesheet">
     <link href="<?= $racinea; ?>css/jquery-ui.css" rel="stylesheet">

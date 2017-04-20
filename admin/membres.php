@@ -84,7 +84,7 @@ include('menu.php');
                                     <div class="form-group has-feedback">
                                       <label>Nom d'utilisateur</label>
                                       <input type="text" class="form-control" name="pseudo" placeholder="Nom d'utilisateur" id="pseudo" value="<?= $valeur['pseudo'] ?>" required data-error="Vous devez choisir un pseudo">
-                                      <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                      <span class="glyphicon form-control-feedback" aria-hidden="true" style="top:25px;left: 195px;"></span>
                                       <div class="help-block with-errors"></div>
                                     </div>
                                   </div>
@@ -92,7 +92,7 @@ include('menu.php');
                                     <div class="form-group has-feedback">
                                       <label>Prénom</label>
                                       <input type="text" class="form-control" value="<?= $valeur['prenom'] ?>" placeholder="Prénom" id="prenom" name="prenom" required data-error="Vous devez écrire un Prénom">
-                                      <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                      <span class="glyphicon form-control-feedback" aria-hidden="true" style="top:25px;left: 195px;"></span>
                                       <div class="help-block with-errors"></div>
                                     </div>
                                   </div>
@@ -100,7 +100,7 @@ include('menu.php');
                                     <div class="form-group has-feedback">
                                       <label>Nom</label>
                                       <input type="text" class="form-control" value="<?= $valeur['nom'] ?>" placeholder="Nom" id="nom" name="nom" required data-error="Vous devez écrire un Nom">
-                                      <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                      <span class="glyphicon form-control-feedback" aria-hidden="true" style="top:25px;left: 195px;"></span>
                                       <div class="help-block with-errors"></div>
                                     </div>
                                   </div>
@@ -108,7 +108,7 @@ include('menu.php');
                                     <div class="form-group has-feedback">
                                       <label>Email</label>
                                       <input type="email" class="form-control" value="<?= $valeur['email'] ?>" id="email" placeholder="Email" name="email"  required data-error="Vous avez oublié d'indiquer votre mail">
-                                      <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                      <span class="glyphicon form-control-feedback" aria-hidden="true" style="top:25px;left: 195px;"></span>
                                       <div class="help-block with-errors"></div>
                                     </div>
                                   </div>
@@ -119,9 +119,9 @@ include('menu.php');
                                       <input type="password" class="form-control" id="password" value="" placeholder="Mot de passe" name="password">
                                     </div>
                                   </div>
-                                  <div class="col-lg-6 col-md-6 col-ls-6">
+                                  <div class="col-lg-3 col-md-3 col-ls-3">
                                     <div class="form-group">
-                                      <label for="civilite">Sexe</label>
+                                      <label for="civilite">Sexe</label><br>
                                       <select name="civilite" id="civilite" class="form-control">
                                         <option <?php if($valeur['civilite']=='h'){echo "selected";} ?> value="h">Homme</option>
                                         <option <?php if($valeur['civilite']=='f'){echo "selected";} ?> value="f">Femme</option>
@@ -129,15 +129,17 @@ include('menu.php');
                                       </select>
                                     </div>
                                   </div>
+                                  <div class="col-lg-3 col-md-3 col-ls-3">
                                   <div class="form-group">
-                                    <label>Statut</label>
+                                    <label>Statut</label><br>
                                     <select name="statut" id="statut" class="form-control">
                                       <option <?php if($valeur['statut']==0){echo "selected";} ?> value="0">Utilisateur</option>
                                       <option <?php if($valeur['statut']==1){echo "selected";} ?> value="1">Admin</option>
                                       <option <?php if($valeur['statut']==2){echo "selected";} ?> value="2">Désactivé</option>
                                     </select>
                                   </div>
-                                  <input type="submit" id="submitmembres" value="Je modifie le membre" class="btn btn-default">
+                                  </div>
+                                  <input type="submit" id="submitmembres" value="Je modifie le membre" class="btn btn-default" style="margin-top: 20px;">
                                 </form>
                               </div>
                             </div>

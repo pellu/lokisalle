@@ -34,14 +34,14 @@ include('menu.php');
                 <tr>
                   <?php foreach ($valeur as $indice2 => $valeur2) : ?>
                     <?php if($indice2 == 'id_membre') : ?>
-                        <?php
+                      <?php
                         //Affiche le pseudo de l'utilisateur en plus de son id
-                        $query = $pdo->prepare('SELECT * FROM membre WHERE id_membre='.$valeur2.'');
-                        $query->execute();
-                        $list = $query->fetchAll();
-                        foreach ($list as $row) {
+                      $query = $pdo->prepare('SELECT * FROM membre WHERE id_membre='.$valeur2.'');
+                      $query->execute();
+                      $list = $query->fetchAll();
+                      foreach ($list as $row) {
                         echo "<td>".$valeur2.' - '.$row['pseudo']."</td>"; }
-                          ?>
+                        ?>
                         
                       <?php elseif($indice2 == 'id_salle') : ?>
                         <td>
@@ -53,6 +53,10 @@ include('menu.php');
                           foreach ($listsalle as $rowsalle) {
                             echo $valeur2.' - '.$rowsalle['titre']; }
                             ?>
+                          </td>
+                        <?php elseif($indice2 == 'commentaire') : ?>
+                          <td>
+                            <?= substr($valeur2, 0, 60); ?> ...
                           </td>
                         <?php elseif($indice2 == 'note') : ?>
                           <td><?php
@@ -93,10 +97,10 @@ include('menu.php');
                               </div>
                               <div class="modal-body">
                                 <form method="POST" action="<?= $racinea ?>avis_modifier.php?id=<?= $valeur['id_avis'] ?>" data-toggle="validator" novalidate="true" enctype="multipart/form-data">
-                                 <div class="form-group has-feedback">
-                                   <label>Description</label>
-                                   <textarea class="form-control" id="commentaire" name="commentaire" required data-error="Vous devez ajouter un commentaire"><?= $valeur['commentaire'] ?></textarea>
-                                   <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                 <div class="form-group has-feedback" style="display: inline;">
+                                   <label>Description</label><br>
+                                   <textarea class="form-control" id="commentaire" name="commentaire" required data-error="Vous devez ajouter un commentaire" style="width: 100%;"><?= $valeur['commentaire'] ?></textarea>
+                                   <span class="glyphicon form-control-feedback" aria-hidden="true" style="top:25px;"></span>
                                    <div class="help-block with-errors"></div>
                                  </div>
                                  <input type="submit" id="submitavis" value="Je modifie l'avis" class="btn btn-default">
@@ -105,8 +109,8 @@ include('menu.php');
                            </div>
                          </div>
                        </div>
-                      <a href="#" data-toggle="modal" data-target="#modalSupprimer<?= $valeur['id_avis'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                      <div class="modal fade" id="modalSupprimer<?= $valeur['id_avis'] ?>" tabindex="-1" role="dialog">
+                       <a href="#" data-toggle="modal" data-target="#modalSupprimer<?= $valeur['id_avis'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                       <div class="modal fade" id="modalSupprimer<?= $valeur['id_avis'] ?>" tabindex="-1" role="dialog">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -129,8 +133,8 @@ include('menu.php');
       </div>
     </div>
   </div>
-<script>$(document).ready(function() {
-  $('.table').DataTable({
+  <script>$(document).ready(function() {
+    $('.table').DataTable({
       //disable sorting on last column
       "columnDefs": [
       { "orderable": false, "targets": 6 }
@@ -151,7 +155,7 @@ include('menu.php');
         '</select> résultats'
       }
     })  
-} );
+  } );
 </script>
 
 <?php include('footer.php'); ?>
