@@ -228,6 +228,10 @@ include('menu.php');
                       </div>
                     </div>
                   </td>
+                <?php elseif($indice2 == 'description') : ?>
+                  <td>
+                    <?= substr($valeur2, 0, 150); ?> ...
+                  </td>
                 <?php elseif($indice2 == 'categorie') : ?>
                   <?php
                   if($valeur2=='1'){
@@ -251,22 +255,24 @@ include('menu.php');
                       </div>
                       <div class="modal-body">
                         <form method="POST" action="<?= $racinea ?>salles_modifier.php?id=<?= $valeur['id_salle'] ?>" data-toggle="validator" novalidate="true" enctype="multipart/form-data">
-                          <div class="col-lg-12 col-md-12 col-ls-12 col-xs-12">
-                            <div class="form-group has-feedback">
-                              <label>Titre</label>
-                              <input type="text" class="form-control" name="titre" placeholder="Titre" id="titre" value="<?= $valeur['titre'] ?>" required data-error="Vous devez ajouter un titre">
-                              <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                          <div class="col-lg-12 col-md-12 col-ls-12">
+                            <div class="form-group has-feedback" style="display: inline;">
+                              <label>Titre</label><br>
+                              <input type="text" class="form-control" name="titre" placeholder="Titre" id="titre" value="<?= $valeur['titre'] ?>" required data-error="Vous devez ajouter un titre" style="width: 100%;">
+                              <span class="glyphicon form-control-feedback" aria-hidden="true" style="top:25px;"></span>
                               <div class="help-block with-errors"></div>
                             </div>
-                            <div class="form-group has-feedback">
-                              <label>Description</label>
-                              <textarea class="form-control" id="description" name="description" required data-error="Vous devez ajouter une description"><?= $valeur['description'] ?></textarea>
-                              <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                          </div>
+                          <div class="col-lg-12 col-md-12 col-ls-12">
+                            <div class="form-group has-feedback" style="display: inline;">
+                              <label>Description</label><br>
+                              <textarea class="form-control" id="description" name="description" required data-error="Vous devez ajouter une description" style="width: 100%;"><?= $valeur['description'] ?></textarea>
+                              <span class="glyphicon form-control-feedback" aria-hidden="true" style="top:25px;"></span>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
                           <div class="col-lg-6 col-md-6 col-ls-6">
-                            <label>Ville</label>
+                            <label>Ville</label><br>
                             <select name="ville" id="ville" class="form-control" onchange="changeSelect(this);">
                               <option <?php if($valeur['categorie']=='1'){echo "selected";} ?> value="paris">Paris</option>
                               <option <?php if($valeur['categorie']=='3'){echo "selected";} ?> value="lyon">Lyon</option>
@@ -277,7 +283,7 @@ include('menu.php');
                             <div class="form-group has-feedback">
                               <label>Code postal</label>
                               <input type="text" class="form-control" name="codepostal" placeholder="Code postal" id="codepostal" value="<?= $valeur['cp'] ?>" required data-error="Vous devez ajouter une Code postal">
-                              <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                              <span class="glyphicon form-control-feedback" aria-hidden="true" style="top:25px;left: 195px;"></span>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -285,7 +291,7 @@ include('menu.php');
                             <div class="form-group has-feedback">
                               <label>Adresse</label>
                               <input type="text" class="form-control" name="adresse" placeholder="Adresse" id="adresse" value="<?= $valeur['adresse'] ?>" required data-error="Vous devez ajouter une adresse">
-                              <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                              <span class="glyphicon form-control-feedback" aria-hidden="true" style="top:25px;left: 195px;"></span>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -293,12 +299,12 @@ include('menu.php');
                             <div class="form-group has-feedback">
                               <label>Capacité</label>
                               <input type="text" class="form-control" name="capacite" placeholder="Capacité" id="capacite" value="<?= $valeur['capacite'] ?>" required data-error="Vous devez ajouter une Capacité">
-                              <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                              <span class="glyphicon form-control-feedback" aria-hidden="true" style="top:25px;left: 195px;"></span>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
                           <div class="col-lg-6 col-md-6 col-ls-6">
-                            <label>Catégorie</label>
+                            <label>Catégorie</label><br>
                             <select name="categorie" id="categorie" class="form-control">
                               <option <?php if($valeur['categorie']==1){echo "selected";} ?> value="1">Réunion</option>
                               <option <?php if($valeur['categorie']==2){echo "selected";} ?> value="2">Bureau</option>
@@ -312,8 +318,8 @@ include('menu.php');
                               <input name="photo" class="uploads" id="photo" type="file" id="photo" accept="image/*" class="uploads"/>
                             </div>
                           </div>
-                          <input type="submit" id="submitsalle" value="Je modifie la salle" class="btn btn-default">
-                          </form>
+                          <input type="submit" id="submitsalle" value="Je modifie la salle" class="btn btn-default" style="margin-top: 20px;">
+                        </form>
                       </div>
                     </div>
                   </div>
