@@ -31,7 +31,7 @@ if($der_cmd->rowCount()==0){
                               $topavis = $resultatavis->fetchAll();                                               
 
                               foreach ($topavis as $rowb) {
-
+                                echo '<span style="font-size:18px;">';
                                 if(round($rowb['moyenne'])== 0) {
                                     echo 'Pas de note pour la salle';
                                 }elseif (round($rowb['moyenne']) == 1) {
@@ -45,6 +45,7 @@ if($der_cmd->rowCount()==0){
                                 }else{
                                     echo '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>';
                                 }
+                                echo "</span>";
                             }
                             ?>
                         </h1>
@@ -85,10 +86,10 @@ if($der_cmd->rowCount()==0){
                     </div>
 
                     <div class="col-md-8">
-                     <img class="img-responsive" src="<?php echo $racines."images/".$row['photo']?>" alt="<?= $row['titre']; ?>">
-                 </div>
+                       <img class="img-responsive" src="<?php echo $racines."images/".$row['photo']?>" alt="<?= $row['titre']; ?>">
+                   </div>
 
-                 <div class="col-md-4">
+                   <div class="col-md-4">
                     <h3>Description</h3>				
                     <?=$row['description'];?>
 
@@ -135,56 +136,55 @@ if($der_cmd->rowCount()==0){
         </div>
         <div class="row">
 
-         <div class="col-lg-12"><br>
-          <h3 class="page-header">Informations complémentaires</h3>
-      </div>
+           <div class="col-lg-12"><br>
+              <h3 class="page-header">Informations complémentaires</h3>
+          </div>
 
-      <div class="col-sm-4 col-xs-4">
+          <div class="col-sm-4 col-xs-4">
 
-        <p><span class="glyphicon glyphicon-calendar"></span> Arrivée : <?=$row['date_arrivee'];?></p>
-        <p><span class="glyphicon glyphicon-calendar"></span> Départ : <?=$row['date_depart'];?></p>
+            <p><span class="glyphicon glyphicon-calendar"></span> Arrivée : <?=$row['date_arrivee'];?></p>
+            <p><span class="glyphicon glyphicon-calendar"></span> Départ : <?=$row['date_depart'];?></p>
 
+        </div>
+
+        <div class="col-sm-4 col-xs-4">
+          <p><span class="glyphicon glyphicon-user"></span> Capacité : <?=$row['capacite'];?></p>
+          <p><span class="glyphicon glyphicon-inbox"></span> Catégorie : 
+
+            <?php if($row['categorie']=='1'){
+                echo "Réunion";
+            }elseif($row['categorie']=='2'){
+                echo "Bureau";
+            }else{
+                echo "Formation";
+            }
+            ?>
+        </p>
     </div>
 
     <div class="col-sm-4 col-xs-4">
-      <p><span class="glyphicon glyphicon-user"></span> Capacité : <?=$row['capacite'];?></p>
-      <p><span class="glyphicon glyphicon-inbox"></span> Catégorie : 
-
-        <?php if($row['categorie']=='1'){
-            echo "Réunion";
-        }elseif($row['categorie']=='2'){
-            echo "Bureau";
-        }else{
-            echo "Formation";
-        }
-        ?>
-    </p>
-</div>
-
-<div class="col-sm-4 col-xs-4">
-  <p><span class="glyphicon glyphicon-map-marker"></span> Adresse : <?=$row['adresse'];?>, <?=$row['cp'];?>, <?=$row['ville'];?></p>
-  <p><span class="glyphicon glyphicon-euro"></span> Tarif : <?=$row['prix'];?> €</p>
-</div>
-
+        <p><span class="glyphicon glyphicon-map-marker"></span> Adresse : <?=$row['adresse'];?>, <?=$row['cp'];?>, <?=$row['ville'];?></p>
+        <p><span class="glyphicon glyphicon-euro"></span> Tarif : <?=$row['prix'];?> €</p>
+    </div>
 </div>
 
 <div class="row">
-
     <div class="col-lg-12">
         <h3 class="page-header">Autres produits</h3>
     </div>
-
 
     <?php 
     $prod_rel = $pdo->prepare('
         SELECT * FROM commande
         LEFT JOIN produit ON produit.id_produit=commande.id_produit
-        LEFT JOIN salle ON salle.id_salle=produit.id_salle                           
+        LEFT JOIN salle ON salle.id_salle=produit.id_salle
         WHERE salle.categorie=:categorie
-        AND WHERE produit.id_produit!=:idproduit
-        ORDER BY commande.date_enregistrement DESC');
+        AND produit.id_produit!=:idproduit
+        AND produit.date_arrivee>=:datedujour
+        ORDER BY commande.date_enregistrement DESC LIMIT 0,4');
 
-    $prod_rel->bindParam(':categorie', $row['categorie'], PDO::PARAM_INT);
+    $prod_rel->bindValue(':datedujour', date('d-m-Y'), PDO::PARAM_STR);
+    $prod_rel->bindParam(':categorie', $row['categorie'], PDO::PARAM_STR);
     $prod_rel->bindParam(':idproduit', $row['id_produit'], PDO::PARAM_INT);
     $prod_rel -> execute(); 
     $prod_list = $prod_rel->fetchAll(PDO::FETCH_ASSOC);
@@ -226,60 +226,99 @@ if($der_cmd->rowCount()==0){
             </span>
         </h3>
     </div>
-    <div class="col-lg-12">        
-
+    <div class="col-lg-12">
+        <?php if(isset($_SESSION['user'])){ ?>
         <form role="form">
             <div class="form-group">
                 <textarea class="form-control" rows="3"></textarea>
             </div>
             <style type="text/css">
-                .btn-warning,.btn-warning:hover,.btn-warning:active:hover{
-                    color: #fff;
-                    background-color: #C1272D;
-                    border-color: #C1272D;
+                .select-rating-stars, .select-rating-stars label::before{
+                    display: inline-block;
+                }
+
+                .select-rating-stars label:hover, .select-rating-stars label:hover ~ label{
+                    color: red;
+                }
+
+                .select-rating-stars *{
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .select-rating-stars input{
+                    display: none;
+                }
+
+                .select-rating-stars{
+                    unicode-bidi: bidi-override;
+                    direction: rtl;
+                }
+
+                .select-rating-stars label{
+                    color: #ccc;
+                }
+
+                .select-rating-stars label::before{
+                    content: "\2605";
+                    width: 18px;
+                    line-height: 18px;
+                    text-align: center;
+                    font-size: 18px;
+                    cursor: pointer;
+                }
+
+                .select-rating-stars input:checked ~ label{
+                    color: #C1272D;
+                }
+
+                .select-rating-disabled{
+                    opacity: .50;
+                    -webkit-pointer-events: none;
+                    -moz-pointer-events: none;
+                    pointer-events: none;
                 }
             </style>
-            <script type="text/javascript">
-                $(function(){
-                    $('.rating-select .btn').on('mouseover', function(){
-                        $(this).removeClass('btn-default').addClass('btn-warning');
-                        $(this).prevAll().removeClass('btn-default').addClass('btn-warning');
-                        $(this).nextAll().removeClass('btn-warning').addClass('btn-default');
-                    });
 
-                    $('.rating-select').on('mouseleave', function(){
-                        active = $(this).parent().find('.selected');
-                        if(active.length) {
-                            active.removeClass('btn-default').addClass('btn-warning');
-                            active.prevAll().removeClass('btn-default').addClass('btn-warning');
-                            active.nextAll().removeClass('btn-warning').addClass('btn-default');
-                        } else {
-                            $(this).find('.btn').removeClass('btn-warning').addClass('btn-default');
-                        }
-                    });
-
-                    $('.rating-select .btn').click(function(){
-                        if($(this).hasClass('selected')) {
-                            $('.rating-select .selected').removeClass('selected');
-                        } else {
-                            $('.rating-select .selected').removeClass('selected');
-                            $(this).addClass('selected');
-                        }
-                    });
-                });
-            </script>
-
-            <div class="rating-select">
-                <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
-                <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
-                <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
-                <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
-                <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
+            <div class="select-rating-stars">
+                <form>
+                    <input type="radio" name="group-1" id="group-1-0" value="5" /><label for="group-1-0"></label>
+                    <input type="radio" name="group-1" id="group-1-1" value="4" /><label for="group-1-1"></label>
+                    <input type="radio" name="group-1" id="group-1-2" value="3" /><label for="group-1-2"></label>
+                    <input type="radio" name="group-1" id="group-1-3" value="2" /><label for="group-1-3"></label>
+                    <input type="radio" name="group-1" id="group-1-4"  value="1" /><label for="group-1-4"></label>
+                </form>
             </div>
-
-            <button type="submit" class="btn btn-warning" style="margin-top: 15px;">J'envoi mon avis</button>
+            <button type="submit" class="btn btn-default" style="margin-top: 15px;">J'envoi mon avis</button>
         </form>
-    </div>      
+    </div>
+    <div class="col-lg-12">
+        <h3 class="page-header">Avis déposés</h3>
+        <?php
+        $requeteavis = $pdo -> query("SELECT * FROM avis INNER JOIN membre ON membre.id_membre=avis.id_membre WHERE id_salle='".$row['id_salle']."'");
+        $requeteavis->execute();
+        $affichageavis = $requeteavis->fetchAll();
+        if($rowa['totalnote']==0){
+            echo "<p>Il n'y a pas encore d'avis pour la salle</p>";
+        }
+        ?>
+
+        <?php }else{echo '<a href=""  data-toggle="modal" data-target="#insciptionConnexion" class="btn btn-success">Veuillez vous connecter pour donner votre avis</a>';} ?><br>
+        <?php
+
+        foreach ($affichageavis as $rowavis) {
+            ?>
+            <div style="margin-top: 5px;">
+                Le membre <b><?= $rowavis['pseudo']; ?></b> donne une note de <b><?= $rowavis['note']; ?>/5</b> avec comme commentaire : <?= $rowavis['commentaire']; ?>
+            </div>
+            <?php
+        }
+        ?>
+    </div>
+
+
+
+
 </div>
 </div>
 </div>

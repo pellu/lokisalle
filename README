@@ -1,13 +1,19 @@
 Ce qui reste à faire :
 
 Front :
-- Accueil voir plus
-- Bloquer l'affichage d'une salle si la date est dépassée (accueil)
+- Message page 404
+- Voir plus (Accueil)
+- Voir plus filtrage (Accueil)
 
-- Ajout avis (seulement si connecté, sinon modal connexion, fiche d'un produit)
+- Ajout d'avis avec sélection étoiles (fiche produit)
 - Remplissage bdd (multiple utilisateurs, multiple salles, multiple produits, multiple commandes, multiple avis)
 - Remplissage qui sommes nous ?
 - Mettre le site sur un serveur de prod
+
+OK - Bloquer l'affichage de produits en relation si la date est dépassée (fiche produit)
+OK - Affichage des avis (fiche produit)
+OK - Bloquer l'ajout d'avis si pas connecté (fiche produit)
+OK - Bloquer l'affichage d'une salle si la date est dépassée (accueil/ajax accueil)
 
 OK - Affichage note page produit
 OK - Debug page profil bouton menu

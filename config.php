@@ -6,7 +6,6 @@ $racine='/lokisalle/'; // Prod / - pas prod /lokisalle/
 $racinea='http://'.$_SERVER["HTTP_HOST"].'';
 $racines='http://'.$_SERVER["HTTP_HOST"].$racine.'';
 $racinea='http://'.$_SERVER["HTTP_HOST"].$racine.'admin/';
-$racinep='http://'.$_SERVER["HTTP_HOST"].$racine.'admin/';
 $actuel= "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 define('RACINE_SERVEUR', $_SERVER["DOCUMENT_ROOT"]);
 

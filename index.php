@@ -3,12 +3,13 @@ session_start();
 $pagename="Lokisalle";
 include('menu.php');
 
-$query = $pdo->prepare('SELECT * FROM produit INNER JOIN salle ON salle.id_salle=produit.id_salle WHERE produit.etat="libre" ORDER BY produit.date_arrivee LIMIT 0, 10');
+$query = $pdo->prepare('SELECT * FROM produit INNER JOIN salle ON salle.id_salle=produit.id_salle WHERE produit.etat="libre" AND produit.date_arrivee>=:datedujour ORDER BY produit.date_arrivee LIMIT 0, 10');
+$query->bindValue(':datedujour', date('d-m-Y'), PDO::PARAM_STR);
 $query->execute();
 $list = $query->fetchAll();
 
 //Compter nombre de résultat
-$nRows = $pdo->query('SELECT count(*) FROM produit WHERE produit.etat="libre"')->fetchColumn();
+$nRows = $pdo->query('SELECT count(*) FROM produit WHERE produit.etat="libre" AND produit.date_arrivee>="'.date('d-m-Y').'"')->fetchColumn();
 ?>
 <div class="container">
     <div class="row">
