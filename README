@@ -1,27 +1,27 @@
 Ce qui reste à faire :
 
 Front :
-- Accueil voir plus 
+- Accueil voir plus
+- Bloquer l'affichage d'une salle si la date est dépassée (accueil)
 
-- Affichage d'un produit (note)
-- Ajout commentaire/note (seulement si connecté, sinon modal connexion, fiche d'un produit) / Calcul de la note moyenne
-
-- Debug page profil bouton menu
-
-- Envoi du formulaire de contact par mail
-- Design Contact / profil
-- Remplissage bdd
+- Ajout avis (seulement si connecté, sinon modal connexion, fiche d'un produit)
+- Remplissage bdd (multiple utilisateurs, multiple salles, multiple produits, multiple commandes, multiple avis)
 - Remplissage qui sommes nous ?
+- Mettre le site sur un serveur de prod
 
-Pour la présentation :
-- Validation W3C
-- Remplissage du site multiple utilisateurs, multiple salles, multiple produits, multiple commandes, multiple avis (samedi/dimanche)
-- Mettre le site sur un serveur de prod (mise en ligne vendredi)
+OK - Affichage note page produit
+OK - Debug page profil bouton menu
+OK - Modif CGV/mentions légales
+OK - Affichage d'un produit (note)
+OK - Design page contact/Envoi formulaire par mail
+OK - Design profil
+OK - Fiche produit : Si date d'arrivée dépassée, texte l'indiquant, si la salle est libre user pas connecté modal connexion, si libre user co bouton réserver, si deja reserve sur son propre produit indiqué qu'on a réservé ce produit, si deja reserve mais pas son produit marqué juste déjà réservé
 
 Contrôles demandés :
 OK -  Que se passe t-il si un membre tente de s’inscrire avec un pseudo d’une lettre ? avec un pseudo de 100 lettres ? avec un pseudo « !£%£ ̈ » ?
-PAS OK -  Peut-on créer ou réserver un produit sur des dates antérieures dans le temps ? Est-il possible de créer 2 produits sur la même salle et sur des dates qui se
-chevauchent ?
+OK -  Réserver un produit sur des dates antérieures dans le temps ?
+PAS OK - Créer un produit sur des dates antérieures dans le temps ?
+PAS OK - Est-il possible de créer 2 produits sur la même salle et sur des dates qui se chevauchent ?
 OK -  Y’a-t-il des moyens d’altérer le comportement initialement prévu du site via l’url ou d’autres points d’entrée (sécurité injection sql, lfi, xss, etc.) ?
 OK le membre n'es pas supprimé, juste désactivé -  Que se passe t’il lorsqu’un membre est supprimé (commandes, avis, etc) ? Que se passe t’il lorsqu’une salle est supprimée (produits, avis, commandes, etc.) ?
 OK -  Que ce passe t’il si un internaute tente de se rendre sur une fiche produit sans id ? ou avec un mauvais id ?

@@ -18,7 +18,6 @@ if($der_cmd->rowCount()==0){
 }else{ 
     foreach($cmd_list as $row){
         ?>
-
         <div class="container">
             <div class="row">
                 <div class="container">
@@ -52,16 +51,34 @@ if($der_cmd->rowCount()==0){
                         <div class="col-lg-4">
                             <?php 
                             if($row['etat']=='libre'){
-                                if(isset($_SESSION['user'])){?>
-                                <form method="POST" action="<?=$racines?>reserver_produit.php">
-                                    <input type="hidden" value="<?= $row['id_produit'] ?>" name="id_produit">
-                                    <input type="submit" class="btn btn-success" value="Réserver">
-                                </form>
-                                <?php }else{
-                                    echo '<a href=""  data-toggle="modal" data-target="#insciptionConnexion" class="btn btn-success">Réserver</a>'; 
+                                if($row['date_arrivee'] <= date('d-m-Y')){
+                                    echo "<p>La date de location est dépassée</p>";
+                                }else{
+                                    if(isset($_SESSION['user'])){?>
+                                    <form method="POST" action="<?=$racines?>reserver_produit.php">
+                                        <input type="hidden" value="<?= $row['id_produit'] ?>" name="id_produit">
+                                        <input type="submit" class="btn btn-success" value="Réserver">
+                                    </form>
+                                    <?php }else{
+                                        echo '<a href=""  data-toggle="modal" data-target="#insciptionConnexion" class="btn btn-success">Réserver</a>'; 
+                                    }
                                 }
                             }else{
-                                echo '<p>Salle non disponible</p>';
+                                $test = $pdo -> query("SELECT * FROM commande WHERE id_produit='".$row['id_produit']."'");
+                                $test->execute();
+                                $nbavis = $test->fetchAll();
+
+                                foreach($nbavis as $rowb){
+                                    if(isset($_SESSION['user'])){
+                                        if($_SESSION['userid']==$rowb['id_membre']){
+                                            echo "<p>Vous avez déjà réservé ce produit</p>";
+                                        }else{
+                                            echo '<p>Produit déjà réservé</p>';
+                                        }
+                                    }else{
+                                        echo '<p>Produit déjà réservé</p>';
+                                    }
+                                }
                             }
                             ?>
                         </div>
@@ -118,7 +135,7 @@ if($der_cmd->rowCount()==0){
         </div>
         <div class="row">
 
-         <div class="col-lg-12">
+         <div class="col-lg-12"><br>
           <h3 class="page-header">Informations complémentaires</h3>
       </div>
 
@@ -253,11 +270,11 @@ if($der_cmd->rowCount()==0){
             </script>
 
             <div class="rating-select">
-            <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
-            <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
-            <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
-            <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
-            <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
+                <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
+                <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
+                <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
+                <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
+                <div class="btn btn-default btn-sm"><span class="fa fa-star"></span></div>
             </div>
 
             <button type="submit" class="btn btn-warning" style="margin-top: 15px;">J'envoi mon avis</button>

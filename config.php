@@ -27,3 +27,4 @@ $part = explode ("/", $url);
 if(!empty($part[3])){
   $idproduit = $part[3]; //3 in local / 2 in prod  
 }
+$pageprofil=$part[2]; //2 in local / 1 in prod

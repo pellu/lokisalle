@@ -8,7 +8,7 @@ if($_POST){
     if(empty($_POST['nouveaumdp'])){
         $msg .= '<div class="alert alert-danger fade in">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>Attention!</strong> Veuillez renseigner un nouveau mot de passe ! !
+            <strong>Attention!</strong> Veuillez renseigner un nouveau mot de passe !
         </div>';
     }else{
         $nouveaumdp=sha1($_POST['nouveaumdp']);
