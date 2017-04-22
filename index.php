@@ -106,7 +106,7 @@ $nRows = $querycount->rowCount();
                     ?>
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <a href="<?= $racines; ?>fiche_produit/<?= $row['id_produit']; ?>"><img src="<?= $racines; ?>images/<?= $row['photo']; ?>" alt="<?= $row['titre']; ?>"></a>
+                            <a href="<?= $racines; ?>fiche_produit/<?= $row['id_produit']; ?>"><img style="height: 150px;" src="<?= $racines; ?>images/<?= $row['photo']; ?>" alt="<?= $row['titre']; ?>"></a>
                             <div class="caption">
                                 <h4 class="pull-right"><?= $row['prix']; ?> €</h4>
                                 <h4><a href="<?= $racines; ?>fiche_produit/<?= $row['id_produit']; ?>"><?= $row['titre']; ?></a>
