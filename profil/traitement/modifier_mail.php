@@ -42,7 +42,10 @@ if($_POST){
             }
         }
     }else{
-        $msg .="<strong>Attention!</strong> Cet email a un format non adapté.";
+        $msg .='<div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Attention!</strong> Cet email a un format non adapté.
+        </div>';
     }
 }
 echo $msg;

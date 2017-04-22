@@ -1,19 +1,19 @@
     <div class="container">
       <footer>
-          <div class="row">
-              <div class="col-lg-12">
-                  <p>Lokisalle 2017 - <a href="<?= $racines; ?>mentionslegales/">Mentions Légales</a> - <a href="<?= $racines; ?>cgv/">Conditions générales de ventes</a></p>
-              </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <p>Lokisalle 2017 - <a href="<?= $racines; ?>mentionslegales/">Mentions Légales</a> - <a href="<?= $racines; ?>cgv/">Conditions générales de ventes</a></p>
           </div>
+        </div>
       </footer>
     </div>
     <div class="modal fade" id="insciptionConnexion" role="dialog">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <ul id="presentation" class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#connexion" aria-controls="connexion" role="tab" data-toggle="tab">Connexion</a></li>
-                <li role="presentation"><a href="#inscription" aria-controls="inscription" role="tab" data-toggle="tab">Inscription</a></li>
-            </ul>
+          <ul id="presentation" class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#connexion" aria-controls="connexion" role="tab" data-toggle="tab">Connexion</a></li>
+            <li role="presentation"><a href="#inscription" aria-controls="inscription" role="tab" data-toggle="tab">Inscription</a></li>
+          </ul>
           <div class="modal-body">
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="connexion">
@@ -77,7 +77,7 @@
                 <div class="form-group ">
                   <label for="civilite">Sexe</label><br>
                   <label>
-                  <input type="radio" name="civilite" id="civilite2" value="h" checked> Homme
+                    <input type="radio" name="civilite" id="civilite2" value="h" checked> Homme
                   </label>
                   <label>
                     <input type="radio" name="civilite" id="civilite2" value="f"> Femme
@@ -130,8 +130,14 @@
       </div>
     </div>
   </div>
-
-<script src="<?= $racinea; ?>js/bootstrap.min.js"></script>
-<script src="<?= $racines; ?>js/validator.js"></script>
+  <?php if($pageprofil == 'profil'){
+    ?>
+    <script src="<?= $racines; ?>js/jquery.js"></script>
+    <?php
+  }else{
+  }
+  ?>
+  <script src="<?= $racinea; ?>js/bootstrap.min.js"></script>
+  <script src="<?= $racines; ?>js/validator.js"></script>
 </body>
 </html>
