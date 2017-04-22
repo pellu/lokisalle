@@ -8,7 +8,6 @@ $racines='http://'.$_SERVER["HTTP_HOST"].$racine.'';
 $racinea='http://'.$_SERVER["HTTP_HOST"].$racine.'admin/';
 $actuel= "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 define('RACINE_SERVEUR', $_SERVER["DOCUMENT_ROOT"]);
-
 //Verif user existe
 if(isset($_SESSION['user'])){
 	$pseudo=$_SESSION['user'];

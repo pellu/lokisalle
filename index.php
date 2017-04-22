@@ -3,14 +3,34 @@ session_start();
 $pagename="Lokisalle";
 include('menu.php');
 
-$query = $pdo->prepare('SELECT * FROM produit INNER JOIN salle ON salle.id_salle=produit.id_salle WHERE produit.etat="libre" AND produit.date_arrivee>=:datedujour ORDER BY produit.date_arrivee LIMIT 0, 10');
+$nombre_de_msg_par_page=9; 
+
+$reponse=$pdo->query('SELECT COUNT(*) AS contenu FROM produit INNER JOIN salle ON salle.id_salle=produit.id_salle WHERE produit.etat="libre" AND produit.date_arrivee>="'.date('d-m-Y').'" ORDER BY produit.date_arrivee');
+$total_messages = $reponse->fetch();
+$nombre_messages=$total_messages['contenu'];
+
+$nb_pages = ceil($nombre_messages / $nombre_de_msg_par_page);
+
+if (isset($_GET['page'])){
+    $page = $_GET['page'];
+}
+else{
+    $page = 1;
+}
+
+$premierMessageAafficher = ($page - 1) * $nombre_de_msg_par_page;
+
+$query = $pdo->prepare('SELECT * FROM produit INNER JOIN salle ON salle.id_salle=produit.id_salle WHERE produit.etat="libre" AND produit.date_arrivee>=:datedujour ORDER BY produit.date_arrivee LIMIT '. $premierMessageAafficher . ', ' . $nombre_de_msg_par_page);
 $query->bindValue(':datedujour', date('d-m-Y'), PDO::PARAM_STR);
 $query->execute();
 $list = $query->fetchAll();
 
-//Compter nombre de résultat
-$nRows = $pdo->prepare('SELECT count(*) FROM produit WHERE produit.etat="libre" AND produit.date_arrivee>="'.date('d-m-Y').'"')->fetchColumn();
+$querycount = $pdo->prepare('SELECT * FROM produit INNER JOIN salle ON salle.id_salle=produit.id_salle WHERE produit.etat="libre" AND produit.date_arrivee>=:datedujour');
+$querycount->bindValue(':datedujour', date('d-m-Y'), PDO::PARAM_STR);
+$querycount->execute();
+$nRows = $querycount->rowCount();
 ?>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-3 col-lg-3 col-md-3">
@@ -142,6 +162,15 @@ $nRows = $pdo->prepare('SELECT count(*) FROM produit WHERE produit.etat="libre" 
                 }
             }
             ?>
+            <div class="col-sm-12 col-lg-12 col-md-12"><?php
+                echo 'Page : ';
+                for ($i = 1 ; $i <= $nb_pages ; $i++)
+                {
+                    echo '<a href="?page=' . $i . '">' . $i . '</a> ';
+                }
+                ?>
+
+            </div>
         </div>
     </div>
     <script>

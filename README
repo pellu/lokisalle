@@ -1,12 +1,10 @@
 Ce qui reste à faire :
 
-Front :
-- Voir plus (Accueil)
-- Voir plus filtrage (Accueil)
-
 - Remplissage bdd (multiple utilisateurs, multiple salles, multiple produits, multiple commandes, multiple avis)
 - Remplissage qui sommes nous ?
 - Mettre le site sur un serveur de prod
+
+OK - Pagination (accueil)
 
 OK - Message de confirmation d'envoi, vider formuaire (page contact)
 OK - Design page 404
