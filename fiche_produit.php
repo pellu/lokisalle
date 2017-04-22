@@ -86,10 +86,10 @@ if($der_cmd->rowCount()==0){
                     </div>
 
                     <div class="col-md-8">
-                       <img class="img-responsive" src="<?php echo $racines."images/".$row['photo']?>" alt="<?= $row['titre']; ?>">
-                   </div>
+                     <img class="img-responsive" src="<?php echo $racines."images/".$row['photo']?>" alt="<?= $row['titre']; ?>">
+                 </div>
 
-                   <div class="col-md-4">
+                 <div class="col-md-4">
                     <h3>Description</h3>				
                     <?=$row['description'];?>
 
@@ -136,36 +136,36 @@ if($der_cmd->rowCount()==0){
         </div>
         <div class="row">
 
-           <div class="col-lg-12"><br>
-              <h3 class="page-header">Informations complémentaires</h3>
-          </div>
+         <div class="col-lg-12"><br>
+          <h3 class="page-header">Informations complémentaires</h3>
+      </div>
 
-          <div class="col-sm-4 col-xs-4">
+      <div class="col-sm-4 col-xs-4">
 
-            <p><span class="glyphicon glyphicon-calendar"></span> Arrivée : <?=$row['date_arrivee'];?></p>
-            <p><span class="glyphicon glyphicon-calendar"></span> Départ : <?=$row['date_depart'];?></p>
+        <p><span class="glyphicon glyphicon-calendar"></span> Arrivée : <?=$row['date_arrivee'];?></p>
+        <p><span class="glyphicon glyphicon-calendar"></span> Départ : <?=$row['date_depart'];?></p>
 
-        </div>
-
-        <div class="col-sm-4 col-xs-4">
-          <p><span class="glyphicon glyphicon-user"></span> Capacité : <?=$row['capacite'];?></p>
-          <p><span class="glyphicon glyphicon-inbox"></span> Catégorie : 
-
-            <?php if($row['categorie']=='1'){
-                echo "Réunion";
-            }elseif($row['categorie']=='2'){
-                echo "Bureau";
-            }else{
-                echo "Formation";
-            }
-            ?>
-        </p>
     </div>
 
     <div class="col-sm-4 col-xs-4">
-        <p><span class="glyphicon glyphicon-map-marker"></span> Adresse : <?=$row['adresse'];?>, <?=$row['cp'];?>, <?=$row['ville'];?></p>
-        <p><span class="glyphicon glyphicon-euro"></span> Tarif : <?=$row['prix'];?> €</p>
-    </div>
+      <p><span class="glyphicon glyphicon-user"></span> Capacité : <?=$row['capacite'];?></p>
+      <p><span class="glyphicon glyphicon-inbox"></span> Catégorie : 
+
+        <?php if($row['categorie']=='1'){
+            echo "Réunion";
+        }elseif($row['categorie']=='2'){
+            echo "Bureau";
+        }else{
+            echo "Formation";
+        }
+        ?>
+    </p>
+</div>
+
+<div class="col-sm-4 col-xs-4">
+    <p><span class="glyphicon glyphicon-map-marker"></span> Adresse : <?=$row['adresse'];?>, <?=$row['cp'];?>, <?=$row['ville'];?></p>
+    <p><span class="glyphicon glyphicon-euro"></span> Tarif : <?=$row['prix'];?> €</p>
+</div>
 </div>
 
 <div class="row">
@@ -206,6 +206,45 @@ if($der_cmd->rowCount()==0){
 </div>
 
 <?php }} ?>
+
+
+<?php
+$msg="";
+if($_POST){
+    if(empty($_POST['commentaire'])){
+        $msg .= '<div class="alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Attention!</strong> Veuillez ajouter un commentaire.</div>';
+    }
+    if(empty($_POST['note'])){
+        $msg .= '<div class="alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Attention!</strong> Veuillez choisir un nombre d\'étoiles.</div>';
+    }
+
+    if(empty($msg)){
+        $resultat = $pdo -> prepare("INSERT INTO avis (id_membre, id_salle, commentaire, note, date_enregistrement) VALUES (:id_membre, :id_salle, :commentaire, :note, :date_enregistrement)");
+
+        $resultat -> bindValue(':id_membre', $_SESSION['userid'], PDO::PARAM_INT);
+        $resultat -> bindValue(':id_salle', $row['id_salle'], PDO::PARAM_INT);
+        $resultat -> bindValue(':commentaire', $_POST['commentaire'], PDO::PARAM_STR);
+        $resultat -> bindValue(':note', $_POST['note'], PDO::PARAM_INT);
+        $resultat -> bindValue(':date_enregistrement', date('Y-m-d H:i:s'), PDO::PARAM_STR);
+
+        if($resultat -> execute()){
+            ?>
+            <script type="text/javascript">
+                window.location = "<?php echo $_SERVER["HTTP_REFERER"]; ?>";
+            </script>
+            <div class="alert alert-success fade in">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Succès!</strong> L'ajout de votre avis est pris en compte.<a href="<?php echo $_SERVER["HTTP_REFERER"]; ?>">Rafraichir la page</a>
+            </div>
+            <?php
+        }
+    }
+}
+    if(isset($_POST['commentaire'])) { $commentaire = $_POST['commentaire']; }else{ $commentaire = ''; }
+    if(isset($_POST['note'])) { $note = $_POST['note']; }else{ $note = ''; }
+    echo $note;
+?>
+
 <div class="row" style="margin-top: 20px;">
     <div class="col-lg-12">
         <h3 class="page-header">Laisser un avis
@@ -227,10 +266,11 @@ if($der_cmd->rowCount()==0){
         </h3>
     </div>
     <div class="col-lg-12">
+        <?php echo $msg; ?>
         <?php if(isset($_SESSION['user'])){ ?>
-        <form role="form">
+        <form method="POST" id="ajoutavis" action="">
             <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
+                <textarea class="form-control" name="commentaire" rows="3"></textarea>
             </div>
             <style type="text/css">
                 .select-rating-stars, .select-rating-stars label::before{
@@ -281,20 +321,19 @@ if($der_cmd->rowCount()==0){
             </style>
 
             <div class="select-rating-stars">
-                <form>
-                    <input type="radio" name="group-1" id="group-1-0" value="5" /><label for="group-1-0"></label>
-                    <input type="radio" name="group-1" id="group-1-1" value="4" /><label for="group-1-1"></label>
-                    <input type="radio" name="group-1" id="group-1-2" value="3" /><label for="group-1-2"></label>
-                    <input type="radio" name="group-1" id="group-1-3" value="2" /><label for="group-1-3"></label>
-                    <input type="radio" name="group-1" id="group-1-4"  value="1" /><label for="group-1-4"></label>
-                </form>
+                    <input type="radio" name="note" id="group-1-0" value="5" /><label for="group-1-0"></label>
+                    <input type="radio" name="note" id="group-1-1" value="4" /><label for="group-1-1"></label>
+                    <input type="radio" name="note" id="group-1-2" value="3" /><label for="group-1-2"></label>
+                    <input type="radio" name="note" id="group-1-3" value="2" /><label for="group-1-3"></label>
+                    <input type="radio" name="note" id="group-1-4"  value="1" /><label for="group-1-4"></label>
             </div>
-            <button type="submit" class="btn btn-default" style="margin-top: 15px;">J'envoi mon avis</button>
+            <input type="submit" id="ajoutavis" value="J'envoi mon avis" class="btn btn-default">
         </form>
     </div>
     <div class="col-lg-12">
         <h3 class="page-header">Avis déposés</h3>
         <?php
+
         $requeteavis = $pdo -> query("SELECT * FROM avis INNER JOIN membre ON membre.id_membre=avis.id_membre WHERE id_salle='".$row['id_salle']."'");
         $requeteavis->execute();
         $affichageavis = $requeteavis->fetchAll();
@@ -315,10 +354,6 @@ if($der_cmd->rowCount()==0){
         }
         ?>
     </div>
-
-
-
-
 </div>
 </div>
 </div>

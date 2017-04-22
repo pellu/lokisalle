@@ -38,6 +38,9 @@ if($_POST){
         'X-Mailer: PHP/' . phpversion();
 
         mail($to, $subject, $message, $headers);
+        $msg='<div class="alert alert-success" role="alert">Nous avons bien reçu votre message</div>';
+        $objet='';
+        $contenu='';
     }
 }
 ?>
