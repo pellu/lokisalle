@@ -27,7 +27,7 @@ if($_POST){
 	if($_POST['date_depart']){
 		$requete .= " AND date_depart <='".$_POST['date_depart']."'";
 	}
-	$requete .= " AND p.etat = 'libre' ORDER BY p.date_arrivee";
+	$requete .= " AND p.etat = 'libre' AND p.date_arrivee>='".date('d-m-Y')."' ORDER BY p.date_arrivee";
 
 	$query = $pdo->prepare($requete);
 	$query->execute();
