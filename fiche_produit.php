@@ -1,18 +1,14 @@
 <?php
 ob_start();
 session_start();
-
 $pagename="page produit";
 include('menu.php'); 
-
 $der_cmd = $pdo->prepare('
     SELECT * FROM produit JOIN salle ON salle.id_salle=produit.id_salle                           
     WHERE produit.id_produit=:idproduit');
-
 $der_cmd->bindParam(':idproduit', $idproduit, PDO::PARAM_INT);
 $der_cmd -> execute(); 
 $cmd_list = $der_cmd->fetchAll(PDO::FETCH_ASSOC);
-
 if($der_cmd->rowCount()==0){
     header('Location:'. $racines.'');
 }else{ 
@@ -29,7 +25,6 @@ if($der_cmd->rowCount()==0){
                               $resultatavis = $pdo -> query("SELECT AVG(note) AS moyenne FROM avis WHERE id_salle='".$row['id_salle']."'");
                               $resultatavis->execute();
                               $topavis = $resultatavis->fetchAll();                                               
-
                               foreach ($topavis as $rowb) {
                                 echo '<span style="font-size:18px;">';
                                 if(round($rowb['moyenne'])== 0) {
@@ -68,7 +63,6 @@ if($der_cmd->rowCount()==0){
                                 $test = $pdo -> query("SELECT * FROM commande WHERE id_produit='".$row['id_produit']."'");
                                 $test->execute();
                                 $nbavis = $test->fetchAll();
-
                                 foreach($nbavis as $rowb){
                                     if(isset($_SESSION['user'])){
                                         if($_SESSION['userid']==$rowb['id_membre']){
@@ -90,7 +84,7 @@ if($der_cmd->rowCount()==0){
                  </div>
 
                  <div class="col-md-4">
-                    <h3>Description</h3>				
+                    <h3>Description</h3>                
                     <?=$row['description'];?>
 
                     <h3>Localisation</h3>
@@ -112,7 +106,6 @@ if($der_cmd->rowCount()==0){
                     $results = file_get_contents($query);
                         // On affiche le résultat
                     $result = json_decode($results);
-
                     $lat = $result->results[0]->geometry->location->lat;
                     $lon = $result->results[0]->geometry->location->lng;
                     ?>
@@ -182,14 +175,11 @@ if($der_cmd->rowCount()==0){
         AND produit.id_produit!=:idproduit
         AND produit.date_arrivee>=:datedujour
         ORDER BY commande.date_enregistrement DESC LIMIT 0,4');
-
     $prod_rel->bindValue(':datedujour', date('d-m-Y'), PDO::PARAM_STR);
     $prod_rel->bindParam(':categorie', $row['categorie'], PDO::PARAM_STR);
     $prod_rel->bindParam(':idproduit', $row['id_produit'], PDO::PARAM_INT);
     $prod_rel -> execute(); 
     $prod_list = $prod_rel->fetchAll(PDO::FETCH_ASSOC);
-
-
     if($prod_rel->rowCount()==0){
         echo '<div class="col-sm-12 col-xs-12">Il n\'y a pas de produits en relation</div>';
     }else{ 
@@ -217,16 +207,13 @@ if($_POST){
     if(empty($_POST['note'])){
         $msg .= '<div class="alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Attention!</strong> Veuillez choisir un nombre d\'étoiles.</div>';
     }
-
     if(empty($msg)){
         $resultat = $pdo -> prepare("INSERT INTO avis (id_membre, id_salle, commentaire, note, date_enregistrement) VALUES (:id_membre, :id_salle, :commentaire, :note, :date_enregistrement)");
-
         $resultat -> bindValue(':id_membre', $_SESSION['userid'], PDO::PARAM_INT);
         $resultat -> bindValue(':id_salle', $row['id_salle'], PDO::PARAM_INT);
         $resultat -> bindValue(':commentaire', $_POST['commentaire'], PDO::PARAM_STR);
         $resultat -> bindValue(':note', $_POST['note'], PDO::PARAM_INT);
         $resultat -> bindValue(':date_enregistrement', date('Y-m-d H:i:s'), PDO::PARAM_STR);
-
         if($resultat -> execute()){
             ?>
             <script type="text/javascript">
@@ -253,7 +240,6 @@ if($_POST){
                 $totalavis = $pdo -> query("SELECT COUNT(note) AS totalnote FROM avis WHERE id_salle='".$row['id_salle']."'");
                 $totalavis->execute();
                 $nbavis = $totalavis->fetchAll();
-
                 foreach ($nbavis as $rowa) {
                     if($rowa['totalnote']==0){
                         echo "Il n'y a pas encore d'avis";
@@ -272,33 +258,27 @@ if($_POST){
             <div class="form-group">
                 <textarea class="form-control" name="commentaire" rows="3"></textarea>
             </div>
-            <style type="text/css">
+            <style>
                 .select-rating-stars, .select-rating-stars label::before{
                     display: inline-block;
                 }
-
                 .select-rating-stars label:hover, .select-rating-stars label:hover ~ label{
                     color: red;
                 }
-
                 .select-rating-stars *{
                     margin: 0;
                     padding: 0;
                 }
-
                 .select-rating-stars input{
                     display: none;
                 }
-
                 .select-rating-stars{
                     unicode-bidi: bidi-override;
                     direction: rtl;
                 }
-
                 .select-rating-stars label{
                     color: #ccc;
                 }
-
                 .select-rating-stars label::before{
                     content: "\2605";
                     width: 18px;
@@ -307,11 +287,9 @@ if($_POST){
                     font-size: 18px;
                     cursor: pointer;
                 }
-
                 .select-rating-stars input:checked ~ label{
                     color: #C1272D;
                 }
-
                 .select-rating-disabled{
                     opacity: .50;
                     -webkit-pointer-events: none;
@@ -333,7 +311,6 @@ if($_POST){
     <div class="col-lg-12">
         <h3 class="page-header">Avis déposés</h3>
         <?php
-
         $requeteavis = $pdo -> query("SELECT * FROM avis INNER JOIN membre ON membre.id_membre=avis.id_membre WHERE id_salle='".$row['id_salle']."'");
         $requeteavis->execute();
         $affichageavis = $requeteavis->fetchAll();
@@ -344,7 +321,6 @@ if($_POST){
 
         <?php }else{echo '<a href=""  data-toggle="modal" data-target="#insciptionConnexion" class="btn btn-success">Veuillez vous connecter pour donner votre avis</a>';} ?><br>
         <?php
-
         foreach ($affichageavis as $rowavis) {
             ?>
             <div style="margin-top: 5px;">

@@ -36,22 +36,22 @@ if($_POST){
 	//Compter nombre de résultat
 	$nRows = $query->rowCount();
 ?>
-<p>Votre recherche affiche <?php echo $nRows; ?> produit<?php if($nRows >= 2){echo "s";}?> disponible actuellement</p>
+<p>Votre recherche affiche <?php echo $nRows; ?> produit<?php if($nRows >= 2){echo "s";}?> disponible<?php if($nRows > 1){echo "s";}?> actuellement</p>
 <?php
 	foreach ($list as $row) {
 		if($row == 1){
 			echo "Le site n'a pas encore de produits";
 		}else{
 			?>
-			<div class="col-sm-4 col-lg-4 col-md-4">
+			<div class="col-sm-6 col-lg-4 col-md-4 col-xs-12">
 				<div class="thumbnail">
 					<img style="height: 150px;" src="<?= $racines; ?>images/<?= $row['photo']; ?>" alt="<?= $row['titre']; ?>">
 					<div class="caption">
 						<h4 class="pull-right"><?= $row['prix']; ?> €</h4>
 						<h4><a href="<?= $racines; ?>fiche_produit/<?= $row['id_produit']; ?>"><?= $row['titre']; ?></a>
 						</h4>
-						<p><?= $row['description']; ?></p>
-						<p>Du <?= $row['date_arrivee']; ?> au <?= $row['date_depart']; ?></p>
+						<p><?= substr($row['description'], 0, 60); ?> ...</p>
+						<p style="font-size: 13px;">Du <?= $row['date_arrivee']; ?> au <?= $row['date_depart']; ?></p>
 					</div>
 					<div class="ratings">
 						<div class="ratings">

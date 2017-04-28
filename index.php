@@ -95,7 +95,7 @@ $nRows = $querycount->rowCount();
         </div>
 
         <div class="col-sm-9 col-lg-9 col-md-9" id="myDiv">
-            <p>Il y a <?= $nRows; ?> produit<?php if($nRows > 1){echo "s";}?> disponible actuellement</p>
+            <p>Il y a <?= $nRows; ?> produit<?php if($nRows > 1){echo "s";}?> disponible<?php if($nRows > 1){echo "s";}?> actuellement</p>
 
             <?php
             foreach ($list as $row) {
@@ -104,7 +104,7 @@ $nRows = $querycount->rowCount();
                     echo "<p>Le site n'a pas encore de produits</p>";
                 }else{
                     ?>
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-sm-6 col-lg-4 col-md-6 col-xs-12">
                         <div class="thumbnail">
                             <a href="<?= $racines; ?>fiche_produit/<?= $row['id_produit']; ?>"><img style="height: 150px;" src="<?= $racines; ?>images/<?= $row['photo']; ?>" alt="<?= $row['titre']; ?>"></a>
                             <div class="caption">
@@ -112,7 +112,7 @@ $nRows = $querycount->rowCount();
                                 <h4><a href="<?= $racines; ?>fiche_produit/<?= $row['id_produit']; ?>"><?= $row['titre']; ?></a>
                                 </h4>
                                 <p><?= substr($row['description'], 0, 60); ?> ...</p>
-                                <p>Du <?= $row['date_arrivee']; ?> au <?= $row['date_depart']; ?></p>
+                                <p style="font-size: 13px;">Du <?= $row['date_arrivee']; ?> au <?= $row['date_depart']; ?></p>
                             </div>
                             
                             <div class="ratings">
@@ -202,4 +202,5 @@ $nRows = $querycount->rowCount();
             requete(reponse);
         }
     </script>
-    <?php include('footer.php'); ?>
+</div>
+<?php include('footer.php'); ?>

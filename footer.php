@@ -55,7 +55,7 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="inscription">
               <div id="resultatinscription"></div>
-              <form method="POST" id="inscription" data-toggle="validator">
+              <form method="POST" data-toggle="validator">
                 <div class="form-group has-feedback">
                   <label>Nom d'utilisateur</label>
                   <input type="text" class="form-control" name="pseudo" placeholder="Nom d'utilisateur" id="pseudo2" value="" required data-error="Vous devez choisir un pseudo">
@@ -75,15 +75,15 @@
                   <div class="help-block with-errors"></div>
                 </div>
                 <div class="form-group ">
-                  <label for="civilite">Sexe</label><br>
+                  <label>Sexe</label><br>
                   <label>
-                    <input type="radio" name="civilite" id="civilite2" value="h" checked> Homme
+                    <input type="radio" name="civilite" class="civilite2" value="h" checked> Homme
                   </label>
                   <label>
-                    <input type="radio" name="civilite" id="civilite2" value="f"> Femme
+                    <input type="radio" name="civilite" class="civilite2" value="f"> Femme
                   </label>
                   <label>
-                    <input type="radio" name="civilite" id="civilite2" value="a"> Autre
+                    <input type="radio" name="civilite" class="civilite2" value="a"> Autre
                   </label>
                 </div>
                 <div class="form-group has-feedback">
@@ -112,7 +112,7 @@
                         nom: $("#nom2").val(),
                         prenom: $("#prenom2").val(),
                         statut: $("#statut2").val(),
-                        civilite: $("#civilite2").val(),
+                        civilite: $(".civilite2").val(),
                         email: $("#email2").val(),
                         password : $("#password2").val()
                       },
@@ -137,7 +137,7 @@
   }else{
   }
   ?>
-  <script src="<?= $racinea; ?>js/bootstrap.min.js"></script>
+  <script src="<?= $racines; ?>js/bootstrap.min.js"></script>
   <script src="<?= $racines; ?>js/validator.js"></script>
 </body>
 </html>
